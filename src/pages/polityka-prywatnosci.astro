@@ -4,28 +4,22 @@ export const prerender = true;
 import Base from '@/components/layouts/Base.astro';
 import Nav from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
-import { getPrivacyPolicyDocument } from '@/lib/privacy-policy';
-import { getSitePresentation } from '@/lib/site';
+import { PRIVACY_POLICY } from '@/data/legal';
+import { SITE } from '@/data/site';
 import { buildLegalSchema } from '@/lib/schema';
 
-const doc = getPrivacyPolicyDocument('pl');
-const site = getSitePresentation();
-const title = `${doc.title} — ${site.displayName}`;
+const doc = PRIVACY_POLICY;
+const title = `${doc.title} — ${SITE.displayName}`;
 const canonical = '/polityka-prywatnosci';
-const alternates = {
-  'en-US': '/privacy-policy',
-  'pl-PL': '/polityka-prywatnosci',
-};
 const schema = buildLegalSchema({
   canonical,
   title,
   description: doc.lead,
-  language: 'pl-PL',
-  alternates,
+  language: SITE.locale,
 });
 ---
 
-<Base title={title} description={doc.lead} canonical={canonical} alternates={alternates} lang="pl-PL">
+<Base title={title} description={doc.lead} canonical={canonical} lang={SITE.locale}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
@@ -36,7 +30,7 @@ const schema = buildLegalSchema({
         <p class="legal-meta">{doc.lastUpdatedLabel}</p>
         <h1>{doc.title}</h1>
         <p class="legal-lead">{doc.lead}</p>
-        <a href={doc.languageSwitchHref} class="legal-switch">{doc.languageSwitchLabel}</a>
+        <p class="legal-disclaimer">{doc.disclaimer}</p>
       </header>
 
       {doc.sections.map((section) => (
@@ -56,16 +50,68 @@ const schema = buildLegalSchema({
 </Base>
 
 <style>
-  .legal-main { min-height: 100vh; background: var(--bg-base); padding-top: 3rem; }
-  .legal-container { max-width: 860px; margin: 0 auto; padding: 4rem 1.5rem; }
-  .legal-header { margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
-  .legal-meta { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); }
-  h1 { font-family: var(--font-heading); font-size: clamp(2rem, 4vw, 3rem); color: var(--text-primary); }
-  .legal-lead { color: var(--text-secondary); line-height: 1.75; font-size: var(--text-base); }
-  .legal-switch { width: fit-content; color: var(--teal); text-decoration: none; font-family: var(--font-mono); font-size: var(--text-sm); }
-  .legal-switch:hover { color: var(--gold); }
-  .legal-section { margin-top: 2rem; }
-  .legal-section h2 { font-family: var(--font-mono); font-size: var(--text-base); color: var(--teal); margin-bottom: 0.75rem; }
-  .legal-section p, .legal-section li { color: var(--text-secondary); line-height: 1.8; }
-  .legal-section ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .legal-main {
+    min-height: 100vh;
+    background: var(--bg-base);
+    padding-top: 3rem;
+  }
+
+  .legal-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+
+  .legal-header {
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .legal-meta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text-primary);
+  }
+
+  .legal-lead,
+  .legal-section p,
+  .legal-section li {
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  .legal-disclaimer {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    line-height: 1.7;
+  }
+
+  .legal-section {
+    margin-top: 2rem;
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-section ul {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 </style>
