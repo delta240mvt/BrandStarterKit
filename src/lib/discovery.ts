@@ -7,7 +7,7 @@ export interface DiscoveryIndex {
   llmsFull: string;
 }
 
-const STATIC_CRAWLABLE_PATHS = ['/', '/blog', '/privacy-policy', '/polityka-prywatnosci'] as const;
+const STATIC_CRAWLABLE_PATHS = ['/', '/blog', '/polityka-prywatnosci', '/llms.txt', '/llms-full.txt'] as const;
 
 export function buildDiscoveryIndex(): DiscoveryIndex {
   return {
@@ -35,4 +35,18 @@ export function getPaginatedBlogArchiveUrls(totalPosts: number, pageSize: number
   }
 
   return urls;
+}
+
+export function buildRobotsTxt(): string {
+  const discovery = buildDiscoveryIndex();
+
+  return `User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# llms.txt: ${discovery.llms}
+# RSS: ${discovery.rss}
+Sitemap: ${discovery.sitemap}
+`;
 }

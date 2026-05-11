@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { buildRobotsTxt } from '@/lib/discovery';
 import { absoluteUrl } from '@/lib/site';
 
 const TEST_FILE = fileURLToPath(import.meta.url);
@@ -17,7 +18,7 @@ test('absoluteUrl normalizes trailing slashes for canonical page URLs', () => {
 });
 
 test('robots.txt points AI/SEO discovery to configured starter domain', () => {
-  const robots = readFileSync(path.join(APP_ROOT, 'public', 'robots.txt'), 'utf8');
+  const robots = buildRobotsTxt();
 
   assert.match(robots, /https:\/\/example\.com\/llms\.txt/);
   assert.match(robots, /https:\/\/example\.com\/sitemap\.xml/);

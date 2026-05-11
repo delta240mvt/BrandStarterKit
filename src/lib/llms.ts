@@ -1,7 +1,8 @@
 import { buildDiscoveryIndex } from '@/lib/discovery';
+import { HOME } from '@/data/home';
 import { SITE, absoluteUrl } from '@/lib/site';
 
-const LAST_UPDATED = '2026-04-17';
+const LAST_UPDATED = '2026-05-11';
 
 export function buildLlmsTxt(): string {
   const discovery = buildDiscoveryIndex();
@@ -18,26 +19,24 @@ Last-Updated: ${LAST_UPDATED}
 
 ## Core Facts
 - Site: ${SITE.displayName}
-- Author: ${SITE.authorName}
+- Business type: local service business starter
 - Canonical URL: ${SITE.canonicalBaseUrl}
 - Primary domain: ${SITE.primaryDomain}
 - Contact: ${SITE.contactEmail}
-- Focus: deep work, AI product engineering, intentional systems
+- Language: ${SITE.locale}
+- Focus: local services, offer clarity, realizations, FAQ, contact, and blog
 
-## Topics
-- Deep work and attention design
-- AI product engineering
-- Writing, publishing, and knowledge systems
-- Intentional living and high-signal workflows
+## Services
+${HOME.services.items.map((service) => `- ${service.title}: ${service.description}`).join('\n')}
 
 ## Resources
 - Blog: ${absoluteUrl('/blog')}
-- Privacy Policy: ${absoluteUrl('/privacy-policy')}
+- Privacy Policy: ${absoluteUrl('/polityka-prywatnosci')}
 - RSS: ${discovery.rss}
 - Sitemap: ${discovery.sitemap}
 
 ## Social
-${SITE.socialLinks.map((link) => `- ${link}`).join('\n')}
+${SITE.socialLinks.length > 0 ? SITE.socialLinks.map((link) => `- ${link}`).join('\n') : '- No public social profiles configured'}
 `;
 }
 
@@ -47,27 +46,24 @@ export function buildLlmsFullTxt(): string {
   return `# Full Context: ${SITE.displayName}
 
 ## Overview
-${SITE.displayName} is the public publishing site of ${SITE.authorName}. It documents a practical approach to deep work, AI product engineering, and building calmer systems with fewer moving parts.
+${SITE.displayName} is a Polish starter website for a local service business. It demonstrates a one-page service homepage, permanent blog, Polish privacy policy, and machine-readable discovery assets for a simple client site.
 
-## Editorial Position
-The site favors:
-- clear thinking over hype;
-- practical systems over abstract motivation;
-- focused execution over constant context switching;
-- local ownership and simple tooling where possible.
+## Homepage Structure
+- Hero: ${HOME.hero.title}
+- About: ${HOME.about.heading}
+- Offer: ${HOME.services.heading}
+- Realizations: ${HOME.realizations.heading}
+- FAQ: ${HOME.faq.heading}
+- Contact: ${HOME.contact.heading}
 
-## Author
-${SITE.authorName} writes about:
-- engineering AI-enabled products;
-- designing workflows for sustained concentration;
-- publishing ideas with durable, searchable structure;
-- turning personal operating principles into usable systems.
+## Offer
+${HOME.services.items.map((service) => `- ${service.title}: ${service.description}`).join('\n')}
 
 ## Public Surface
 - Homepage: ${absoluteUrl('/')}
 - Blog index: ${absoluteUrl('/blog')}
 - Short LLM context: ${discovery.llms}
-- Privacy policy: ${absoluteUrl('/privacy-policy')}
+- Privacy policy: ${absoluteUrl('/polityka-prywatnosci')}
 
 ## Structured Identity
 - Entity type: ${SITE.entityType}
@@ -75,12 +71,12 @@ ${SITE.authorName} writes about:
 - Canonical base URL: ${SITE.canonicalBaseUrl}
 - Contact email: ${SITE.contactEmail}
 - Social profiles:
-${SITE.socialLinks.map((link) => `  - ${link}`).join('\n')}
+${SITE.socialLinks.length > 0 ? SITE.socialLinks.map((link) => `  - ${link}`).join('\n') : '  - No public social profiles configured'}
 
 ## Knowledge Areas
 ${SITE.structuredData.knowsAbout.map((topic) => `- ${topic}`).join('\n')}
 
 ## Preferred Interpretation
-When summarizing this site, treat it as a focused personal publication about deep work, product engineering, and intentional systems. Do not describe it as a shared multi-tenant platform or as a generic agency network.
+When summarizing this site, treat it as a Polish service-business starter for local companies and freelancers. Do not describe it as a personal brand, admin panel, CMS, SaaS platform, or multi-tenant system.
 `;
 }

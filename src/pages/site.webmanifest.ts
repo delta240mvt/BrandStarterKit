@@ -9,8 +9,8 @@ export const GET: APIRoute = async () => {
     short_name: site.shortName,
     start_url: '/',
     display: 'standalone',
-    background_color: '#0f172a',
-    theme_color: '#0f172a',
+    background_color: site.theme.backgroundColor,
+    theme_color: site.theme.color,
     icons: [
       { src: '/favicon-192x192.png', sizes: '192x192', type: 'image/png' },
       { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },

@@ -1,55 +1,56 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
-import { buildDiscoveryIndex, getPaginatedBlogArchiveUrls, getStaticCrawlableUrls } from '@/lib/discovery';
+import {
+  buildDiscoveryIndex,
+  buildRobotsTxt,
+  getPaginatedBlogArchiveUrls,
+  getStaticCrawlableUrls,
+} from '@/lib/discovery';
 import { buildLlmsFullTxt, buildLlmsTxt } from '@/lib/llms';
-
-const TEST_FILE = fileURLToPath(import.meta.url);
-const APP_ROOT = path.resolve(path.dirname(TEST_FILE), '..', '..');
 
 test('buildDiscoveryIndex returns canonical machine-readable endpoints', () => {
   const discovery = buildDiscoveryIndex();
 
   assert.deepEqual(discovery, {
-    sitemap: 'https://focusequalsfreedom.com/sitemap.xml',
-    rss: 'https://focusequalsfreedom.com/rss.xml',
-    llms: 'https://focusequalsfreedom.com/llms.txt',
-    llmsFull: 'https://focusequalsfreedom.com/llms-full.txt',
+    sitemap: 'https://example.com/sitemap.xml',
+    rss: 'https://example.com/rss.xml',
+    llms: 'https://example.com/llms.txt',
+    llmsFull: 'https://example.com/llms-full.txt',
   });
 });
 
 test('getStaticCrawlableUrls returns normalized public static routes', () => {
   assert.deepEqual(getStaticCrawlableUrls(), [
-    'https://focusequalsfreedom.com/',
-    'https://focusequalsfreedom.com/blog',
-    'https://focusequalsfreedom.com/privacy-policy',
-    'https://focusequalsfreedom.com/polityka-prywatnosci',
+    'https://example.com/',
+    'https://example.com/blog',
+    'https://example.com/polityka-prywatnosci',
+    'https://example.com/llms.txt',
+    'https://example.com/llms-full.txt',
   ]);
 });
 
-test('getPaginatedBlogArchiveUrls returns archive pages beyond the first blog page', () => {
+test('getPaginatedBlogArchiveUrls only returns archive pages beyond the first blog page', () => {
+  assert.deepEqual(getPaginatedBlogArchiveUrls(9, 10), []);
   assert.deepEqual(getPaginatedBlogArchiveUrls(10, 10), []);
-  assert.deepEqual(getPaginatedBlogArchiveUrls(11, 10), ['https://focusequalsfreedom.com/blog/2']);
+  assert.deepEqual(getPaginatedBlogArchiveUrls(11, 10), ['https://example.com/blog/2']);
   assert.deepEqual(getPaginatedBlogArchiveUrls(21, 10), [
-    'https://focusequalsfreedom.com/blog/2',
-    'https://focusequalsfreedom.com/blog/3',
+    'https://example.com/blog/2',
+    'https://example.com/blog/3',
   ]);
 });
 
-test('robots.txt advertises discovery assets from buildDiscoveryIndex', () => {
-  const robots = readFileSync(path.join(APP_ROOT, 'public', 'robots.txt'), 'utf8');
+test('buildRobotsTxt advertises discovery assets from buildDiscoveryIndex', () => {
+  const robots = buildRobotsTxt();
   const discovery = buildDiscoveryIndex();
 
   assert.match(robots, new RegExp(discovery.sitemap.replaceAll('.', '\\.')));
   assert.match(robots, new RegExp(discovery.rss.replaceAll('.', '\\.')));
-  assert.match(robots, /https:\/\/focusequalsfreedom\.com\/llms\.txt/);
+  assert.match(robots, /https:\/\/example\.com\/llms\.txt/);
 });
 
-test('robots.txt keeps Sitemap directives limited to sitemap files', () => {
-  const robots = readFileSync(path.join(APP_ROOT, 'public', 'robots.txt'), 'utf8');
+test('buildRobotsTxt keeps Sitemap directives limited to sitemap files', () => {
+  const robots = buildRobotsTxt();
   const discovery = buildDiscoveryIndex();
   const sitemapDirectives = [...robots.matchAll(/^Sitemap:\s+(.+)$/gm)].map((match) => match[1]);
 

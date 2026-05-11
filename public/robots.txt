@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin
-Disallow: /api
-
-# llms.txt: https://example.com/llms.txt
-# RSS: https://example.com/rss.xml
-Sitemap: https://example.com/sitemap.xml
