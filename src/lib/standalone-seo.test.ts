@@ -10,18 +10,18 @@ const TEST_FILE = fileURLToPath(import.meta.url);
 const APP_ROOT = path.resolve(path.dirname(TEST_FILE), '..', '..');
 
 test('absoluteUrl normalizes trailing slashes for canonical page URLs', () => {
-  assert.equal(absoluteUrl('/'), 'https://focusequalsfreedom.com/');
-  assert.equal(absoluteUrl('/blog'), 'https://focusequalsfreedom.com/blog');
-  assert.equal(absoluteUrl('/blog/'), 'https://focusequalsfreedom.com/blog');
-  assert.equal(absoluteUrl('/privacy-policy/'), 'https://focusequalsfreedom.com/privacy-policy');
+  assert.equal(absoluteUrl('/'), 'https://example.com/');
+  assert.equal(absoluteUrl('/blog'), 'https://example.com/blog');
+  assert.equal(absoluteUrl('/blog/'), 'https://example.com/blog');
+  assert.equal(absoluteUrl('/polityka-prywatnosci/'), 'https://example.com/polityka-prywatnosci');
 });
 
-test('robots.txt points AI/SEO discovery to focusequalsfreedom.com', () => {
+test('robots.txt points AI/SEO discovery to configured starter domain', () => {
   const robots = readFileSync(path.join(APP_ROOT, 'public', 'robots.txt'), 'utf8');
 
-  assert.match(robots, /https:\/\/focusequalsfreedom\.com\/llms\.txt/);
-  assert.match(robots, /https:\/\/focusequalsfreedom\.com\/sitemap\.xml/);
-  assert.match(robots, /https:\/\/focusequalsfreedom\.com\/rss\.xml/);
+  assert.match(robots, /https:\/\/example\.com\/llms\.txt/);
+  assert.match(robots, /https:\/\/example\.com\/sitemap\.xml/);
+  assert.match(robots, /https:\/\/example\.com\/rss\.xml/);
   assert.doesNotMatch(robots, /przemyslawfilipiak\.com/);
 });
 
@@ -31,6 +31,7 @@ test('package scripts expose and run the standalone regression guard', () => {
   ) as { scripts?: Record<string, string> };
 
   assert.match(packageJson.scripts?.test ?? '', /src\/lib\/import-boundary\.test\.ts/);
+  assert.match(packageJson.scripts?.test ?? '', /src\/data\/starter\.test\.ts/);
   assert.match(packageJson.scripts?.test ?? '', /src\/lib\/standalone-seo\.test\.ts/);
   assert.match(packageJson.scripts?.test ?? '', /src\/lib\/seo\.test\.ts/);
   assert.match(packageJson.scripts?.test ?? '', /src\/lib\/schema\.test\.ts/);

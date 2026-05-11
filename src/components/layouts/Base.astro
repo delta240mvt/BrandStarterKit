@@ -29,10 +29,11 @@ const {
   articlePublishedAt,
   articleModifiedAt,
   alternates = undefined,
-  lang = 'en-US',
+  lang = undefined,
 } = Astro.props;
 
 const site = getSitePresentation();
+const htmlLang = lang ?? site.locale;
 const seo = createPageSeo({
   type: ogType,
   pathname: Astro.url.pathname,
@@ -46,16 +47,19 @@ const seo = createPageSeo({
   alternates,
 });
 const alternateEntries = Object.entries(seo.alternates ?? {});
-const ogLocale = lang.replace('-', '_');
+const ogLocale = htmlLang.replace('-', '_');
 const socialImageAlt = formatSocialImageAlt(seo.openGraph.title, seo.openGraph.siteName);
+const analyticsAttributes = Object.fromEntries(
+  Object.entries(site.analytics.dataAttributes ?? {}).map(([key, value]) => [`data-${key}`, value]),
+);
 ---
 
 <!DOCTYPE html>
-<html lang={lang}>
+<html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0f172a" />
+    <meta name="theme-color" content={site.theme.color} />
     <meta name="description" content={seo.description} />
     <meta name="author" content={site.authorName} />
     <title>{seo.title}</title>
@@ -110,8 +114,15 @@ const socialImageAlt = formatSocialImageAlt(seo.openGraph.title, seo.openGraph.s
     <!-- Page-specific head content (JSON-LD, etc.) -->
     <slot name="head" />
 
-    <!-- Umami Analytics -->
-    <script is:inline defer src="https://umami-blogi-astro.up.railway.app/script.js" data-website-id="8a199f5f-0f46-49af-861f-9153a90989d0"></script>
+    {site.analytics.enabled && site.analytics.scriptSrc && (
+      <script
+        is:inline
+        defer
+        src={site.analytics.scriptSrc}
+        data-website-id={site.analytics.siteId}
+        {...analyticsAttributes}
+      ></script>
+    )}
   </head>
   <body>
     <slot />

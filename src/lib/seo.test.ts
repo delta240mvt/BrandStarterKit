@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
+import { SITE } from '@/data/site';
 import { createPageSeo, DEFAULT_ROBOTS_DIRECTIVE, formatSocialImageAlt } from '@/lib/seo';
 
 test('createPageSeo normalizes canonical URLs and applies social defaults', () => {
@@ -8,33 +9,33 @@ test('createPageSeo normalizes canonical URLs and applies social defaults', () =
     type: 'website',
     pathname: '/blog/',
     title: 'Blog',
-    description: 'Notes on deep work',
+    description: 'Porady dla lokalnej firmy',
   });
 
   assert.equal(seo.title, 'Blog');
-  assert.equal(seo.description, 'Notes on deep work');
-  assert.equal(seo.canonical, 'https://focusequalsfreedom.com/blog');
+  assert.equal(seo.description, 'Porady dla lokalnej firmy');
+  assert.equal(seo.canonical, 'https://example.com/blog');
   assert.equal(seo.robots, DEFAULT_ROBOTS_DIRECTIVE);
   assert.deepEqual(seo.openGraph, {
     type: 'website',
     title: 'Blog',
-    description: 'Notes on deep work',
-    url: 'https://focusequalsfreedom.com/blog',
-    siteName: 'Focus Equals Freedom',
-    image: 'https://focusequalsfreedom.com/og-image.png',
+    description: 'Porady dla lokalnej firmy',
+    url: 'https://example.com/blog',
+    siteName: SITE.displayName,
+    image: 'https://example.com/og-image.png',
   });
   assert.deepEqual(seo.twitter, {
     card: 'summary_large_image',
     title: 'Blog',
-    description: 'Notes on deep work',
-    image: 'https://focusequalsfreedom.com/og-image.png',
+    description: 'Porady dla lokalnej firmy',
+    image: 'https://example.com/og-image.png',
   });
 });
 
 test('createPageSeo supports custom robots, article timestamps, and alternates', () => {
   const seo = createPageSeo({
     type: 'article',
-    pathname: '/blog/hello-focus-equals-freedom',
+    pathname: '/blog/pierwszy-wpis-startera',
     title: 'Hello',
     description: 'World',
     robots: 'noindex, follow',
@@ -42,7 +43,7 @@ test('createPageSeo supports custom robots, article timestamps, and alternates',
     updatedAt: '2026-04-18T00:00:00.000Z',
     alternates: {
       'en-US': '/privacy-policy/',
-      'pl-PL': 'https://focusequalsfreedom.com/polityka-prywatnosci/',
+      'pl-PL': 'https://example.com/polityka-prywatnosci/',
     },
   });
 
@@ -51,15 +52,15 @@ test('createPageSeo supports custom robots, article timestamps, and alternates',
   assert.equal(seo.article?.publishedTime, '2026-04-17T00:00:00.000Z');
   assert.equal(seo.article?.modifiedTime, '2026-04-18T00:00:00.000Z');
   assert.deepEqual(seo.alternates, {
-    'en-US': 'https://focusequalsfreedom.com/privacy-policy',
-    'pl-PL': 'https://focusequalsfreedom.com/polityka-prywatnosci',
+    'en-US': 'https://example.com/privacy-policy',
+    'pl-PL': 'https://example.com/polityka-prywatnosci',
   });
 });
 
 test('formatSocialImageAlt avoids duplicating the site name', () => {
-  assert.equal(formatSocialImageAlt('Blog'), 'Blog — Focus Equals Freedom');
+  assert.equal(formatSocialImageAlt('Blog'), `Blog — ${SITE.displayName}`);
   assert.equal(
-    formatSocialImageAlt('Blog | Focus Equals Freedom'),
-    'Blog | Focus Equals Freedom',
+    formatSocialImageAlt(`Blog | ${SITE.displayName}`),
+    `Blog | ${SITE.displayName}`,
   );
 });

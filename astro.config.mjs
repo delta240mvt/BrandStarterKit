@@ -8,7 +8,7 @@ import tailwind from '@astrojs/tailwind';
 const appDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  site: 'https://focusequalsfreedom.com',
+  site: 'https://example.com',
   output: 'hybrid',
   adapter: cloudflare({}),
   integrations: [mdx(), tailwind({ configFile: './tailwind.config.mjs' })],
