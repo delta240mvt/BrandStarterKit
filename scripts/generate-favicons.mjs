@@ -86,4 +86,4 @@ for (const size of sizes) {
   }
 }
 
-console.log("Successfully generated favicons for client-focusequalsfreedom");
+console.log("Successfully generated favicons for polish-service-website-starter");
