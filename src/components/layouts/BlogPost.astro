@@ -33,7 +33,7 @@ const site = getSitePresentation();
 const resolvedAuthor = author ?? site.authorName;
 
 const formattedDate = publishedAt
-  ? new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(publishedAt)
+  ? new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(publishedAt)
   : null;
 
 const resolvedCanonicalUrl = canonicalUrl ?? (slug ? absoluteUrl(`/blog/${slug}`) : absoluteUrl(Astro.url.pathname));
@@ -61,7 +61,7 @@ const schema = publishedAt
     {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
   </Fragment>
   <Nav />
-  <main class="blog-main" aria-label="Article content">
+  <main class="blog-main" aria-label="Treść wpisu">
     <article class="blog-article">
       <header class="article-header">
         <div class="article-meta">
@@ -71,7 +71,7 @@ const schema = publishedAt
             </time>
           )}
           {readingTime && (
-            <span class="article-reading-time">{readingTime} min read</span>
+            <span class="article-reading-time">{readingTime} min czytania</span>
           )}
         </div>
         <h1 class="article-title">{title}</h1>
@@ -88,15 +88,15 @@ const schema = publishedAt
         <slot />
       </div>
       <footer class="article-footer">
-        <p class="article-author">By {resolvedAuthor}</p>
+        <p class="article-author">Autor: {resolvedAuthor}</p>
         {updatedAt && (
           <p class="article-updated">
-            Last updated: <time datetime={updatedAt.toISOString()}>
-              {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(updatedAt)}
+            Ostatnia aktualizacja: <time datetime={updatedAt.toISOString()}>
+              {new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(updatedAt)}
             </time>
           </p>
         )}
-        <a href="/blog" class="back-to-blog">← Back to blog</a>
+        <a href="/blog" class="back-to-blog">← Wróć do bloga</a>
       </footer>
     </article>
   </main>

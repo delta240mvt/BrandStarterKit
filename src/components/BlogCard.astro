@@ -12,18 +12,18 @@ export interface Props {
 const { title, description, date, readingTime, tags = [], slug, featured = false } = Astro.props;
 
 const formattedDate = date
-  ? new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date)
+  ? new Intl.DateTimeFormat('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }).format(date)
   : null;
 ---
 
 <article class={`blog-card${featured ? ' blog-card--featured' : ''}`}>
-  {featured && <span class="featured-label">★ Featured</span>}
+  {featured && <span class="featured-label">Polecany wpis</span>}
   <a href={`/blog/${slug}`} class="blog-card-link">
     <h3 class="blog-card-title">{title}</h3>
     {description && <p class="blog-card-description">{description}</p>}
     <div class="blog-card-meta">
       {formattedDate && <time datetime={date?.toISOString()}>{formattedDate}</time>}
-      {readingTime && <span>{readingTime} min read</span>}
+      {readingTime && <span>{readingTime} min czytania</span>}
     </div>
     {tags.length > 0 && (
       <div class="blog-card-tags">

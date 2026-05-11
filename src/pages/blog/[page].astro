@@ -24,7 +24,7 @@ const { posts, page, totalPages } = await getPaginatedPosts(requestedPage, BLOG_
 const topics = await getPublishedTags();
 const prevHref = page === 2 ? '/blog' : `/blog/${page - 1}`;
 const nextHref = `/blog/${page + 1}`;
-const title = `${site.blogTitle} — Page ${page}`;
+const title = `${site.blogTitle} — Strona ${page}`;
 const canonical = `/blog/${page}`;
 const schema = buildCollectionSchema({
   canonical,
@@ -43,13 +43,13 @@ const schema = buildCollectionSchema({
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
   <Nav />
-  <main class="blog-list-main" aria-label="Blog posts">
+  <main class="blog-list-main" aria-label="Wpisy blogowe">
     <div class="blog-list-container">
       <header class="blog-list-header">
         <h1 class="blog-list-title">/blog</h1>
         {topics.length > 0 && (
           <section class="topic-section" aria-labelledby="blog-topic-heading">
-            <h2 id="blog-topic-heading" class="topic-section-title">Topics</h2>
+            <h2 id="blog-topic-heading" class="topic-section-title">Tematy</h2>
             <ul class="topic-list">
               {topics.map((topic) => (
                 <li><span class="topic-chip">{topic}</span></li>
@@ -74,15 +74,15 @@ const schema = buildCollectionSchema({
           ))}
         </div>
       ) : (
-        <p class="empty-state">No articles found. Check back soon.</p>
+        <p class="empty-state">Brak wpisów. Wróć tu wkrótce.</p>
       )}
 
       {totalPages > 1 && (
-        <nav class="pagination" aria-label="Blog pagination">
-          <a href={prevHref} class="page-btn">← Previous</a>
-          <span class="page-info">Page {page} of {totalPages}</span>
+        <nav class="pagination" aria-label="Paginacja bloga">
+          <a href={prevHref} class="page-btn">← Poprzednia</a>
+          <span class="page-info">Strona {page} z {totalPages}</span>
           {page < totalPages && (
-            <a href={nextHref} class="page-btn">Next →</a>
+            <a href={nextHref} class="page-btn">Następna →</a>
           )}
         </nav>
       )}

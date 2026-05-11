@@ -37,7 +37,7 @@ const schema = buildCollectionSchema({
         <h1 class="blog-list-title">/blog</h1>
         {topics.length > 0 && (
           <section class="topic-section" aria-labelledby="blog-topic-heading">
-            <h2 id="blog-topic-heading" class="topic-section-title">Topics</h2>
+            <h2 id="blog-topic-heading" class="topic-section-title">Tematy</h2>
             <ul class="topic-list">
               {topics.map((topic) => (
                 <li><span class="topic-chip">{topic}</span></li>
@@ -62,14 +62,14 @@ const schema = buildCollectionSchema({
           ))}
         </div>
       ) : (
-        <p class="empty-state">No articles found. Check back soon.</p>
+        <p class="empty-state">Brak wpisów. Wróć tu wkrótce.</p>
       )}
 
       {totalPages > 1 && (
         <nav class="pagination" aria-label="Blog pagination">
-          <span class="page-info">Page {page} of {totalPages}</span>
+          <span class="page-info">Strona {page} z {totalPages}</span>
           {page < totalPages && (
-            <a href={nextHref} class="page-btn">Next →</a>
+            <a href={nextHref} class="page-btn">Następna →</a>
           )}
         </nav>
       )}
