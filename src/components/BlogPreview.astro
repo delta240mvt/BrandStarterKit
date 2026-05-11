@@ -1,13 +1,15 @@
 ---
 import BlogCard from './BlogCard.astro';
+import { HOME } from '@/data/home';
 import { getPublishedPosts } from '@/lib/blog';
 
 const articles = (await getPublishedPosts()).slice(0, 3);
+const { blogPreview } = HOME;
 ---
 
 <section class="blog-preview reveal" id="blog">
   <div class="blog-preview-container">
-    <h2 class="section-heading">/blog</h2>
+    <h2 class="section-heading">{blogPreview.heading}</h2>
 
     {articles.length > 0 ? (
       <div class="blog-preview-grid">
@@ -24,11 +26,11 @@ const articles = (await getPublishedPosts()).slice(0, 3);
         ))}
       </div>
     ) : (
-      <p class="empty-state">Articles coming soon. Check back later.</p>
+      <p class="empty-state">{blogPreview.emptyText}</p>
     )}
 
     <div class="blog-preview-cta">
-      <a href="/blog" class="blog-cta-link">[ → All articles ]</a>
+      <a href="/blog" class="blog-cta-link">{blogPreview.ctaLabel}</a>
     </div>
   </div>
 </section>
@@ -36,37 +38,39 @@ const articles = (await getPublishedPosts()).slice(0, 3);
 <style>
   .blog-preview {
     padding: 5rem 1.5rem;
-    background-color: var(--bg-base);
+    background: var(--bg-base);
   }
+
   .blog-preview-container {
-    max-width: 900px;
+    max-width: 980px;
     margin: 0 auto;
   }
+
   .blog-preview-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
     margin-bottom: 2rem;
   }
+
   .empty-state {
     color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
     margin-bottom: 2rem;
   }
+
   .blog-preview-cta {
     text-align: center;
-    margin-top: 2rem;
   }
+
   .blog-cta-link {
-    font-family: var(--font-mono);
     color: var(--teal);
     text-decoration: none;
-    font-size: var(--text-base);
-    transition: color 0.15s;
+    font-weight: 600;
   }
-  .blog-cta-link:hover { color: var(--gold); }
-  @media (max-width: 768px) {
-    .blog-preview-grid { grid-template-columns: 1fr; }
+
+  @media (max-width: 820px) {
+    .blog-preview-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

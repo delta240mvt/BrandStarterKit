@@ -1,168 +1,87 @@
 ---
-import PixelIcon from './PixelIcon.astro';
+import { HOME } from '@/data/home';
+
+const { hero } = HOME;
 ---
 
-<section class="hero" id="hero">
+<section class="hero" id="start">
   <div class="hero-container">
-    <!-- Retro ASCII Name Logo -->
-    <pre class="ascii-art" aria-label="FOCUS EQUALS FREEDOM">
- ███████╗ ██████╗  ██████╗██╗   ██╗███████╗
- ██╔════╝██╔═══██╗██╔════╝██║   ██║██╔════╝
- █████╗  ██║   ██║██║     ██║   ██║███████╗
- ██╔══╝  ██║   ██║██║     ██║   ██║╚════██║
- ██║     ╚██████╔╝╚██████╗╚██████╔╝███████║
- ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝
+    <p class="hero-eyebrow">{hero.eyebrow}</p>
+    <h1>{hero.title}</h1>
+    <p class="hero-description">{hero.description}</p>
 
- ███████╗ ██████╗ ██╗   ██╗ █████╗ ██╗     ███████╗
- ██╔════╝██╔═══██╗██║   ██║██╔══██╗██║     ██╔════╝
- █████╗  ██║   ██║██║   ██║███████║██║     ███████╗
- ██╔══╝  ██║▄▄ ██║██║   ██║██╔══██║██║     ╚════██║
- ███████╗╚██████╔╝╚██████╔╝██║  ██║███████╗███████║
- ╚══════╝ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
-
- ███████╗██████╗ ███████╗███████╗██████╗  ██████╗ ███╗   ███╗
- ██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔═══██╗████╗ ████║
- █████╗  ██████╔╝█████╗  █████╗  ██║  ██║██║   ██║██╔████╔██║
- ██╔══╝  ██╔══██╗██╔══╝  ██╔══╝  ██║  ██║██║   ██║██║╚██╔╝██║
- ██║     ██║  ██║███████╗███████╗██████╔╝╚██████╔╝██║ ╚═╝ ██║
- ╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝     ╚═╝</pre>
-
-    <div class="hero-content">
-      <h1 class="visually-hidden">FOCUS EQUALS FREEDOM</h1>
-      <p class="hero-tagline-wrapper">
-        <span class="hero-prompt">&gt; </span><span class="hero-tagline" id="hero-tagline"></span><span class="cursor" aria-hidden="true">▋</span>
-      </p>
+    <div class="hero-actions">
+      <a href={hero.primaryCta.href} class="btn-primary">{hero.primaryCta.label}</a>
+      <a href={hero.secondaryCta.href} class="btn-ghost">{hero.secondaryCta.label}</a>
     </div>
 
-    <div class="hero-cta">
-      <a href="/blog" class="btn-primary">Read the Blog</a>
-      <a href="https://github.com/delta240mvt" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub ↗</a>
-    </div>
-
-    <div class="hero-icons" aria-label="Project icons">
-      <PixelIcon name="bot" size={48} animate={true} />
-      <PixelIcon name="rocket" size={48} />
-      <PixelIcon name="terminal" size={48} />
-    </div>
+    {hero.trustCues.length > 0 && (
+      <ul class="trust-list" aria-label="Najwazniejsze atuty">
+        {hero.trustCues.map((cue) => <li>{cue}</li>)}
+      </ul>
+    )}
   </div>
 </section>
 
 <style>
   .hero {
-    min-height: 100vh;
+    min-height: 92vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: var(--bg-elevated);
-    padding: 6rem 1.5rem 4rem;
+    background: var(--bg-elevated);
+    padding: 7rem 1.5rem 4rem;
   }
+
   .hero-container {
-    max-width: 900px;
+    max-width: 980px;
     width: 100%;
+    margin: 0 auto;
   }
-  .ascii-art {
-    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, 'DejaVu Sans Mono', monospace;
-    color: #000;
-    background-color: #fff;
-    padding: 1rem;
-    font-size: clamp(0.35rem, 1.25vw, 0.85rem);
-    line-height: 1.1;
-    white-space: pre;
-    overflow: hidden;
-    margin-bottom: 2.5rem;
-    animation: fadeInDown 0.3s ease-out forwards;
-    letter-spacing: normal;
-    user-select: none;
-    transform: scaleY(1.25);
-    transform-origin: left top;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-  }
-  .ascii-art::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-  }
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-  .hero-content {
-    margin-bottom: 2rem;
-    animation: fadeInDown 0.5s ease-out 0.2s both;
-  }
-  .hero-tagline-wrapper {
+
+  .hero-eyebrow {
     font-family: var(--font-mono);
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    min-height: 2em;
-  }
-  .hero-prompt {
     color: var(--teal);
+    font-size: var(--text-sm);
+    margin-bottom: 1rem;
   }
-  .hero-tagline {
+
+  h1 {
+    max-width: 860px;
+    font-family: var(--font-heading);
+    font-size: clamp(2.25rem, 7vw, 5.75rem);
+    line-height: 0.98;
     color: var(--text-primary);
+    margin-bottom: 1.5rem;
   }
-  .hero-cta {
+
+  .hero-description {
+    max-width: 660px;
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.4s ease-out 0.8s both;
+    gap: 1rem;
+    margin-bottom: 2rem;
   }
-  .hero-icons {
+
+  .trust-list {
     display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    animation: fadeInUp 0.4s ease-out 1s both;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style: none;
   }
 
-  @media (max-width: 768px) {
-    .ascii-art {
-      font-size: 0.5rem;
-      transform: scaleY(1.4);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .ascii-art {
-      font-size: 0.38rem;
-      transform: scaleY(1.6);
-      margin-bottom: 2rem;
-    }
-    .hero {
-      padding: 5rem 1rem 3rem;
-    }
+  .trust-list li {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.4rem 0.75rem;
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    background: var(--bg-surface);
   }
 </style>
-
-<script>
-  import '@/styles/animations.css';
-
-  function typewriter(element: HTMLElement, text: string, speed: number = 40): void {
-    let i = 0;
-    element.textContent = '';
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        element.textContent += text[i];
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, speed);
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const tagline = document.getElementById('hero-tagline') as HTMLElement | null;
-    if (tagline) {
-      setTimeout(() => {
-        typewriter(tagline, 'AI Product Engineer. Deep Focus Founder. Wholebeing Maximizer.');
-      }, 1200);
-    }
-  });
-</script>

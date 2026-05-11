@@ -1,64 +1,51 @@
 ---
-import { getSitePresentation } from '@/lib/site';
+import { HOME } from '@/data/home';
+import { SITE } from '@/data/site';
 
-const site = getSitePresentation();
-const [githubLink, linkedInLink] = site.socialLinks;
+const { contact } = HOME;
 ---
 
-<section class="contact reveal" id="contact">
+<section class="contact reveal" id="kontakt">
   <div class="contact-container">
-    <h2 class="section-heading">/contact</h2>
-    <p class="contact-text">
-      Building something interesting with AI or have a question about deep work systems for {site.displayName}? Reach out.
-    </p>
-    <div class="contact-links">
-      <a href={linkedInLink} target="_blank" rel="noopener noreferrer" class="contact-btn">
-        LinkedIn ↗
-      </a>
-      <a href={githubLink} target="_blank" rel="noopener noreferrer" class="contact-btn">
-        GitHub ↗
-      </a>
-      <a href={`mailto:${site.contactEmail}`} class="contact-btn">
-        Email ↗
-      </a>
+    <h2 class="section-heading">{contact.heading}</h2>
+    <p class="contact-text">{contact.description}</p>
+
+    <div class="contact-actions">
+      <a href={`mailto:${SITE.contact.email}`} class="btn-primary">{contact.emailCtaLabel}</a>
+      {SITE.contact.phone && <a href={`tel:${SITE.contact.phone.replaceAll(' ', '')}`} class="btn-ghost">{SITE.contact.phone}</a>}
     </div>
+
+    {SITE.contact.address && <p class="contact-address">{SITE.contact.address}</p>}
   </div>
 </section>
 
 <style>
   .contact {
     padding: 5rem 1.5rem;
-    background-color: var(--bg-elevated);
+    background: var(--bg-elevated);
   }
+
   .contact-container {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
   }
+
   .contact-text {
     color: var(--text-secondary);
-    font-size: var(--text-base);
-    margin-bottom: 2rem;
+    font-size: var(--text-lg);
     line-height: 1.7;
+    margin-bottom: 2rem;
   }
-  .contact-links {
+
+  .contact-actions {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-bottom: 1rem;
   }
-  .contact-btn {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.6rem 1.25rem;
-    border: 1px solid var(--border);
-    border-radius: 0.375rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-family: var(--font-mono);
+
+  .contact-address {
+    color: var(--text-muted);
     font-size: var(--text-sm);
-    transition: all 0.15s;
-  }
-  .contact-btn:hover {
-    border-color: var(--teal);
-    color: var(--teal);
   }
 </style>

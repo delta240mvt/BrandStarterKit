@@ -1,67 +1,84 @@
 ---
-import ProjectCard from './ProjectCard.astro';
+import { HOME } from '@/data/home';
 
-const projects = [
-  {
-    name: 'frinter.',
-    tagline: 'WholeBeing OS for High Performers',
-    description: 'A performance system focused on Focus Sprints (Frints), energy tracking, and life-sphere balance. Designed for those who live the data-driven focus life.',
-    stack: ['React', 'Vite', 'PostgreSQL', 'Drizzle', 'Tailwind'],
-    links: [{ label: 'frinter.app', url: 'https://frinter.app' }],
-    featured: true,
-  },
-  {
-    name: 'FrinterFlow',
-    tagline: 'In-Flow voice dictation CLI',
-    description: 'Local voice dictation for deep focus sessions. Direct input, zero distractions, full control. Engineered for High Performer velocity.',
-    stack: ['Python', 'faster-whisper', 'sounddevice', 'pynput'],
-    links: [
-      { label: 'PyPI', url: 'https://pypi.org/project/frinterflow/' },
-      { label: 'GitHub', url: 'https://github.com/delta240mvt' },
-    ],
-    featured: false,
-    openSource: true,
-  },
-  {
-    name: 'FrinterHero',
-    tagline: 'AI Brand Authority Engine',
-    description: 'An open-source semantic engine to ensure High Performer authority in AI-indexed search results. Dominate GEO results with intent-driven data.',
-    stack: ['Astro', 'Tailwind', 'PostgreSQL', 'Drizzle', 'Railway'],
-    links: [
-      { label: 'GitHub', url: 'https://github.com/delta240mvt/FrinterHero' },
-    ],
-    featured: false,
-    openSource: true,
-  },
-];
+const { realizations } = HOME;
 ---
 
-<section class="projects reveal" id="projects">
-  <div class="projects-container">
-    <h2 class="section-heading">/projects</h2>
-    <div class="projects-grid">
-      {projects.map(project => (
-        <ProjectCard {...project} />
-      ))}
+{realizations.items.length > 0 && (
+  <section class="realizations reveal" id="realizacje">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-heading">{realizations.heading}</h2>
+        <p>{realizations.description}</p>
+      </div>
+
+      <div class="realization-grid">
+        {realizations.items.map((item) => (
+          <article class="realization-card">
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <strong>{item.result}</strong>
+          </article>
+        ))}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+)}
 
 <style>
-  .projects {
+  .realizations {
     padding: 5rem 1.5rem;
-    background-color: var(--bg-surface);
+    background: var(--bg-surface);
   }
-  .projects-container {
-    max-width: 900px;
+
+  .section-container {
+    max-width: 980px;
     margin: 0 auto;
   }
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+
+  .section-header {
+    max-width: 680px;
+    margin-bottom: 2rem;
   }
-  @media (max-width: 768px) {
-    .projects-grid { grid-template-columns: 1fr; }
+
+  .section-header p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .realization-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .realization-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: var(--bg-elevated);
+  }
+
+  .realization-card h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    margin-bottom: 0.75rem;
+  }
+
+  .realization-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .realization-card strong {
+    color: var(--teal);
+    font-size: var(--text-sm);
+  }
+
+  @media (max-width: 760px) {
+    .realization-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

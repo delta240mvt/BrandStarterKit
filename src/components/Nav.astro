@@ -1,30 +1,54 @@
 ---
-import { getSitePresentation } from '@/lib/site';
+import { NAVIGATION } from '@/data/navigation';
+import { SITE } from '@/data/site';
 
 const pathname = Astro.url.pathname;
-const site = getSitePresentation();
+
+function resolveHref(href: string): string {
+  if (href.startsWith('#') && pathname !== '/') {
+    return `/${href}`;
+  }
+
+  return href;
+}
 ---
 
-<nav class="nav" aria-label="Main navigation">
+<nav class="nav" aria-label="Glowne menu">
   <div class="nav-container">
-    <a href="/" class="nav-logo" aria-label={`${site.displayName} - Home`}>
-      F=F
+    <a href="/" class="nav-logo" aria-label={`${SITE.displayName} - strona glowna`}>
+      {SITE.shortName}
     </a>
     <ul class="nav-links" role="list">
-      <li><a href="/#about" class={`nav-link${pathname === '/' ? '' : ''}`}>About</a></li>
-      <li><a href="/blog" class={`nav-link${pathname.startsWith('/blog') ? ' nav-link--active' : ''}`}>Blog</a></li>
-      <li><a href="/#projects" class="nav-link">Projects</a></li>
-      <li><a href="https://github.com/delta240mvt" target="_blank" rel="noopener noreferrer" class="nav-link nav-link--external">GitHub ↗</a></li>
+      {NAVIGATION.main.map((item) => (
+        <li>
+          <a
+            href={resolveHref(item.href)}
+            class={`nav-link${pathname.startsWith(item.href) ? ' nav-link--active' : ''}`}
+            target={item.external ? '_blank' : undefined}
+            rel={item.external ? 'noopener noreferrer' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
     </ul>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Otworz menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
   <ul class="nav-mobile" id="nav-mobile" role="list" aria-hidden="true">
-    <li><a href="/#about" class="nav-mobile-link">About</a></li>
-    <li><a href="/blog" class="nav-mobile-link">Blog</a></li>
-    <li><a href="/#projects" class="nav-mobile-link">Projects</a></li>
-    <li><a href="https://github.com/delta240mvt" target="_blank" rel="noopener noreferrer" class="nav-mobile-link">GitHub ↗</a></li>
+    {NAVIGATION.main.map((item) => (
+      <li>
+        <a
+          href={resolveHref(item.href)}
+          class="nav-mobile-link"
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
   </ul>
 </nav>
 
@@ -37,9 +61,10 @@ const site = getSitePresentation();
     z-index: 100;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.92);
     border-bottom: 1px solid var(--border);
   }
+
   .nav-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -49,28 +74,33 @@ const site = getSitePresentation();
     align-items: center;
     justify-content: space-between;
   }
+
   .nav-logo {
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
+    font-family: var(--font-heading);
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--teal);
+    color: var(--text-primary);
     text-decoration: none;
-    letter-spacing: 0.05em;
   }
+
   .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.5rem;
   }
+
   .nav-link {
-    font-family: var(--font-mono);
     font-size: var(--text-sm);
     color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.15s;
   }
-  .nav-link:hover, .nav-link--active { color: var(--text-primary); }
-  .nav-link--external { color: var(--teal); }
+
+  .nav-link:hover,
+  .nav-link--active {
+    color: var(--teal);
+  }
+
   .nav-toggle {
     display: none;
     flex-direction: column;
@@ -80,39 +110,50 @@ const site = getSitePresentation();
     cursor: pointer;
     padding: 4px;
   }
+
   .nav-toggle span {
     display: block;
     width: 22px;
     height: 2px;
     background: var(--text-secondary);
-    transition: background 0.15s;
   }
+
   .nav-mobile {
     display: none;
     list-style: none;
     padding: 0.75rem 1.5rem 1rem;
     border-top: 1px solid var(--border);
+    background: var(--bg-elevated);
   }
-  .nav-mobile.open { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .nav-mobile.open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .nav-mobile-link {
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 0.4rem 0;
+    padding: 0.45rem 0;
     display: block;
-    transition: color 0.15s;
   }
-  .nav-mobile-link:hover { color: var(--teal); }
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .nav-toggle { display: flex; }
+
+  @media (max-width: 720px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
   }
 </style>
 
 <script>
   const toggle = document.getElementById('nav-toggle');
   const mobile = document.getElementById('nav-mobile');
+
   if (toggle && mobile) {
     toggle.addEventListener('click', () => {
       const isOpen = mobile.classList.toggle('open');

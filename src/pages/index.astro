@@ -3,8 +3,13 @@ export const prerender = true;
 
 import Landing from '@/components/layouts/Landing.astro';
 import Hero from '@/components/Hero.astro';
+import Benefits from '@/components/Benefits.astro';
 import About from '@/components/About.astro';
+import Services from '@/components/Services.astro';
+import Process from '@/components/Process.astro';
 import Projects from '@/components/Projects.astro';
+import Testimonials from '@/components/Testimonials.astro';
+import Faq from '@/components/Faq.astro';
 import BlogPreview from '@/components/BlogPreview.astro';
 import Contact from '@/components/Contact.astro';
 import { getSitePresentation } from '@/lib/site';
@@ -21,8 +26,13 @@ const schema = buildHomeSchema();
 
   <>
     <Hero />
+    <Benefits />
     <About />
+    <Services />
+    <Process />
     <Projects />
+    <Testimonials />
+    <Faq />
     <BlogPreview />
     <Contact />
   </>

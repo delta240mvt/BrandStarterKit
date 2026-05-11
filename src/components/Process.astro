@@ -1,0 +1,62 @@
+---
+import { HOME } from '@/data/home';
+
+const { process } = HOME;
+---
+
+{process.items.length > 0 && (
+  <section class="process reveal" id="proces">
+    <div class="section-container">
+      <h2 class="section-heading">{process.heading}</h2>
+      <ol class="process-list">
+        {process.items.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+)}
+
+<style>
+  .process {
+    padding: 5rem 1.5rem;
+    background: var(--bg-base);
+  }
+
+  .section-container {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .process-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    list-style: none;
+  }
+
+  .process-list li {
+    border-top: 2px solid var(--teal);
+    padding-top: 1rem;
+  }
+
+  .process-list h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-base);
+    margin-bottom: 0.5rem;
+  }
+
+  .process-list p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 760px) {
+    .process-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

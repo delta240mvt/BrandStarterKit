@@ -1,20 +1,24 @@
 ---
-import { getSitePresentation } from '@/lib/site';
+import { NAVIGATION } from '@/data/navigation';
+import { SITE } from '@/data/site';
 
 const year = new Date().getFullYear();
-const site = getSitePresentation();
 ---
 
 <footer class="footer">
   <div class="footer-container">
-    <p class="footer-copy">
-      &copy; {year} {site.displayName}
-    </p>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a href="/polityka-prywatnosci" class="footer-link">Privacy</a>
-      <a href="/rss.xml" class="footer-link">RSS</a>
-      <a href="/llms.txt" class="footer-link">llms.txt</a>
-      <a href="/sitemap.xml" class="footer-link">Sitemap</a>
+    <p class="footer-copy">&copy; {year} {SITE.displayName}</p>
+    <nav class="footer-links" aria-label="Menu stopki">
+      {NAVIGATION.footer.map((item) => (
+        <a
+          href={item.href}
+          class="footer-link"
+          target={item.external ? '_blank' : undefined}
+          rel={item.external ? 'noopener noreferrer' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
     </nav>
   </div>
 </footer>
@@ -23,8 +27,9 @@ const site = getSitePresentation();
   .footer {
     padding: 2rem 1.5rem;
     border-top: 1px solid var(--border);
-    background-color: var(--bg-elevated);
+    background: var(--bg-elevated);
   }
+
   .footer-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -34,24 +39,24 @@ const site = getSitePresentation();
     align-items: center;
     justify-content: space-between;
   }
-  .footer-copy {
-    font-size: var(--text-xs);
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-  }
-  .footer-links {
-    display: flex;
-    gap: 1.25rem;
-  }
+
+  .footer-copy,
   .footer-link {
     font-size: var(--text-xs);
     color: var(--text-secondary);
-    text-decoration: none;
-    font-family: var(--font-mono);
-    transition: color 0.15s;
   }
-  .footer-link:hover { color: var(--teal); }
-  @media (max-width: 480px) {
-    .footer-container { flex-direction: column; align-items: flex-start; }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-link {
+    text-decoration: none;
+  }
+
+  .footer-link:hover {
+    color: var(--teal);
   }
 </style>
