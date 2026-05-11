@@ -1,3 +1,4 @@
+import { HOME } from '@/data/home';
 import { SITE, absoluteUrl } from '@/lib/site';
 
 type SchemaValue =
@@ -63,16 +64,18 @@ function graph(nodes: SchemaNode[]): SchemaGraph {
 }
 
 function rootNodes(): SchemaNode[] {
+  const sameAs = SITE.socialLinks.length > 0 ? SITE.socialLinks : undefined;
+
   return [
     {
-      '@type': 'Person',
+      '@type': 'ProfessionalService',
       '@id': ENTITY_ID,
-      name: SITE.authorName,
-      givenName: SITE.structuredData.givenName,
-      familyName: SITE.structuredData.familyName,
-      jobTitle: SITE.structuredData.jobTitle,
+      name: SITE.displayName,
       url: SITE.canonicalBaseUrl,
-      sameAs: SITE.socialLinks,
+      email: SITE.contactEmail,
+      ...(sameAs ? { sameAs } : {}),
+      serviceType: SITE.structuredData.serviceType,
+      areaServed: SITE.structuredData.areaServed,
       knowsAbout: SITE.structuredData.knowsAbout,
     },
     {
@@ -84,7 +87,7 @@ function rootNodes(): SchemaNode[] {
       description: SITE.defaultDescription,
       publisher: { '@id': ENTITY_ID },
       author: { '@id': ENTITY_ID },
-      inLanguage: 'en-US',
+      inLanguage: SITE.locale,
     },
   ];
 }
@@ -106,6 +109,33 @@ export function buildRootSiteGraph(): SchemaGraph {
 }
 
 export function buildHomeSchema(): SchemaGraph {
+  const faqNode: SchemaNode | null =
+    HOME.faq.items.length > 0
+      ? {
+          '@type': 'FAQPage',
+          '@id': absoluteUrl('/#faq'),
+          mainEntity: HOME.faq.items.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+          isPartOf: { '@id': WEBSITE_ID },
+          inLanguage: SITE.locale,
+        }
+      : null;
+  const serviceNodes: SchemaNode[] = HOME.services.items.map((service, index) => ({
+    '@type': 'Service',
+    '@id': absoluteUrl(`/#service-${index + 1}`),
+    name: service.title,
+    description: service.description,
+    provider: { '@id': ENTITY_ID },
+    areaServed: SITE.structuredData.areaServed,
+    url: absoluteUrl(service.href),
+  }));
+
   return graph([
     ...rootNodes(),
     {
@@ -120,32 +150,11 @@ export function buildHomeSchema(): SchemaGraph {
         '@type': 'ImageObject',
         url: absoluteUrl('/og-image.png'),
       },
-      inLanguage: 'en-US',
+      inLanguage: SITE.locale,
     },
     breadcrumb([{ name: 'Home', item: SITE.canonicalBaseUrl }]),
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://frinter.app/#software',
-      name: 'frinter.app',
-      alternateName: 'frinter.',
-      description:
-        'A WholeBeing performance system for High Performers - measuring Focus Sprints (Frints), energy tracking, and life-sphere balance.',
-      applicationCategory: 'ProductivityApplication',
-      operatingSystem: 'Web, Windows, macOS, Linux',
-      author: { '@id': ENTITY_ID },
-      url: 'https://frinter.app',
-    },
-    {
-      '@type': 'SoftwareApplication',
-      '@id': 'https://pypi.org/project/frinterflow/#software',
-      name: 'FrinterFlow',
-      description:
-        'Local voice dictation CLI using faster-whisper. zero cloud, zero subscription, works offline.',
-      applicationCategory: 'DeveloperApplication',
-      operatingSystem: 'Windows, macOS, Linux',
-      author: { '@id': ENTITY_ID },
-      url: 'https://pypi.org/project/frinterflow/',
-    },
+    ...(faqNode ? [faqNode] : []),
+    ...serviceNodes,
   ]);
 }
 
@@ -162,7 +171,7 @@ export function buildCollectionSchema(input: CollectionSchemaInput): SchemaGraph
       description: input.description,
       isPartOf: { '@id': WEBSITE_ID },
       about: { '@id': ENTITY_ID },
-      inLanguage: 'en-US',
+      inLanguage: SITE.locale,
       ...(input.page ? { pageStart: input.page } : {}),
     },
     breadcrumb([
@@ -186,7 +195,7 @@ export function buildArticleSchema(input: ArticleSchemaInput): SchemaGraph {
       description: input.description,
       isPartOf: { '@id': WEBSITE_ID },
       about: { '@id': `${canonical}#article` },
-      inLanguage: 'en-US',
+      inLanguage: SITE.locale,
     },
     {
       '@type': 'BlogPosting',
@@ -202,7 +211,7 @@ export function buildArticleSchema(input: ArticleSchemaInput): SchemaGraph {
       publisher: { '@id': ENTITY_ID },
       isPartOf: { '@id': WEBSITE_ID },
       mainEntityOfPage: { '@id': `${canonical}#webpage` },
-      inLanguage: 'en-US',
+      inLanguage: SITE.locale,
     },
     breadcrumb([
       { name: 'Home', item: SITE.canonicalBaseUrl },

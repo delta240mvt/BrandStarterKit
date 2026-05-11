@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
+import { HOME } from '@/data/home';
+import { SITE } from '@/data/site';
 import {
   buildArticleSchema,
   buildCollectionSchema,
@@ -20,32 +22,40 @@ test('buildRootSiteGraph returns stable site and author identifiers', () => {
   assert.equal(schema['@context'], 'https://schema.org');
   assert.match(json, /#website/);
   assert.match(json, /#entity/);
-  assert.deepEqual(graphTypes(schema), ['Person', 'WebSite']);
+  assert.deepEqual(graphTypes(schema), ['ProfessionalService', 'WebSite']);
 });
 
-test('buildHomeSchema links the homepage to the root site graph', () => {
+test('buildHomeSchema links the homepage to the service business graph', () => {
   const schema = buildHomeSchema();
   const types = graphTypes(schema);
   const webPage = schema['@graph'].find((node) => node['@type'] === 'WebPage');
+  const entity = schema['@graph'].find((node) => node['@type'] === 'ProfessionalService');
+  const faq = schema['@graph'].find((node) => node['@type'] === 'FAQPage');
+  const services = schema['@graph'].filter((node) => node['@type'] === 'Service');
 
-  assert.ok(types.includes('Person'));
+  assert.ok(types.includes('ProfessionalService'));
   assert.ok(types.includes('WebSite'));
   assert.ok(types.includes('WebPage'));
-  assert.equal(webPage?.['@id'], 'https://focusequalsfreedom.com/#webpage');
-  assert.deepEqual(webPage?.isPartOf, { '@id': 'https://focusequalsfreedom.com/#website' });
+  assert.ok(types.includes('FAQPage'));
+  assert.equal(webPage?.['@id'], 'https://example.com/#webpage');
+  assert.deepEqual(webPage?.isPartOf, { '@id': 'https://example.com/#website' });
+  assert.equal(entity?.name, SITE.displayName);
+  assert.equal(faq?.mainEntity instanceof Array ? faq.mainEntity.length : 0, HOME.faq.items.length);
+  assert.equal(services.length, HOME.services.items.length);
+  assert.equal(types.includes('SoftwareApplication'), false);
 });
 
 test('buildCollectionSchema differentiates blog index and paginated archives', () => {
   const schema = buildCollectionSchema({
-    canonical: 'https://focusequalsfreedom.com/blog/2',
-    title: 'Blog | Focus Equals Freedom - Page 2',
-    description: 'Notes on deep work',
+    canonical: 'https://example.com/blog/2',
+    title: 'Blog | Pracownia Uslugowa - Strona 2',
+    description: 'Porady dla lokalnej firmy',
     page: 2,
   });
   const collection = schema['@graph'].find((node) => node['@type'] === 'CollectionPage');
 
-  assert.equal(collection?.['@id'], 'https://focusequalsfreedom.com/blog/2#collection');
-  assert.equal(collection?.name, 'Blog | Focus Equals Freedom - Page 2');
+  assert.equal(collection?.['@id'], 'https://example.com/blog/2#collection');
+  assert.equal(collection?.name, 'Blog | Pracownia Uslugowa - Strona 2');
   assert.equal(collection?.pageStart, 2);
 });
 
@@ -53,18 +63,18 @@ test('buildArticleSchema links articles to the website and author entity', () =>
   const schema = buildArticleSchema({
     title: 'Hello',
     description: 'World',
-    canonical: 'https://focusequalsfreedom.com/blog/hello-focus-equals-freedom',
+    canonical: 'https://example.com/blog/pierwszy-wpis-startera',
     publishedAt: '2026-04-17T00:00:00.000Z',
     updatedAt: '2026-04-18T00:00:00.000Z',
-    tags: ['Deep Work'],
+    tags: ['strona firmowa'],
   });
   const article = schema['@graph'].find((node) => node['@type'] === 'BlogPosting');
 
-  assert.equal(article?.['@id'], 'https://focusequalsfreedom.com/blog/hello-focus-equals-freedom#article');
-  assert.deepEqual(article?.author, { '@id': 'https://focusequalsfreedom.com/#entity' });
-  assert.deepEqual(article?.publisher, { '@id': 'https://focusequalsfreedom.com/#entity' });
+  assert.equal(article?.['@id'], 'https://example.com/blog/pierwszy-wpis-startera#article');
+  assert.deepEqual(article?.author, { '@id': 'https://example.com/#entity' });
+  assert.deepEqual(article?.publisher, { '@id': 'https://example.com/#entity' });
   assert.deepEqual(article?.mainEntityOfPage, {
-    '@id': 'https://focusequalsfreedom.com/blog/hello-focus-equals-freedom#webpage',
+    '@id': 'https://example.com/blog/pierwszy-wpis-startera#webpage',
   });
 });
 
@@ -78,25 +88,19 @@ test('buildArticleSchema accepts relative image URLs', () => {
   });
   const article = schema['@graph'].find((node) => node['@type'] === 'BlogPosting');
 
-  assert.equal(article?.image, 'https://focusequalsfreedom.com/og-image.png');
+  assert.equal(article?.image, 'https://example.com/og-image.png');
 });
 
-test('buildLegalSchema exposes current language and translations separately', () => {
+test('buildLegalSchema exposes the Polish legal page', () => {
   const schema = buildLegalSchema({
-    canonical: '/privacy-policy',
-    title: 'Privacy Policy',
-    description: 'How Focus Equals Freedom handles privacy.',
-    language: 'en-US',
-    alternates: {
-      'en-US': '/privacy-policy',
-      'pl-PL': '/polityka-prywatnosci',
-    },
+    canonical: '/polityka-prywatnosci',
+    title: 'Polityka prywatnosci',
+    description: 'Jak starter obsluguje prywatnosc.',
+    language: 'pl-PL',
   });
   const legal = schema['@graph'].find((node) => node['@type'] === 'WebPage');
 
-  assert.equal(legal?.['@id'], 'https://focusequalsfreedom.com/privacy-policy#webpage');
-  assert.equal(legal?.inLanguage, 'en-US');
-  assert.deepEqual(legal?.workTranslation, [
-    { '@id': 'https://focusequalsfreedom.com/polityka-prywatnosci#webpage', inLanguage: 'pl-PL' },
-  ]);
+  assert.equal(legal?.['@id'], 'https://example.com/polityka-prywatnosci#webpage');
+  assert.equal(legal?.inLanguage, 'pl-PL');
+  assert.equal('workTranslation' in (legal ?? {}), false);
 });
