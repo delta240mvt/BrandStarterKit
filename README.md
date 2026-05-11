@@ -1,40 +1,89 @@
-# @frinter/client-focusequalsfreedom
+# Polski starter strony usługowej
 
-Standalone Astro site for the FocusEqualsFreedom marketing/blog surface, built for Cloudflare Pages.
+Starter Astro dla prostych stron internetowych lokalnych firm i freelancerów. Domyślny układ to jedna strona główna z ofertą, opisem firmy, realizacjami, FAQ, kontaktem oraz stałym blogiem.
 
-## Extract to a new repository
+Projekt jest przygotowany pod Cloudflare Pages i lokalną edycję z AI. Nie zawiera panelu admina, CMS ani backendowego formularza kontaktowego.
 
-1. Copy `apps/client-focusequalsfreedom/` into the root of the new repository.
-2. Keep the app-owned execution files with the copy:
-   - `package.json` for local scripts
-   - `wrangler.jsonc` for Cloudflare Pages configuration
-3. From the copied directory, run `npm install`.
+## Szybki start
 
-After extraction, the copied directory can run on its own without the rest of the monorepo.
+```powershell
+npm install
+npm run dev
+```
 
-## Local commands
+Domyślny serwer Astro startuje lokalnie. Produkcyjny build generuje katalog `dist/`.
 
-Run these commands from the extracted app directory, or from `apps/client-focusequalsfreedom` while it still lives in this monorepo:
+## Najważniejsze pliki do edycji
 
-- `npm run dev` - start the Astro dev server on the local network
-- `npm run check` - run Astro type/content checks
-- `npm run build` - build the production bundle into `dist/`
-- `npm run preview -- --host 127.0.0.1 --port 4321` - serve the built `dist/` bundle with Cloudflare Pages via Wrangler for a local preview
-- `npm run deploy` - deploy the built `dist/` bundle to Cloudflare Pages
+- `src/data/site.ts` - nazwa firmy, domena, SEO, email, telefon, adres, analytics i kolory manifestu.
+- `src/data/home.ts` - treści strony głównej: hero, korzyści, o firmie, oferta, proces, realizacje, opinie, FAQ, kontakt i zapowiedź bloga.
+- `src/data/navigation.ts` - menu główne i linki w stopce.
+- `src/data/legal.ts` - polska polityka prywatności i wymagany disclaimer szablonu.
+- `src/content/blog/` - wpisy blogowe w MDX.
 
-## Content authoring
+## Blog
 
-Add or edit MDX blog posts in `src/content/blog/`.
+Nowy wpis dodaj jako plik `.mdx` w `src/content/blog/`.
 
-## SEO/GEO maintenance
+Przykładowy frontmatter:
 
-- Run `npm test` before changing metadata, schema, discovery assets, or blog content contracts.
-- Run `npm run check` before deploying; it includes the standalone SEO/GEO regression suite.
-- Keep canonical URLs, sitemap entries, RSS, `llms.txt`, `llms-full.txt`, and `robots.txt` aligned through the shared helpers in `src/lib/`.
-- Use the schema builders in `src/lib/schema.ts` instead of adding ad hoc JSON-LD in page templates.
+```mdx
+---
+title: Tytuł wpisu
+description: Krótki opis do SEO i kart wpisów.
+pubDate: 2026-05-11
+tags:
+  - strona firmowa
+draft: false
+---
+```
 
-## Notes
+Wpisy z `draft: true` nie są publikowane.
 
-- The app uses the Cloudflare adapter configured in `astro.config.mjs`.
-- `package.json` owns the standalone dev/build/preview/deploy entrypoints.
-- `wrangler.jsonc` owns the Cloudflare Pages project name, compatibility settings, and build output directory.
+## Domena i Cloudflare Pages
+
+1. Zmień `canonicalBaseUrl` i `primaryDomain` w `src/data/site.ts`.
+2. Zmień `site` w `astro.config.mjs`.
+3. Zmień `name` w `wrangler.jsonc` na nazwę projektu Cloudflare Pages.
+4. Uruchom testy i build przed wdrożeniem.
+
+## Analytics
+
+Analytics są domyślnie wyłączone.
+
+Konfigurację znajdziesz w `src/data/site.ts`:
+
+```ts
+analytics: {
+  enabled: false,
+}
+```
+
+Po włączeniu ustaw `provider`, `scriptSrc`, `siteId` albo `dataAttributes`. Bez `enabled: true` skrypt analytics nie jest renderowany.
+
+## Polityka prywatności
+
+Publiczna strona polityki prywatności znajduje się pod `/polityka-prywatnosci`.
+
+Przed użyciem u klienta dostosuj treść w `src/data/legal.ts` do faktycznego sposobu działania firmy, hostingu, analityki i obsługi kontaktu.
+
+## Komendy
+
+- `npm run dev` - uruchamia lokalny serwer developerski.
+- `npm test` - uruchamia testy regresyjne.
+- `npm run check` - uruchamia testy i `astro check`.
+- `npm run build` - buduje produkcyjny katalog `dist/`.
+- `npm run preview -- --host 127.0.0.1 --port 4321` - uruchamia lokalny preview Cloudflare Pages przez Wrangler.
+- `npm run deploy` - wdraża `dist/` na Cloudflare Pages.
+
+## Kontrola jakości
+
+Przed publikacją uruchom:
+
+```powershell
+npm test
+npm run check
+npm run build
+```
+
+Testy pilnują między innymi konfiguracji strony, SEO, schema.org, sitemap, RSS, robots, `llms.txt`, bloga i braku starych publicznych brand-termów w plikach startera.
