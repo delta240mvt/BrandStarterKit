@@ -70,51 +70,51 @@ export interface HomeData {
 export const HOME: HomeData = {
   hero: {
     eyebrow: 'Strona dla lokalnej firmy',
-    title: 'Pokaz uslugi jasno i zdobadz wiecej zapytan od klientow.',
+    title: 'Pokaż usługi jasno i zdobądź więcej zapytań od klientów.',
     description:
-      'Neutralny starter dla prostych stron uslugowych: oferta, realizacje, FAQ, kontakt i blog gotowe do lokalnego dostosowania.',
+      'Neutralny starter dla prostych stron usługowych: oferta, realizacje, FAQ, kontakt i blog gotowe do lokalnego dostosowania.',
     primaryCta: {
       label: 'Zobacz oferte',
       href: '#oferta',
     },
     secondaryCta: {
-      label: 'Skontaktuj sie',
+      label: 'Skontaktuj się',
       href: '#kontakt',
     },
     trustCues: ['Szybka publikacja', 'SEO od startu', 'Gotowe pod Cloudflare Pages'],
   },
   benefits: {
-    heading: 'Dlaczego ten starter dziala',
+    heading: 'Dlaczego ten starter działa',
     items: [
       {
         title: 'Jasna struktura',
-        description: 'Najwazniejsze informacje klient znajduje bez przeklikiwania wielu podstron.',
+        description: 'Najważniejsze informacje klient znajduje bez przeklikiwania wielu podstron.',
       },
       {
         title: 'Latwa edycja',
-        description: 'Tresci klienta sa w przewidywalnych plikach TypeScript i wpisach MDX.',
+        description: 'Treści klienta są w przewidywalnych plikach TypeScript i wpisach MDX.',
       },
       {
         title: 'Techniczny porzadek',
-        description: 'SEO, sitemap, RSS, schema i pliki AI discovery korzystaja ze wspolnej konfiguracji.',
+        description: 'SEO, sitemap, RSS, schema i pliki AI discovery korzystają ze wspólnej konfiguracji.',
       },
     ],
   },
   about: {
     heading: 'O firmie',
     body: [
-      'Pracownia Uslugowa to przykladowa lokalna firma, ktora pokazuje jak moze wygladac gotowy starter dla klienta.',
-      'Sekcja opisuje sposob pracy, specjalizacje i przewagi bez narzucania konkretnej branzy.',
+      'Pracownia Usługowa to przykładowa lokalna firma, która pokazuje jak może wyglądać gotowy starter dla klienta.',
+      'Sekcja opisuje sposób pracy, specjalizację i przewagi bez narzucania konkretnej branży.',
     ],
-    highlights: ['Indywidualna wycena', 'Sprawny kontakt', 'Prosty proces wspolpracy'],
+    highlights: ['Indywidualna wycena', 'Sprawny kontakt', 'Prosty proces współpracy'],
   },
   services: {
     heading: 'Oferta',
-    description: 'Podmien te uslugi na realna oferte klienta.',
+    description: 'Podmień te usługi na realną ofertę klienta.',
     items: [
       {
         title: 'Konsultacja i diagnoza potrzeb',
-        description: 'Krotka rozmowa, zebranie kontekstu i wskazanie najlepszego zakresu prac.',
+        description: 'Krótka rozmowa, zebranie kontekstu i wskazanie najlepszego zakresu prac.',
         href: '#kontakt',
       },
       {
@@ -123,42 +123,42 @@ export const HOME: HomeData = {
         href: '#kontakt',
       },
       {
-        title: 'Wsparcie po zakonczeniu',
+        title: 'Wsparcie po zakończeniu',
         description: 'Pomoc w utrzymaniu efektu, odpowiedzi na pytania i dalsze rekomendacje.',
         href: '#kontakt',
       },
     ],
   },
   process: {
-    heading: 'Jak wyglada wspolpraca',
+    heading: 'Jak wygląda współpraca',
     items: [
       {
         title: '1. Kontakt',
-        description: 'Klient opisuje potrzebe przez email lub telefon.',
+        description: 'Klient opisuje potrzebę przez email lub telefon.',
       },
       {
         title: '2. Ustalenie zakresu',
-        description: 'Uzgadniamy termin, budzet i oczekiwany rezultat.',
+        description: 'Uzgadniamy termin, budżet i oczekiwany rezultat.',
       },
       {
         title: '3. Realizacja',
-        description: 'Wykonujemy usluge i informujemy o kolejnych krokach.',
+        description: 'Wykonujemy usługę i informujemy o kolejnych krokach.',
       },
     ],
   },
   realizations: {
     heading: 'Realizacje',
-    description: 'Przyklady mozna zamienic na prawdziwe case studies klienta.',
+    description: 'Przykłady można zamienić na prawdziwe case studies klienta.',
     items: [
       {
         title: 'Usprawnienie procesu obslugi',
-        description: 'Przykladowa realizacja pokazujaca uporzadkowanie komunikacji z klientami.',
-        result: 'Krotszy czas odpowiedzi na zapytania.',
+        description: 'Przykładowa realizacja pokazująca uporządkowanie komunikacji z klientami.',
+        result: 'Krótszy czas odpowiedzi na zapytania.',
       },
       {
         title: 'Nowa oferta lokalnej uslugi',
-        description: 'Przykladowy opis wdrozenia prostszego sposobu prezentacji oferty.',
-        result: 'Wiecej konkretnych zapytan z formularzy i emaila.',
+        description: 'Przykładowy opis wdrożenia prostszego sposobu prezentacji oferty.',
+        result: 'Więcej konkretnych zapytań z formularzy i emaila.',
       },
     ],
   },
@@ -166,42 +166,42 @@ export const HOME: HomeData = {
     heading: 'Opinie klientow',
     items: [
       {
-        quote: 'Wszystko bylo jasne od pierwszego kontaktu. Wiedzielismy, co dostaniemy i kiedy.',
+        quote: 'Wszystko było jasne od pierwszego kontaktu. Wiedzieliśmy, co dostaniemy i kiedy.',
         author: 'Anna Kowalska',
-        role: 'wlascicielka lokalnej firmy',
+        role: 'właścicielka lokalnej firmy',
       },
       {
-        quote: 'Prosty proces i konkretna komunikacja. Dokladnie tego potrzebowalismy.',
+        quote: 'Prosty proces i konkretna komunikacja. Dokładnie tego potrzebowaliśmy.',
         author: 'Marek Nowak',
         role: 'freelancer',
       },
     ],
   },
   faq: {
-    heading: 'Najczestsze pytania',
+    heading: 'Najczęstsze pytania',
     items: [
       {
-        question: 'Czy wycena jest platna?',
-        answer: 'Podstawowa rozmowa i wstepna wycena sa bezplatne.',
+        question: 'Czy wycena jest płatna?',
+        answer: 'Podstawowa rozmowa i wstępna wycena są bezpłatne.',
       },
       {
         question: 'Jak szybko odpowiadacie na zapytania?',
-        answer: 'Zwykle odpowiadamy w ciagu jednego dnia roboczego.',
+        answer: 'Zwykle odpowiadamy w ciągu jednego dnia roboczego.',
       },
       {
-        question: 'Czy mozna zaczac od malego zakresu?',
-        answer: 'Tak. Starter jest przygotowany tak, zeby dobrze dzialal takze dla prostych ofert.',
+        question: 'Czy można zacząć od małego zakresu?',
+        answer: 'Tak. Starter jest przygotowany tak, żeby dobrze działał także dla prostych ofert.',
       },
     ],
   },
   blogPreview: {
     heading: 'Blog',
-    emptyText: 'Wpisy pojawia sie wkrotce.',
+    emptyText: 'Wpisy pojawią się wkrótce.',
     ctaLabel: 'Zobacz wszystkie wpisy',
   },
   contact: {
     heading: 'Kontakt',
-    description: 'Napisz, czego potrzebujesz. Odpowiemy z propozycja kolejnego kroku.',
+    description: 'Napisz, czego potrzebujesz. Odpowiemy z propozycją kolejnego kroku.',
     emailCtaLabel: 'Napisz email',
   },
 };

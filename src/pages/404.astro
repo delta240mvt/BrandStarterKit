@@ -7,7 +7,7 @@ import Footer from '@/components/Footer.astro';
 import { SITE } from '@/data/site';
 
 const title = `Nie znaleziono strony — ${SITE.displayName}`;
-const description = 'Ta strona nie istnieje albo zostala przeniesiona.';
+const description = 'Ta strona nie istnieje albo została przeniesiona.';
 ---
 
 <Base title={title} description={description} robots="noindex, follow" lang={SITE.locale}>
@@ -18,8 +18,8 @@ const description = 'Ta strona nie istnieje albo zostala przeniesiona.';
       <h1>Nie znaleziono strony</h1>
       <p>{description}</p>
       <div class="actions">
-        <a href="/" class="btn-primary">Wroc na strone glowna</a>
-        <a href="/blog" class="btn-ghost">Przejdz do bloga</a>
+        <a href="/" class="btn-primary">Wróć na stronę główną</a>
+        <a href="/blog" class="btn-ghost">Przejdź do bloga</a>
       </div>
     </section>
   </main>

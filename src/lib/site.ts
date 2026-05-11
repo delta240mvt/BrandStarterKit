@@ -52,7 +52,7 @@ export const SITE: SitePresentation = {
   analytics: STARTER_SITE.analytics,
   theme: STARTER_SITE.theme,
   structuredData: {
-    serviceType: 'Uslugi lokalne',
+    serviceType: 'Usługi lokalne',
     areaServed: 'Polska',
     knowsAbout: [
       'Strony internetowe',

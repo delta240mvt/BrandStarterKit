@@ -38,22 +38,22 @@ export interface SiteConfig {
 
 export const SITE: SiteConfig = {
   slug: 'polski-starter-uslugowy',
-  displayName: 'Pracownia Uslugowa',
+  displayName: 'Pracownia Usługowa',
   shortName: 'Pracownia',
   locale: 'pl-PL',
   canonicalBaseUrl: 'https://example.com',
   primaryDomain: 'example.com',
-  defaultTitle: 'Pracownia Uslugowa | Prosta strona dla lokalnej firmy',
+  defaultTitle: 'Pracownia Usługowa | Prosta strona dla lokalnej firmy',
   defaultDescription:
-    'Polski starter strony uslugowej dla lokalnych firm i freelancerow: oferta, realizacje, FAQ, kontakt i blog.',
-  blogTitle: 'Blog | Pracownia Uslugowa',
+    'Polski starter strony usługowej dla lokalnych firm i freelancerów: oferta, realizacje, FAQ, kontakt i blog.',
+  blogTitle: 'Blog | Pracownia Usługowa',
   blogDescription:
-    'Porady, aktualnosci i praktyczne wskazowki dla klientow lokalnej firmy uslugowej.',
-  articleSuffix: 'Pracownia Uslugowa',
+    'Porady, aktualności i praktyczne wskazówki dla klientów lokalnej firmy usługowej.',
+  articleSuffix: 'Pracownia Usługowa',
   contact: {
     email: 'kontakt@example.com',
     phone: '+48 000 000 000',
-    address: 'ul. Przykladowa 1, 00-000 Warszawa',
+    address: 'ul. Przykładowa 1, 00-000 Warszawa',
   },
   socialLinks: [],
   analytics: {

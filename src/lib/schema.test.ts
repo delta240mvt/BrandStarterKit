@@ -48,14 +48,14 @@ test('buildHomeSchema links the homepage to the service business graph', () => {
 test('buildCollectionSchema differentiates blog index and paginated archives', () => {
   const schema = buildCollectionSchema({
     canonical: 'https://example.com/blog/2',
-    title: 'Blog | Pracownia Uslugowa - Strona 2',
+    title: 'Blog | Pracownia Usługowa - Strona 2',
     description: 'Porady dla lokalnej firmy',
     page: 2,
   });
   const collection = schema['@graph'].find((node) => node['@type'] === 'CollectionPage');
 
   assert.equal(collection?.['@id'], 'https://example.com/blog/2#collection');
-  assert.equal(collection?.name, 'Blog | Pracownia Uslugowa - Strona 2');
+  assert.equal(collection?.name, 'Blog | Pracownia Usługowa - Strona 2');
   assert.equal(collection?.pageStart, 2);
 });
 

@@ -18,7 +18,7 @@ export const NAVIGATION: NavigationConfig = {
     { label: 'Blog', href: '/blog' },
   ],
   footer: [
-    { label: 'Polityka prywatnosci', href: '/polityka-prywatnosci' },
+    { label: 'Polityka prywatności', href: '/polityka-prywatnosci' },
     { label: 'RSS', href: '/rss.xml' },
     { label: 'llms.txt', href: '/llms.txt' },
     { label: 'Sitemap', href: '/sitemap.xml' },
