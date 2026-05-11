@@ -1,0 +1,98 @@
+@import './tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Face Declarations */
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('/fonts/CourierPrime-Regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('/fonts/CourierPrime-Bold.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-500.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-600.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-700.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-300.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('/fonts/Roboto-400.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+}
+
+/* CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utility Classes */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center px-6 py-2.5 border border-[var(--teal)] text-[var(--teal)] font-medium rounded transition-all duration-150;
+  }
+  .btn-primary:hover {
+    background-color: var(--teal);
+    color: #fff;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center px-6 py-2.5 border border-[var(--border)] text-[var(--text-secondary)] font-medium rounded transition-all duration-150;
+  }
+  .btn-ghost:hover {
+    border-color: var(--border-hover);
+    color: var(--text-primary);
+  }
+  .card {
+    @apply p-6 rounded-lg border border-[var(--border)] bg-[var(--bg-surface)];
+  }
+  .section-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    color: var(--teal);
+    margin-bottom: 2rem;
+  }
+}

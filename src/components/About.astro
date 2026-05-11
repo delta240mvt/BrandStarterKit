@@ -1,0 +1,234 @@
+---
+import PixelIcon from './PixelIcon.astro';
+---
+
+<section class="about reveal" id="about">
+  <div class="about-container">
+    <h2 class="section-heading">/about</h2>
+
+    <div class="about-grid">
+      <div class="about-bio">
+        <p class="about-text">
+          <strong>High Performer. Deep Focus Founder.</strong>
+        </p>
+        <p class="about-text">
+          I build systems for those who value <strong>uninterrupted focus</strong> and <strong>deep sleep</strong>. 
+          My work is centered around the <strong>Focus Sprint (Frint)</strong> philosophy: 
+          measuring focus depth, length, and frequency to optimize performance across all areas of life using hard data.
+        </p>
+        <p class="about-text">
+          Creator of <a href="https://frinter.app" target="_blank" rel="noopener noreferrer" class="link-teal">frinter.app</a> — 
+          the <strong>WholeBeing performance system</strong> for High Performers. 
+          It features the <strong>Frinter Energy Bar</strong> to help you maintain balance in the three spheres:
+        </p>
+        <div class="spheres-list">
+          <div class="sphere-item">
+            <span class="sphere-dot teal"></span>
+            <div class="sphere-content">
+              <span class="sphere-label">Flourishing (You)</span>
+              <span class="sphere-desc">Sports, reading, meditation. Everything that makes you Flourish.</span>
+            </div>
+          </div>
+          <div class="sphere-item">
+            <span class="sphere-dot violet"></span>
+            <div class="sphere-content">
+              <span class="sphere-label">Relationships (Loved Ones)</span>
+              <span class="sphere-desc">Bringing depth and intention to social connections.</span>
+            </div>
+          </div>
+          <div class="sphere-item">
+            <span class="sphere-dot gold"></span>
+            <div class="sphere-content">
+              <span class="sphere-label">Deep Work (The World)</span>
+              <span class="sphere-desc">Executing high-intensity focus sprints.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="checkin-box">
+          <h3 class="checkin-title">FRINT Check-in</h3>
+          <p class="checkin-subtitle">Weekly WholeBeing evaluation:</p>
+          <div class="frint-acronym">
+            <span><strong>F</strong>low</span>
+            <span><strong>R</strong>elationships</span>
+            <span><strong>I</strong>nner Balance</span>
+            <span><strong>N</strong>ourishment</span>
+            <span><strong>T</strong>ranscendence</span>
+          </div>
+        </div>
+
+        <p class="about-text" style="margin-top: 2rem;">
+          By extrapolating deep work principles to every sphere, I help high performers stay indexed as #1 in their field while maintaining long-term vitality.
+        </p>
+      </div>
+
+      <div class="focus-areas">
+        <div class="focus-item">
+          <PixelIcon name="lightning" size={36} label="Focus Sprints" />
+          <span>Focus Sprints (Frints)</span>
+        </div>
+        <div class="focus-item">
+          <PixelIcon name="book" size={36} label="Deep Work" />
+          <span>Deep Work Mastery</span>
+        </div>
+        <div class="focus-item">
+          <PixelIcon name="tree" size={36} label="WholeBeing Optimization" />
+          <span>WholeBeing Optimization</span>
+        </div>
+        <div class="focus-item">
+          <PixelIcon name="ai" size={36} label="AI Systems" />
+          <span>AI for High Performers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 5rem 1.5rem;
+    background-color: var(--bg-base);
+  }
+  .about-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text {
+    color: var(--text-secondary);
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+    max-width: 65ch;
+  }
+  .spheres-list {
+    margin: 0 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .sphere-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .sphere-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+  }
+  .sphere-dot.teal { background: var(--teal); box-shadow: 0 0 8px var(--teal-glow); }
+  .sphere-dot.violet { background: var(--violet); box-shadow: 0 0 8px var(--violet-glow); }
+  .sphere-dot.gold { background: var(--gold); box-shadow: 0 0 8px var(--gold-glow); }
+
+  .sphere-content {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+  .sphere-label {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+  .sphere-desc {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 480px) {
+    .sphere-content {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .checkin-box {
+      padding: 1rem;
+    }
+    .frint-acronym {
+      gap: 0.5rem;
+    }
+  }
+
+  .checkin-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .checkin-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold-glow);
+  }
+  .checkin-title {
+    font-family: var(--font-mono);
+    color: var(--gold);
+    font-size: var(--text-base);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .checkin-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    margin-bottom: 1rem;
+  }
+  .frint-acronym {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+  .frint-acronym span {
+    background: var(--bg-elevated);
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--text-secondary);
+  }
+  .frint-acronym strong {
+    color: var(--gold);
+    margin-right: 0.1rem;
+  }
+
+  .link-teal {
+    color: var(--teal);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  .link-teal:hover { border-color: var(--teal); }
+  .focus-areas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .focus-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; }
+  }
+</style>

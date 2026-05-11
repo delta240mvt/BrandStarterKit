@@ -1,0 +1,35 @@
+:root {
+  /* Backgrounds */
+  --bg-base:      #ffffff;
+  --bg-surface:   #f8fafc;
+  --bg-elevated:  #ffffff;
+
+  /* Text */
+  --text-primary:   #0f172a;
+  --text-secondary: #475569;
+  --text-muted:     #94a3b8;
+
+  /* Borders */
+  --border:       rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.16);
+
+  /* Frinter Accents */
+  --teal:         #4a8d83;
+  --violet:       #8a4e64;
+  --gold:         #d6b779;
+  --teal-glow:    rgba(74, 141, 131, 0.15);
+  --violet-glow:  rgba(138, 78, 100, 0.15);
+  --gold-glow:    rgba(214, 183, 121, 0.15);
+
+  /* Typography */
+  --font-heading: 'Poppins', system-ui, sans-serif;
+  --font-body:    'Roboto', system-ui, sans-serif;
+  --font-mono:    'Courier Prime', monospace;
+
+  --text-hero:  clamp(2.5rem, 8vw, 7rem);
+  --text-xl:    clamp(1.5rem, 3vw, 2.5rem);
+  --text-lg:    clamp(1.125rem, 2vw, 1.5rem);
+  --text-base:  1rem;
+  --text-sm:    0.875rem;
+  --text-xs:    0.75rem;
+}

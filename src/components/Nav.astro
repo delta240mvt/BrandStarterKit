@@ -1,0 +1,123 @@
+---
+import { getSitePresentation } from '@/lib/site';
+
+const pathname = Astro.url.pathname;
+const site = getSitePresentation();
+---
+
+<nav class="nav" aria-label="Main navigation">
+  <div class="nav-container">
+    <a href="/" class="nav-logo" aria-label={`${site.displayName} - Home`}>
+      F=F
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="/#about" class={`nav-link${pathname === '/' ? '' : ''}`}>About</a></li>
+      <li><a href="/blog" class={`nav-link${pathname.startsWith('/blog') ? ' nav-link--active' : ''}`}>Blog</a></li>
+      <li><a href="/#projects" class="nav-link">Projects</a></li>
+      <li><a href="https://github.com/delta240mvt" target="_blank" rel="noopener noreferrer" class="nav-link nav-link--external">GitHub ↗</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <ul class="nav-mobile" id="nav-mobile" role="list" aria-hidden="true">
+    <li><a href="/#about" class="nav-mobile-link">About</a></li>
+    <li><a href="/blog" class="nav-mobile-link">Blog</a></li>
+    <li><a href="/#projects" class="nav-mobile-link">Projects</a></li>
+    <li><a href="https://github.com/delta240mvt" target="_blank" rel="noopener noreferrer" class="nav-mobile-link">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--teal);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-link:hover, .nav-link--active { color: var(--text-primary); }
+  .nav-link--external { color: var(--teal); }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-secondary);
+    transition: background 0.15s;
+  }
+  .nav-mobile {
+    display: none;
+    list-style: none;
+    padding: 0.75rem 1.5rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .nav-mobile.open { display: flex; flex-direction: column; gap: 0.5rem; }
+  .nav-mobile-link {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    display: block;
+    transition: color 0.15s;
+  }
+  .nav-mobile-link:hover { color: var(--teal); }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const mobile = document.getElementById('nav-mobile');
+  if (toggle && mobile) {
+    toggle.addEventListener('click', () => {
+      const isOpen = mobile.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      mobile.setAttribute('aria-hidden', String(!isOpen));
+    });
+  }
+</script>

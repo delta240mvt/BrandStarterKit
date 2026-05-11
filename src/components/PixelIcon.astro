@@ -1,0 +1,62 @@
+---
+import { SPRITES, COLOR_MAP } from '@/utils/sprites';
+
+export interface Props {
+  name: string;
+  size?: number;
+  animate?: boolean;
+  label?: string;
+}
+
+const { name, size = 48, animate = false, label } = Astro.props;
+const sprite = SPRITES[name] || SPRITES['bot'];
+const cellSize = size / 12;
+const id = `pixel-icon-${name}-${Math.random().toString(36).slice(2, 7)}`;
+---
+
+<canvas
+  id={id}
+  width={size}
+  height={size}
+  class={`pixel-icon${animate ? ' pixel-icon--animate' : ''}`}
+  aria-label={label || `${name} pixel art icon`}
+  role="img"
+  style={`width: ${size}px; height: ${size}px; image-rendering: pixelated;`}
+></canvas>
+
+<script is:inline define:vars={{ id, sprite, colorMap: COLOR_MAP, cellSize }}>
+  const canvas = document.getElementById(id);
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      sprite.forEach((row, y) => {
+        row.forEach((cell, x) => {
+          const color = colorMap[cell];
+          if (color && color !== 'transparent') {
+            ctx.fillStyle = color;
+            ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+          }
+        });
+      });
+    }
+
+    if (canvas.classList.contains('pixel-icon--animate')) {
+      let t = 0;
+      function bobbing() {
+        t += 0.05;
+        const offset = Math.sin(t) * 2;
+        canvas.style.transform = `translateY(${offset}px)`;
+        requestAnimationFrame(bobbing);
+      }
+      bobbing();
+    }
+  }
+</script>
+
+<style>
+  .pixel-icon {
+    display: inline-block;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
+</style>

@@ -1,0 +1,119 @@
+---
+import '@/styles/global.css';
+import '@/styles/animations.css';
+import { getSitePresentation } from '@/lib/site';
+import { createPageSeo, formatSocialImageAlt } from '@/lib/seo';
+import type { SeoAlternates, SeoPageType } from '@/lib/seo';
+
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonical?: string;
+  ogType?: SeoPageType;
+  robots?: string;
+  articlePublishedAt?: string;
+  articleModifiedAt?: string;
+  alternates?: SeoAlternates;
+  lang?: string;
+}
+
+const {
+  title = undefined,
+  description = undefined,
+  ogImage = '/og-image.png',
+  canonical = undefined,
+  ogType = 'website',
+  robots = undefined,
+  articlePublishedAt,
+  articleModifiedAt,
+  alternates = undefined,
+  lang = 'en-US',
+} = Astro.props;
+
+const site = getSitePresentation();
+const seo = createPageSeo({
+  type: ogType,
+  pathname: Astro.url.pathname,
+  title: title ?? site.defaultTitle,
+  description: description ?? site.defaultDescription,
+  canonical,
+  robots,
+  image: ogImage,
+  publishedAt: articlePublishedAt,
+  updatedAt: articleModifiedAt,
+  alternates,
+});
+const alternateEntries = Object.entries(seo.alternates ?? {});
+const ogLocale = lang.replace('-', '_');
+const socialImageAlt = formatSocialImageAlt(seo.openGraph.title, seo.openGraph.siteName);
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="description" content={seo.description} />
+    <meta name="author" content={site.authorName} />
+    <title>{seo.title}</title>
+    <link rel="canonical" href={seo.canonical} />
+    {alternateEntries.map(([hreflang, href]) => <link rel="alternate" hreflang={hreflang} href={href} />)}
+
+    <!-- Font Preloads -->
+    <link rel="preload" href="/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Roboto-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Favicon — Google SERP wymaga PNG min 48x48px jako primary -->
+    <link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- OpenGraph -->
+    <meta property="og:site_name" content={seo.openGraph.siteName} />
+    <meta property="og:title" content={seo.openGraph.title} />
+    <meta property="og:description" content={seo.openGraph.description} />
+    <meta property="og:type" content={seo.openGraph.type} />
+    <meta property="og:url" content={seo.openGraph.url} />
+    <meta property="og:image" content={seo.openGraph.image} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:locale" content={ogLocale} />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content={seo.twitter.card} />
+    <meta name="twitter:title" content={seo.twitter.title} />
+    <meta name="twitter:description" content={seo.twitter.description} />
+    <meta name="twitter:image" content={seo.twitter.image} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+
+    <!-- Article meta (only when ogType='article') -->
+    {seo.article?.publishedTime && <meta property="article:published_time" content={seo.article.publishedTime} />}
+    {seo.article?.modifiedTime && <meta property="article:modified_time" content={seo.article.modifiedTime} />}
+    {seo.type === 'article' && <meta property="article:author" content={site.canonicalBaseUrl} />}
+
+    <meta name="robots" content={seo.robots} />
+
+    <!-- Identity & Discovery -->
+    {site.socialLinks.map((link) => <link rel="me" href={link} />)}
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="alternate" type="application/rss+xml" title={site.blogTitle} href="/rss.xml" />
+
+    <!-- Page-specific head content (JSON-LD, etc.) -->
+    <slot name="head" />
+
+    <!-- Umami Analytics -->
+    <script is:inline defer src="https://umami-blogi-astro.up.railway.app/script.js" data-website-id="8a199f5f-0f46-49af-861f-9153a90989d0"></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

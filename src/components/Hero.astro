@@ -1,0 +1,168 @@
+---
+import PixelIcon from './PixelIcon.astro';
+---
+
+<section class="hero" id="hero">
+  <div class="hero-container">
+    <!-- Retro ASCII Name Logo -->
+    <pre class="ascii-art" aria-label="FOCUS EQUALS FREEDOM">
+ ███████╗ ██████╗  ██████╗██╗   ██╗███████╗
+ ██╔════╝██╔═══██╗██╔════╝██║   ██║██╔════╝
+ █████╗  ██║   ██║██║     ██║   ██║███████╗
+ ██╔══╝  ██║   ██║██║     ██║   ██║╚════██║
+ ██║     ╚██████╔╝╚██████╗╚██████╔╝███████║
+ ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝
+
+ ███████╗ ██████╗ ██╗   ██╗ █████╗ ██╗     ███████╗
+ ██╔════╝██╔═══██╗██║   ██║██╔══██╗██║     ██╔════╝
+ █████╗  ██║   ██║██║   ██║███████║██║     ███████╗
+ ██╔══╝  ██║▄▄ ██║██║   ██║██╔══██║██║     ╚════██║
+ ███████╗╚██████╔╝╚██████╔╝██║  ██║███████╗███████║
+ ╚══════╝ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝
+
+ ███████╗██████╗ ███████╗███████╗██████╗  ██████╗ ███╗   ███╗
+ ██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██╔═══██╗████╗ ████║
+ █████╗  ██████╔╝█████╗  █████╗  ██║  ██║██║   ██║██╔████╔██║
+ ██╔══╝  ██╔══██╗██╔══╝  ██╔══╝  ██║  ██║██║   ██║██║╚██╔╝██║
+ ██║     ██║  ██║███████╗███████╗██████╔╝╚██████╔╝██║ ╚═╝ ██║
+ ╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚═════╝  ╚═════╝ ╚═╝     ╚═╝</pre>
+
+    <div class="hero-content">
+      <h1 class="visually-hidden">FOCUS EQUALS FREEDOM</h1>
+      <p class="hero-tagline-wrapper">
+        <span class="hero-prompt">&gt; </span><span class="hero-tagline" id="hero-tagline"></span><span class="cursor" aria-hidden="true">▋</span>
+      </p>
+    </div>
+
+    <div class="hero-cta">
+      <a href="/blog" class="btn-primary">Read the Blog</a>
+      <a href="https://github.com/delta240mvt" target="_blank" rel="noopener noreferrer" class="btn-ghost">GitHub ↗</a>
+    </div>
+
+    <div class="hero-icons" aria-label="Project icons">
+      <PixelIcon name="bot" size={48} animate={true} />
+      <PixelIcon name="rocket" size={48} />
+      <PixelIcon name="terminal" size={48} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-elevated);
+    padding: 6rem 1.5rem 4rem;
+  }
+  .hero-container {
+    max-width: 900px;
+    width: 100%;
+  }
+  .ascii-art {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Monaco, Consolas, 'DejaVu Sans Mono', monospace;
+    color: #000;
+    background-color: #fff;
+    padding: 1rem;
+    font-size: clamp(0.35rem, 1.25vw, 0.85rem);
+    line-height: 1.1;
+    white-space: pre;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 0.3s ease-out forwards;
+    letter-spacing: normal;
+    user-select: none;
+    transform: scaleY(1.25);
+    transform-origin: left top;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+  .ascii-art::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .hero-content {
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.5s ease-out 0.2s both;
+  }
+  .hero-tagline-wrapper {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    min-height: 2em;
+  }
+  .hero-prompt {
+    color: var(--teal);
+  }
+  .hero-tagline {
+    color: var(--text-primary);
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.4s ease-out 0.8s both;
+  }
+  .hero-icons {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    animation: fadeInUp 0.4s ease-out 1s both;
+  }
+
+  @media (max-width: 768px) {
+    .ascii-art {
+      font-size: 0.5rem;
+      transform: scaleY(1.4);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .ascii-art {
+      font-size: 0.38rem;
+      transform: scaleY(1.6);
+      margin-bottom: 2rem;
+    }
+    .hero {
+      padding: 5rem 1rem 3rem;
+    }
+  }
+</style>
+
+<script>
+  import '@/styles/animations.css';
+
+  function typewriter(element: HTMLElement, text: string, speed: number = 40): void {
+    let i = 0;
+    element.textContent = '';
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        element.textContent += text[i];
+        i++;
+      } else {
+        clearInterval(timer);
+      }
+    }, speed);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const tagline = document.getElementById('hero-tagline') as HTMLElement | null;
+    if (tagline) {
+      setTimeout(() => {
+        typewriter(tagline, 'AI Product Engineer. Deep Focus Founder. Wholebeing Maximizer.');
+      }, 1200);
+    }
+  });
+</script>

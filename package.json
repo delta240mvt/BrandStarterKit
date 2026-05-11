@@ -1,0 +1,29 @@
+{
+  "name": "@frinter/client-focusequalsfreedom",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host",
+    "test": "node --import tsx --test src/lib/import-boundary.test.ts src/lib/standalone-seo.test.ts src/lib/seo.test.ts src/lib/schema.test.ts src/lib/discovery.test.ts",
+    "build": "astro build",
+    "start": "astro dev --host",
+    "preview": "node --input-type=module -e \"import { spawn } from 'node:child_process'; const forwarded = []; for (let i = 1; i < process.argv.length; i += 1) { const arg = process.argv[i]; if (arg === '--host') { forwarded.push('--ip'); continue; } if (arg.startsWith('--host=')) { forwarded.push(`--ip=${arg.slice('--host='.length)}`); continue; } forwarded.push(arg); } const child = spawn('wrangler', ['pages', 'dev', './dist', ...forwarded], { stdio: 'inherit', shell: process.platform === 'win32' }); child.on('exit', (code, signal) => { if (signal) { console.error(`preview terminated by signal ${signal}`); process.exit(1); } process.exit(code ?? 1); }); child.on('error', (error) => { console.error(error); process.exit(1); });\" --",
+    "deploy": "wrangler pages deploy ./dist",
+    "check": "npm run test && astro check"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^11.2.0",
+    "@astrojs/mdx": "^3.1.5",
+    "@astrojs/tailwind": "^5.1.0",
+    "astro": "^4.16.19"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@tailwindcss/typography": "^0.5.0",
+    "@types/node": "^25.6.0",
+    "tailwindcss": "^3.4.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "wrangler": "^4.20.0"
+  }
+}

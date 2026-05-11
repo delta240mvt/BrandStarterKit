@@ -1,0 +1,72 @@
+---
+import BlogCard from './BlogCard.astro';
+import { getPublishedPosts } from '@/lib/blog';
+
+const articles = (await getPublishedPosts()).slice(0, 3);
+---
+
+<section class="blog-preview reveal" id="blog">
+  <div class="blog-preview-container">
+    <h2 class="section-heading">/blog</h2>
+
+    {articles.length > 0 ? (
+      <div class="blog-preview-grid">
+        {articles.map((article, i) => (
+          <BlogCard
+            title={article.title}
+            description={article.description}
+            date={article.pubDate}
+            readingTime={article.readingTime}
+            tags={article.tags}
+            slug={article.slug}
+            featured={i === 0}
+          />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">Articles coming soon. Check back later.</p>
+    )}
+
+    <div class="blog-preview-cta">
+      <a href="/blog" class="blog-cta-link">[ → All articles ]</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-preview {
+    padding: 5rem 1.5rem;
+    background-color: var(--bg-base);
+  }
+  .blog-preview-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .blog-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .empty-state {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    margin-bottom: 2rem;
+  }
+  .blog-preview-cta {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .blog-cta-link {
+    font-family: var(--font-mono);
+    color: var(--teal);
+    text-decoration: none;
+    font-size: var(--text-base);
+    transition: color 0.15s;
+  }
+  .blog-cta-link:hover { color: var(--gold); }
+  @media (max-width: 768px) {
+    .blog-preview-grid { grid-template-columns: 1fr; }
+  }
+</style>

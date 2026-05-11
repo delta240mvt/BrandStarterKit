@@ -1,0 +1,257 @@
+---
+import Base from './Base.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import { absoluteUrl, getSitePresentation } from '@/lib/site';
+import { buildArticleSchema } from '@/lib/schema';
+
+export interface Props {
+  title: string;
+  description?: string | null;
+  publishedAt?: Date | null;
+  updatedAt?: Date | null;
+  readingTime?: number | null;
+  tags?: string[];
+  author?: string;
+  slug?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title,
+  description,
+  publishedAt,
+  updatedAt,
+  readingTime,
+  tags = [],
+  author = undefined,
+  slug,
+  canonicalUrl = undefined,
+} = Astro.props;
+
+const site = getSitePresentation();
+const resolvedAuthor = author ?? site.authorName;
+
+const formattedDate = publishedAt
+  ? new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(publishedAt)
+  : null;
+
+const resolvedCanonicalUrl = canonicalUrl ?? (slug ? absoluteUrl(`/blog/${slug}`) : absoluteUrl(Astro.url.pathname));
+const schema = publishedAt
+  ? buildArticleSchema({
+      canonical: resolvedCanonicalUrl,
+      title,
+      description: description ?? site.blogDescription,
+      publishedAt: publishedAt.toISOString(),
+      updatedAt: updatedAt?.toISOString(),
+      tags,
+    })
+  : null;
+---
+
+<Base
+  title={`${title} — ${site.articleSuffix}`}
+  description={description || undefined}
+  canonical={resolvedCanonicalUrl}
+  ogType="article"
+  articlePublishedAt={publishedAt?.toISOString()}
+  articleModifiedAt={updatedAt?.toISOString()}
+>
+  <Fragment slot="head">
+    {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </Fragment>
+  <Nav />
+  <main class="blog-main" aria-label="Article content">
+    <article class="blog-article">
+      <header class="article-header">
+        <div class="article-meta">
+          {formattedDate && (
+            <time datetime={publishedAt?.toISOString()} class="article-date">
+              {formattedDate}
+            </time>
+          )}
+          {readingTime && (
+            <span class="article-reading-time">{readingTime} min read</span>
+          )}
+        </div>
+        <h1 class="article-title">{title}</h1>
+        {description && <p class="article-description">{description}</p>}
+        {tags.length > 0 && (
+          <div class="article-tags">
+            {tags.map(tag => (
+              <span class="article-tag">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+      <div class="article-content prose">
+        <slot />
+      </div>
+      <footer class="article-footer">
+        <p class="article-author">By {resolvedAuthor}</p>
+        {updatedAt && (
+          <p class="article-updated">
+            Last updated: <time datetime={updatedAt.toISOString()}>
+              {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric' }).format(updatedAt)}
+            </time>
+          </p>
+        )}
+        <a href="/blog" class="back-to-blog">← Back to blog</a>
+      </footer>
+    </article>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .blog-main {
+    padding-top: 3.5rem;
+    min-height: 100vh;
+    background-color: var(--bg-base);
+  }
+  .blog-article {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+  }
+  .article-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-meta {
+    display: flex;
+    gap: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+  .article-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+  .article-description {
+    color: var(--text-secondary);
+    font-size: var(--text-lg);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .article-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .article-tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    background: var(--violet-glow);
+    color: var(--text-primary);
+    border: 1px solid rgba(138,78,100,0.2);
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .article-tag:hover { background: rgba(138,78,100,0.25); }
+  .article-content {
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+  /* Prose styles for article content */
+  .article-content :global(h1),
+  .article-content :global(h2),
+  .article-content :global(h3),
+  .article-content :global(h4) {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .article-content :global(h2) { font-size: 1.5rem; font-weight: 600; }
+  .article-content :global(h3) { font-size: 1.25rem; font-weight: 600; }
+  .article-content :global(p) { margin-bottom: 1.25rem; }
+  .article-content :global(a) { color: var(--teal); text-decoration: underline; text-underline-offset: 2px; }
+  .article-content :global(a:hover) { color: var(--violet); }
+  .article-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    background: var(--bg-surface);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--violet);
+  }
+  .article-content :global(pre) {
+    background: var(--bg-surface);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+  }
+  .article-content :global(pre code) {
+    background: none;
+    padding: 0;
+    color: var(--text-primary);
+    font-size: var(--text-sm);
+  }
+  .article-content :global(blockquote) {
+    border-left: 3px solid var(--violet);
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 1.5rem 0;
+    background: var(--bg-surface);
+    padding: 1rem 1.25rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .article-content :global(strong) {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .article-content :global(ul), .article-content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .article-content :global(li) { margin-bottom: 0.5rem; }
+  .article-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5rem;
+    font-size: var(--text-sm);
+  }
+  .article-content :global(th), .article-content :global(td) {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .article-content :global(th) {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .article-footer {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .back-to-blog {
+    color: var(--teal);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .back-to-blog:hover { color: var(--gold); }
+</style>

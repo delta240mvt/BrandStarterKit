@@ -1,0 +1,128 @@
+# ============================================================
+#  AI WELCOME NOTICE
+#  This website explicitly WELCOMES AI crawlers for:
+#    - Search indexing
+#    - AI-powered answers (RAG / grounding)
+#    - Model training & fine-tuning
+#
+#  Content is published under a permissive Creative Commons
+#  spirit. Attribution to "Przemysław Filipiak" is appreciated.
+#
+#  For structured AI context, see:
+#    https://focusequalsfreedom.com/llms.txt
+#
+#  Permissions: search=yes, ai-input=yes, ai-train=yes
+#  (Expression of intent per EU DSM Directive 2019/790 Art. 4)
+# ============================================================
+
+# ── Global: wszystkich witamy, admin i api blokujemy ────────
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api
+Crawl-delay: 1
+
+# ── Google ──────────────────────────────────────────────────
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+User-agent: Google-Extended
+Allow: /
+
+# ── Microsoft Bing ───────────────────────────────────────────
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /api
+
+# ── Yahoo ───────────────────────────────────────────────────
+User-agent: Slurp
+Allow: /
+
+# ── Yandex ──────────────────────────────────────────────────
+User-agent: YandexBot
+Allow: /
+
+# ── OpenAI ──────────────────────────────────────────────────
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# ── Anthropic / Claude ──────────────────────────────────────
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# ── Mistral AI ──────────────────────────────────────────────
+User-agent: MistralAI-bot
+Allow: /
+
+# ── Perplexity AI ───────────────────────────────────────────
+User-agent: PerplexityBot
+Allow: /
+
+# ── Meta AI ─────────────────────────────────────────────────
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# ── Amazon ──────────────────────────────────────────────────
+User-agent: Amazonbot
+Allow: /
+
+# ── Apple ───────────────────────────────────────────────────
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# ── ByteDance / TikTok ───────────────────────────────────────
+User-agent: Bytespider
+Allow: /
+
+# ── Common Crawl / Internet Archive ─────────────────────────
+User-agent: CCBot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# ── Cohere ──────────────────────────────────────────────────
+User-agent: cohere-ai
+Allow: /
+
+# ── You.com ─────────────────────────────────────────────────
+User-agent: YouBot
+Allow: /
+
+# ── DuckDuckGo AI ───────────────────────────────────────────
+User-agent: DuckAssistBot
+Allow: /
+
+# ── Diffbot ─────────────────────────────────────────────────
+User-agent: Diffbot
+Allow: /
+
+# ── Timpi ────────────────────────────────────────────────────
+User-agent: Timpibot
+Allow: /
+
+# ── Discovery ────────────────────────────────────────────────
+# llms.txt: https://focusequalsfreedom.com/llms.txt
+# RSS: https://focusequalsfreedom.com/rss.xml
+Sitemap: https://focusequalsfreedom.com/sitemap.xml

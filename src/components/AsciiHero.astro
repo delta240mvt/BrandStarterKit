@@ -1,0 +1,24 @@
+---
+export interface Props {
+  text: string;
+  color?: string;
+  fontSize?: string;
+}
+
+const { text, color = 'var(--gold)', fontSize = '1rem' } = Astro.props;
+---
+
+<pre
+  class="ascii-hero-text"
+  style={`color: ${color}; font-size: ${fontSize};`}
+  aria-label="ASCII art"
+>{text}</pre>
+
+<style>
+  .ascii-hero-text {
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    white-space: pre;
+    overflow-x: auto;
+  }
+</style>

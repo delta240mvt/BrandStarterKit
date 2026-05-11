@@ -1,0 +1,67 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    name: 'frinter.',
+    tagline: 'WholeBeing OS for High Performers',
+    description: 'A performance system focused on Focus Sprints (Frints), energy tracking, and life-sphere balance. Designed for those who live the data-driven focus life.',
+    stack: ['React', 'Vite', 'PostgreSQL', 'Drizzle', 'Tailwind'],
+    links: [{ label: 'frinter.app', url: 'https://frinter.app' }],
+    featured: true,
+  },
+  {
+    name: 'FrinterFlow',
+    tagline: 'In-Flow voice dictation CLI',
+    description: 'Local voice dictation for deep focus sessions. Direct input, zero distractions, full control. Engineered for High Performer velocity.',
+    stack: ['Python', 'faster-whisper', 'sounddevice', 'pynput'],
+    links: [
+      { label: 'PyPI', url: 'https://pypi.org/project/frinterflow/' },
+      { label: 'GitHub', url: 'https://github.com/delta240mvt' },
+    ],
+    featured: false,
+    openSource: true,
+  },
+  {
+    name: 'FrinterHero',
+    tagline: 'AI Brand Authority Engine',
+    description: 'An open-source semantic engine to ensure High Performer authority in AI-indexed search results. Dominate GEO results with intent-driven data.',
+    stack: ['Astro', 'Tailwind', 'PostgreSQL', 'Drizzle', 'Railway'],
+    links: [
+      { label: 'GitHub', url: 'https://github.com/delta240mvt/FrinterHero' },
+    ],
+    featured: false,
+    openSource: true,
+  },
+];
+---
+
+<section class="projects reveal" id="projects">
+  <div class="projects-container">
+    <h2 class="section-heading">/projects</h2>
+    <div class="projects-grid">
+      {projects.map(project => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 5rem 1.5rem;
+    background-color: var(--bg-surface);
+  }
+  .projects-container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+  }
+</style>

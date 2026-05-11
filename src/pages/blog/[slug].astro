@@ -1,0 +1,76 @@
+---
+export const prerender = true;
+
+import BlogPost from '@/components/layouts/BlogPost.astro';
+import BlogCard from '@/components/BlogCard.astro';
+import { getPublishedPostBySlug, getPublishedPosts, getRelatedPosts } from '@/lib/blog';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect('/404');
+}
+
+const article = await getPublishedPostBySlug(slug);
+if (!article) {
+  return Astro.redirect('/404');
+}
+
+const relatedArticles = await getRelatedPosts(article, 3);
+const { Content } = await article.entry.render();
+---
+
+<BlogPost
+  title={article.title}
+  description={article.excerpt}
+  publishedAt={article.pubDate}
+  updatedAt={article.updatedDate}
+  readingTime={article.readingTime}
+  tags={article.tags}
+  slug={article.slug}
+  canonicalUrl={article.canonicalUrl}
+>
+  <Content />
+
+  {relatedArticles.length > 0 && (
+    <aside class="related-articles">
+      <h2 class="related-title">Related Articles</h2>
+      <div class="related-grid">
+        {relatedArticles.map(related => (
+          <BlogCard
+            title={related.title}
+            description={related.excerpt}
+            date={related.pubDate}
+            readingTime={related.readingTime}
+            tags={related.tags}
+            slug={related.slug}
+          />
+        ))}
+      </div>
+    </aside>
+  )}
+</BlogPost>
+
+<style>
+  .related-articles {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .related-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    color: var(--teal);
+    margin-bottom: 1.25rem;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+</style>
