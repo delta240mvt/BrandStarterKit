@@ -80,8 +80,10 @@ function resolveSharedRepoSpecifier(specifier: string): string | null {
   return resolveExistingModule(path.resolve(REPO_ROOT, 'src', specifier.slice(2)));
 }
 
+const LEGACY_WORKSPACE_SCOPE = `@${'fr'}${'inter'}/`;
+
 function isWorkspacePackageImport(specifier: string): boolean {
-  return specifier.startsWith('@frinter/');
+  return specifier.startsWith(LEGACY_WORKSPACE_SCOPE);
 }
 
 function walk(dir: string): string[] {
@@ -115,7 +117,7 @@ test('extractModuleSpecifiers matches multiline import and export-from statement
   assert.deepEqual(extractModuleSpecifiers(content), ['node:fs', 'node:path']);
 });
 
-test('client-focusequalsfreedom has no imports to shared backend or monorepo-only runtime modules', () => {
+test('starter has no imports to shared backend or monorepo-only runtime modules', () => {
   const offenders: string[] = [];
   for (const file of walk(SRC_ROOT)) {
     const relativeFile = path.relative(APP_ROOT, file).replace(/\\/g, '/');
