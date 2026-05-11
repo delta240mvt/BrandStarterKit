@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --host",
-    "test": "node --import tsx --test src/lib/import-boundary.test.ts src/lib/standalone-seo.test.ts src/lib/seo.test.ts src/lib/schema.test.ts src/lib/discovery.test.ts",
+    "test": "node --import tsx --test src/data/starter.test.ts src/lib/import-boundary.test.ts src/lib/standalone-seo.test.ts src/lib/seo.test.ts src/lib/schema.test.ts src/lib/discovery.test.ts",
     "build": "astro build",
     "start": "astro dev --host",
     "preview": "node --input-type=module -e \"import { spawn } from 'node:child_process'; const forwarded = []; for (let i = 1; i < process.argv.length; i += 1) { const arg = process.argv[i]; if (arg === '--host') { forwarded.push('--ip'); continue; } if (arg.startsWith('--host=')) { forwarded.push(`--ip=${arg.slice('--host='.length)}`); continue; } forwarded.push(arg); } const child = spawn('wrangler', ['pages', 'dev', './dist', ...forwarded], { stdio: 'inherit', shell: process.platform === 'win32' }); child.on('exit', (code, signal) => { if (signal) { console.error(`preview terminated by signal ${signal}`); process.exit(1); } process.exit(code ?? 1); }); child.on('error', (error) => { console.error(error); process.exit(1); });\" --",
