@@ -9,7 +9,7 @@
 ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝
 </pre>
 
-<h1>STRONA WWW DLA TWOJEGO PROJEKTU</h1>
+<h1>STARTER KIT</h1>
 
 **Minimalistyczny starter Astro, dzięki któremu szybko postawisz profesjonalną stronę dla swojego nowego przedsięwzięcia.**
 
