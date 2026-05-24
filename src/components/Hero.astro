@@ -5,83 +5,43 @@ const { hero } = HOME;
 ---
 
 <section class="hero" id="start">
-  <div class="hero-container">
-    <p class="hero-eyebrow">{hero.eyebrow}</p>
-    <h1>{hero.title}</h1>
-    <p class="hero-description">{hero.description}</p>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{hero.eyebrow}</p>
+      <h1 class="hero-title">{hero.title}</h1>
+      <p class="hero-description">{hero.description}</p>
 
-    <div class="hero-actions">
-      <a href={hero.primaryCta.href} class="btn-primary">{hero.primaryCta.label}</a>
-      <a href={hero.secondaryCta.href} class="btn-ghost">{hero.secondaryCta.label}</a>
+      <div class="hero-actions">
+        <a href={hero.primaryCta.href} class="btn btn--primary">{hero.primaryCta.label} <span aria-hidden="true">-&gt;</span></a>
+        <a href={hero.secondaryCta.href} class="btn btn--outline">{hero.secondaryCta.label}</a>
+      </div>
+
+      {hero.trustCues.length > 0 && (
+        <ul class="trust-list" aria-label="Najważniejsze atuty">
+          {hero.trustCues.map((cue) => <li>{cue}</li>)}
+        </ul>
+      )}
     </div>
 
-    {hero.trustCues.length > 0 && (
-      <ul class="trust-list" aria-label="Najwazniejsze atuty">
-        {hero.trustCues.map((cue) => <li>{cue}</li>)}
-      </ul>
-    )}
+    <div class="hero-media" aria-hidden="true">
+      <div class="hero-panel">
+        <img
+          class="hero-panel__photo"
+          src="/img/landing/optimized/portfolio-ai-workflow-620.webp"
+          srcset="/img/landing/optimized/portfolio-ai-workflow-360.webp 360w, /img/landing/optimized/portfolio-ai-workflow-620.webp 620w, /img/landing/optimized/portfolio-ai-workflow-820.webp 820w"
+          sizes="(min-width: 961px) 430px, calc(100vw - 56px)"
+          alt=""
+          width="620"
+          height="388"
+          loading="eager"
+          decoding="async"
+        />
+        <img class="hero-panel__image" src="/img/landing/optimized/icon-product-system-128.webp" alt="" width="128" height="128" loading="eager" decoding="async" />
+        <div>
+          <p class="hero-panel__title">Oferta, realizacje i kontakt w jednym układzie.</p>
+          <p class="hero-panel__text">Starter pod lokalne usługi, gotowy do szybkiego przepisania dla klienta.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
-<style>
-  .hero {
-    min-height: 92vh;
-    display: flex;
-    align-items: center;
-    background: var(--bg-elevated);
-    padding: 7rem 1.5rem 4rem;
-  }
-
-  .hero-container {
-    max-width: 980px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .hero-eyebrow {
-    font-family: var(--font-mono);
-    color: var(--teal);
-    font-size: var(--text-sm);
-    margin-bottom: 1rem;
-  }
-
-  h1 {
-    max-width: 860px;
-    font-family: var(--font-heading);
-    font-size: clamp(2.25rem, 7vw, 5.75rem);
-    line-height: 0.98;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-description {
-    max-width: 660px;
-    color: var(--text-secondary);
-    font-size: var(--text-lg);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .trust-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    list-style: none;
-  }
-
-  .trust-list li {
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.4rem 0.75rem;
-    color: var(--text-secondary);
-    font-size: var(--text-sm);
-    background: var(--bg-surface);
-  }
-</style>

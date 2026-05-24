@@ -5,60 +5,21 @@ const { benefits } = HOME;
 ---
 
 {benefits.items.length > 0 && (
-  <section class="benefits reveal" id="korzysci">
-    <div class="section-container">
-      <h2 class="section-heading">{benefits.heading}</h2>
-      <div class="benefit-grid">
-        {benefits.items.map((item) => (
-          <article class="benefit-card">
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
-        ))}
+  <section class="section benefits-section reveal" id="korzysci">
+    <div class="section-band">
+      <header class="section-head-inline">
+        <span class="section-heading">{benefits.heading}</span>
+        <span class="section-head__rule" aria-hidden="true"></span>
+      </header>
+      <div class="feature-grid">
+          {benefits.items.map((item) => (
+            <article class="benefit-card">
+              <img class="card-icon" src="/img/landing/optimized/icon-ai-workflow-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
       </div>
     </div>
   </section>
 )}
-
-<style>
-  .benefits {
-    padding: 4rem 1.5rem;
-    background: var(--bg-surface);
-  }
-
-  .section-container {
-    max-width: 980px;
-    margin: 0 auto;
-  }
-
-  .benefit-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .benefit-card {
-    min-height: 180px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: var(--bg-elevated);
-  }
-
-  .benefit-card h3 {
-    font-family: var(--font-heading);
-    font-size: var(--text-base);
-    margin-bottom: 0.75rem;
-  }
-
-  .benefit-card p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  @media (max-width: 760px) {
-    .benefit-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

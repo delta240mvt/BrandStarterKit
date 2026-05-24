@@ -3,18 +3,23 @@ import { NAVIGATION } from '@/data/navigation';
 import { SITE } from '@/data/site';
 
 const year = new Date().getFullYear();
+const footerLinks = [
+  { label: 'Start', href: '/' },
+  ...NAVIGATION.main,
+  { label: 'Polityka prywatności', href: '/polityka-prywatnosci' },
+];
 ---
 
 <footer class="footer">
-  <div class="footer-container">
+  <div class="footer__inner">
     <p class="footer-copy">&copy; {year} {SITE.displayName}</p>
     <nav class="footer-links" aria-label="Menu stopki">
-      {NAVIGATION.footer.map((item) => (
+      {footerLinks.map((item) => (
         <a
           href={item.href}
           class="footer-link"
-          target={item.external ? '_blank' : undefined}
-          rel={item.external ? 'noopener noreferrer' : undefined}
+          target={'external' in item && item.external ? '_blank' : undefined}
+          rel={'external' in item && item.external ? 'noopener noreferrer' : undefined}
         >
           {item.label}
         </a>
@@ -22,41 +27,3 @@ const year = new Date().getFullYear();
     </nav>
   </div>
 </footer>
-
-<style>
-  .footer {
-    padding: 2rem 1.5rem;
-    border-top: 1px solid var(--border);
-    background: var(--bg-elevated);
-  }
-
-  .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .footer-copy,
-  .footer-link {
-    font-size: var(--text-xs);
-    color: var(--text-secondary);
-  }
-
-  .footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .footer-link {
-    text-decoration: none;
-  }
-
-  .footer-link:hover {
-    color: var(--teal);
-  }
-</style>

@@ -24,12 +24,12 @@ const schema = buildLegalSchema({
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   </Fragment>
   <Nav />
-  <main class="legal-main">
+  <main id="main" class="legal-main">
     <div class="legal-container">
       <header class="legal-header">
-        <p class="legal-meta">{doc.lastUpdatedLabel}</p>
-        <h1>{doc.title}</h1>
-        <p class="legal-lead">{doc.lead}</p>
+        <p class="article-meta">{doc.lastUpdatedLabel}</p>
+        <h1 class="page-title">{doc.title}</h1>
+        <p class="article-description">{doc.lead}</p>
         <p class="legal-disclaimer">{doc.disclaimer}</p>
       </header>
 
@@ -48,70 +48,3 @@ const schema = buildLegalSchema({
   </main>
   <Footer />
 </Base>
-
-<style>
-  .legal-main {
-    min-height: 100vh;
-    background: var(--bg-base);
-    padding-top: 3rem;
-  }
-
-  .legal-container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 4rem 1.5rem;
-  }
-
-  .legal-header {
-    margin-bottom: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .legal-meta {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-  }
-
-  h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--text-primary);
-  }
-
-  .legal-lead,
-  .legal-section p,
-  .legal-section li {
-    color: var(--text-secondary);
-    line-height: 1.8;
-  }
-
-  .legal-disclaimer {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-    color: var(--text-secondary);
-    background: var(--bg-surface);
-    line-height: 1.7;
-  }
-
-  .legal-section {
-    margin-top: 2rem;
-  }
-
-  .legal-section h2 {
-    font-family: var(--font-heading);
-    font-size: var(--text-base);
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .legal-section ul {
-    padding-left: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-</style>

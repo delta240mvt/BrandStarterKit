@@ -12,58 +12,16 @@ const description = 'Ta strona nie istnieje albo została przeniesiona.';
 
 <Base title={title} description={description} robots="noindex, follow" lang={SITE.locale}>
   <Nav />
-  <main class="not-found-main">
-    <section class="not-found">
+  <main id="main" class="not-found-main">
+    <section class="not-found-container">
       <p class="eyebrow">404</p>
-      <h1>Nie znaleziono strony</h1>
-      <p>{description}</p>
-      <div class="actions">
-        <a href="/" class="btn-primary">Wróć na stronę główną</a>
-        <a href="/blog" class="btn-ghost">Przejdź do bloga</a>
+      <h1 class="page-title">Nie znaleziono strony</h1>
+      <p class="article-description">{description}</p>
+      <div class="hero-actions">
+        <a href="/" class="btn btn--primary">Wróć na stronę główną</a>
+        <a href="/blog" class="btn btn--outline">Przejdź do bloga</a>
       </div>
     </section>
   </main>
   <Footer />
 </Base>
-
-<style>
-  .not-found-main {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    background: var(--bg-base);
-    padding: 6rem 1.5rem 4rem;
-  }
-
-  .not-found {
-    max-width: 720px;
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .eyebrow {
-    font-family: var(--font-mono);
-    color: var(--teal);
-    margin-bottom: 1rem;
-  }
-
-  h1 {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 5vw, 4rem);
-    line-height: 1.05;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: var(--text-secondary);
-    font-size: var(--text-lg);
-    line-height: 1.7;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-</style>

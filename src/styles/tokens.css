@@ -1,35 +1,59 @@
 :root {
-  /* Backgrounds */
-  --bg-base:      #ffffff;
-  --bg-surface:   #f8fafc;
-  --bg-elevated:  #ffffff;
+  --c-bg: #ffffff;
+  --c-bg-deep: #f7f4ec;
+  --c-card: #ffffff;
+  --c-card-2: #fcfaf3;
+  --c-white: #ffffff;
+  --c-honey: #d4af36;
+  --c-honey-2: #eabe5f;
+  --c-honey-soft: #f5e6b8;
+  --c-teal: #6e8f87;
+  --c-rose: #b7755b;
+  --c-cta: #8a5a24;
+  --c-cta-hov: #6f4519;
+  --c-cta-soft: #faf2e0;
+  --c-ink: #1f1b16;
+  --c-ink-2: #4a4338;
+  --c-ink-3: #665f55;
+  --c-line: #ece5d3;
+  --c-line-2: #d8cfb6;
 
-  /* Text */
-  --text-primary:   #0f172a;
-  --text-secondary: #475569;
-  --text-muted:     #94a3b8;
+  --ff-serif: Georgia, "Times New Roman", serif;
+  --ff-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --ff-mono: "Courier Prime", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Borders */
-  --border:       rgba(0, 0, 0, 0.08);
-  --border-hover: rgba(0, 0, 0, 0.16);
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 18px;
+  --r-btn: 8px;
+  --r-pill: 999px;
+  --container: 1180px;
+  --gutter: 28px;
+  --shadow-sm: 0 1px 2px rgba(31, 27, 22, 0.06);
+  --shadow-md: 0 14px 34px rgba(31, 27, 22, 0.08);
+  --focus-ring: 0 0 0 3px rgba(212, 161, 90, 0.24);
 
-  /* Accent colors */
-  --teal:         #4a8d83;
-  --violet:       #8a4e64;
-  --gold:         #d6b779;
-  --teal-glow:    rgba(74, 141, 131, 0.15);
-  --violet-glow:  rgba(138, 78, 100, 0.15);
-  --gold-glow:    rgba(214, 183, 121, 0.15);
-
-  /* Typography */
-  --font-heading: 'Poppins', system-ui, sans-serif;
-  --font-body:    'Roboto', system-ui, sans-serif;
-  --font-mono:    'Courier Prime', monospace;
-
-  --text-hero:  clamp(2.5rem, 8vw, 7rem);
-  --text-xl:    clamp(1.5rem, 3vw, 2.5rem);
-  --text-lg:    clamp(1.125rem, 2vw, 1.5rem);
-  --text-base:  1rem;
-  --text-sm:    0.875rem;
-  --text-xs:    0.75rem;
+  --bg-base: var(--c-bg);
+  --bg-surface: var(--c-card-2);
+  --bg-elevated: var(--c-card);
+  --text-primary: var(--c-ink);
+  --text-secondary: var(--c-ink-2);
+  --text-muted: var(--c-ink-3);
+  --border: var(--c-line);
+  --border-hover: var(--c-line-2);
+  --teal: var(--c-teal);
+  --violet: var(--c-rose);
+  --gold: var(--c-honey);
+  --teal-glow: rgba(110, 143, 135, 0.15);
+  --violet-glow: rgba(183, 117, 91, 0.14);
+  --gold-glow: rgba(212, 175, 54, 0.16);
+  --font-heading: var(--ff-serif);
+  --font-body: var(--ff-sans);
+  --font-mono: var(--ff-mono);
+  --text-hero: clamp(2.75rem, 7vw, 4.75rem);
+  --text-xl: clamp(1.8rem, 4vw, 2.5rem);
+  --text-lg: 1.08rem;
+  --text-base: 1rem;
+  --text-sm: 0.9rem;
+  --text-xs: 0.78rem;
 }

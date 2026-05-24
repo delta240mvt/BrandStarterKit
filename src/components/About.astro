@@ -4,66 +4,22 @@ import { HOME } from '@/data/home';
 const { about } = HOME;
 ---
 
-<section class="about reveal" id="o-nas">
-  <div class="section-container">
-    <h2 class="section-heading">{about.heading}</h2>
-    <div class="about-grid">
+<section class="section reveal" id="o-nas">
+  <header class="section-head-inline">
+    <span class="section-heading">{about.heading}</span>
+    <span class="section-head__rule" aria-hidden="true"></span>
+  </header>
+  <div class="about-grid">
+    <div>
+      <h2 class="section-title">Prosty opis firmy, który buduje zaufanie przed kontaktem.</h2>
       <div class="about-copy">
         {about.body.map((paragraph) => <p>{paragraph}</p>)}
       </div>
-      {about.highlights.length > 0 && (
-        <ul class="highlight-list" aria-label="Najważniejsze informacje o firmie">
-          {about.highlights.map((highlight) => <li>{highlight}</li>)}
-        </ul>
-      )}
     </div>
+    {about.highlights.length > 0 && (
+      <ul class="highlight-list" aria-label="Najważniejsze informacje o firmie">
+        {about.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    )}
   </div>
 </section>
-
-<style>
-  .about {
-    padding: 5rem 1.5rem;
-    background: var(--bg-base);
-  }
-
-  .section-container {
-    max-width: 980px;
-    margin: 0 auto;
-  }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.8fr);
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .about-copy {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-    max-width: 68ch;
-  }
-
-  .highlight-list {
-    list-style: none;
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .highlight-list li {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem;
-    color: var(--text-primary);
-    background: var(--bg-surface);
-  }
-
-  @media (max-width: 760px) {
-    .about-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

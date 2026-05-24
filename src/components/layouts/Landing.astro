@@ -25,7 +25,7 @@ const { title, description, canonical, ogImage, robots, alternates } = Astro.pro
 >
   <slot name="head" slot="head" />
   <Nav />
-  <main aria-label="Main content">
+  <main id="main" class="site-main" aria-label="Główna treść">
     <slot />
   </main>
   <Footer />

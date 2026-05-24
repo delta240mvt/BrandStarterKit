@@ -5,9 +5,11 @@ const { testimonials } = HOME;
 ---
 
 {testimonials.items.length > 0 && (
-  <section class="testimonials reveal" id="opinie">
-    <div class="section-container">
-      <h2 class="section-heading">{testimonials.heading}</h2>
+  <section class="section section--warm reveal" id="opinie">
+    <header class="section-head-inline">
+      <span class="section-heading">{testimonials.heading}</span>
+      <span class="section-head__rule" aria-hidden="true"></span>
+    </header>
       <div class="testimonial-grid">
         {testimonials.items.map((item) => (
           <figure class="testimonial-card">
@@ -19,51 +21,5 @@ const { testimonials } = HOME;
           </figure>
         ))}
       </div>
-    </div>
   </section>
 )}
-
-<style>
-  .testimonials {
-    padding: 5rem 1.5rem;
-    background: var(--bg-base);
-  }
-
-  .section-container {
-    max-width: 980px;
-    margin: 0 auto;
-  }
-
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .testimonial-card {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: var(--bg-surface);
-  }
-
-  blockquote {
-    color: var(--text-primary);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  figcaption {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    color: var(--text-secondary);
-    font-size: var(--text-sm);
-  }
-
-  @media (max-width: 760px) {
-    .testimonial-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

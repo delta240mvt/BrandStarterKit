@@ -2,83 +2,54 @@
 import { HOME } from '@/data/home';
 
 const { realizations } = HOME;
+
+const realizationImages = [
+  {
+    src: '/img/landing/optimized/portfolio-ai-workflow-620.webp',
+    srcset: '/img/landing/optimized/portfolio-ai-workflow-360.webp 360w, /img/landing/optimized/portfolio-ai-workflow-620.webp 620w, /img/landing/optimized/portfolio-ai-workflow-820.webp 820w',
+    alt: 'Przykładowy podgląd realizacji strony usługowej',
+  },
+  {
+    src: '/img/landing/optimized/blog-start-620.webp',
+    srcset: '/img/landing/optimized/blog-start-360.webp 360w, /img/landing/optimized/blog-start-620.webp 620w, /img/landing/optimized/blog-start-820.webp 820w',
+    alt: 'Przykładowe materiały do prezentacji oferty',
+  },
+];
 ---
 
 {realizations.items.length > 0 && (
-  <section class="realizations reveal" id="realizacje">
-    <div class="section-container">
-      <div class="section-header">
-        <h2 class="section-heading">{realizations.heading}</h2>
-        <p>{realizations.description}</p>
-      </div>
+  <section class="section reveal" id="realizacje">
+    <header class="section-head-inline">
+      <span class="section-heading">{realizations.heading}</span>
+      <span class="section-head__rule" aria-hidden="true"></span>
+    </header>
+    <h2 class="section-title">Dowody pracy, które pomagają podjąć decyzję bez długiego researchu.</h2>
+    <p class="section-lead">{realizations.description}</p>
 
-      <div class="realization-grid">
-        {realizations.items.map((item) => (
+      <div class="realization-grid mt-8">
+        {realizations.items.map((item, index) => {
+          const image = realizationImages[index % realizationImages.length];
+
+          return (
           <article class="realization-card">
+            <img
+              class="card-photo"
+              src={image.src}
+              srcset={image.srcset}
+              sizes="(min-width: 761px) 50vw, calc(100vw - 56px)"
+              alt={image.alt}
+              width="620"
+              height="388"
+              loading="lazy"
+              decoding="async"
+            />
+            <img class="card-icon" src="/img/landing/optimized/icon-product-system-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
             <strong>{item.result}</strong>
           </article>
-        ))}
+          );
+        })}
       </div>
-    </div>
   </section>
 )}
-
-<style>
-  .realizations {
-    padding: 5rem 1.5rem;
-    background: var(--bg-surface);
-  }
-
-  .section-container {
-    max-width: 980px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    max-width: 680px;
-    margin-bottom: 2rem;
-  }
-
-  .section-header p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .realization-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .realization-card {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: var(--bg-elevated);
-  }
-
-  .realization-card h3 {
-    font-family: var(--font-heading);
-    font-size: var(--text-lg);
-    margin-bottom: 0.75rem;
-  }
-
-  .realization-card p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .realization-card strong {
-    color: var(--teal);
-    font-size: var(--text-sm);
-  }
-
-  @media (max-width: 760px) {
-    .realization-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

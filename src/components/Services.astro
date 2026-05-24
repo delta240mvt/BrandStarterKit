@@ -4,84 +4,22 @@ import { HOME } from '@/data/home';
 const { services } = HOME;
 ---
 
-<section class="services reveal" id="oferta">
-  <div class="section-container">
-    <div class="section-header">
-      <h2 class="section-heading">{services.heading}</h2>
-      <p>{services.description}</p>
-    </div>
+<section class="section reveal" id="oferta">
+  <header class="section-head-inline">
+    <span class="section-heading">{services.heading}</span>
+    <span class="section-head__rule" aria-hidden="true"></span>
+  </header>
+  <h2 class="section-title">Oferta opisana tak, żeby klient szybko wybrał kolejny krok.</h2>
+  <p class="section-lead">{services.description}</p>
 
-    <div class="service-grid">
+    <div class="cards-grid mt-8">
       {services.items.map((service) => (
         <article class="service-card">
+          <img class="card-icon" src="/img/landing/optimized/icon-code-automation-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />
           <h3>{service.title}</h3>
           <p>{service.description}</p>
-          <a href={service.href}>Zapytaj o usługę</a>
+          <a href={service.href}>Zapytaj o usługę -&gt;</a>
         </article>
       ))}
     </div>
-  </div>
 </section>
-
-<style>
-  .services {
-    padding: 5rem 1.5rem;
-    background: var(--bg-elevated);
-  }
-
-  .section-container {
-    max-width: 980px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    max-width: 680px;
-    margin-bottom: 2rem;
-  }
-
-  .section-header p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  .service-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
-  .service-card {
-    display: flex;
-    min-height: 240px;
-    flex-direction: column;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: var(--bg-surface);
-  }
-
-  .service-card h3 {
-    font-family: var(--font-heading);
-    font-size: var(--text-base);
-    margin-bottom: 0.75rem;
-  }
-
-  .service-card p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 1rem;
-  }
-
-  .service-card a {
-    margin-top: auto;
-    color: var(--teal);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  @media (max-width: 820px) {
-    .service-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

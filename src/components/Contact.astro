@@ -1,51 +1,49 @@
 ---
-import { HOME } from '@/data/home';
 import { SITE } from '@/data/site';
-
-const { contact } = HOME;
 ---
 
-<section class="contact reveal" id="kontakt">
-  <div class="contact-container">
-    <h2 class="section-heading">{contact.heading}</h2>
-    <p class="contact-text">{contact.description}</p>
+<section class="section contact-panel reveal" id="kontakt">
+  <div class="footer-cta">
+    <img
+      class="footer-cta__avatar"
+      src="/img/landing/optimized/contact-avatar-260.webp"
+      alt="Zdjęcie autora startera"
+      width="260"
+      height="260"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="footer-cta__content">
+      <h2 class="footer-cta__title">Chcesz budować z AI bez chaosu?</h2>
+      <p class="footer-cta__text">
+        Napisz do mnie. Opowiedz o swoim pomyśle, a pomogę dobrać rozwiązanie,
+        które naprawdę działa.
+      </p>
 
-    <div class="contact-actions">
-      <a href={`mailto:${SITE.contact.email}`} class="btn-primary">{contact.emailCtaLabel}</a>
-      {SITE.contact.phone && <a href={`tel:${SITE.contact.phone.replaceAll(' ', '')}`} class="btn-ghost">{SITE.contact.phone}</a>}
+      <ul class="footer-cta__links" aria-label="Linki kontaktowe">
+        <li>
+          <a href={`mailto:${SITE.contact.email}`}>
+            <span aria-hidden="true">@</span>
+            {SITE.contact.email}
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">in</span>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">GH</span>
+            GitHub
+          </a>
+        </li>
+      </ul>
+
+      <div class="contact-actions">
+        <a href={`mailto:${SITE.contact.email}`} class="btn btn--primary">Skontaktuj się <span aria-hidden="true">-&gt;</span></a>
+      </div>
     </div>
-
-    {SITE.contact.address && <p class="contact-address">{SITE.contact.address}</p>}
   </div>
 </section>
-
-<style>
-  .contact {
-    padding: 5rem 1.5rem;
-    background: var(--bg-elevated);
-  }
-
-  .contact-container {
-    max-width: 760px;
-    margin: 0 auto;
-  }
-
-  .contact-text {
-    color: var(--text-secondary);
-    font-size: var(--text-lg);
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .contact-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .contact-address {
-    color: var(--text-muted);
-    font-size: var(--text-sm);
-  }
-</style>
