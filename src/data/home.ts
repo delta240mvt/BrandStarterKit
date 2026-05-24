@@ -69,62 +69,62 @@ export interface HomeData {
 
 export const HOME: HomeData = {
   hero: {
-    eyebrow: 'Strona dla lokalnej firmy',
-    title: 'Pokaż usługi jasno i zdobądź więcej zapytań od klientów.',
+    eyebrow: 'Strona dla Twojego projektu',
+    title: 'Przedstaw swój projekt jasno i zdobywaj zaufanie odbiorców.',
     description:
-      'Neutralny starter dla prostych stron usługowych: oferta, realizacje, FAQ, kontakt i blog gotowe do lokalnego dostosowania.',
+      'Minimalistyczna, nowoczesna strona internetowa dla Twojej inicjatywy. Przedstaw ofertę, pochwal się realizacjami i z łatwością buduj bazę klientów.',
     primaryCta: {
-      label: 'Zobacz oferte',
+      label: 'Zobacz ofertę',
       href: '#oferta',
     },
     secondaryCta: {
       label: 'Skontaktuj się',
       href: '#kontakt',
     },
-    trustCues: ['Szybka publikacja', 'SEO od startu', 'Gotowe pod Cloudflare Pages'],
+    trustCues: ['Szybkie wdrożenie', 'Optymalizacja SEO', 'Nowoczesny design'],
   },
   benefits: {
-    heading: 'Dlaczego ten starter działa',
+    heading: 'Dlaczego ten układ działa',
     items: [
       {
-        title: 'Jasna struktura',
-        description: 'Najważniejsze informacje klient znajduje bez przeklikiwania wielu podstron.',
+        title: 'Przejrzysta struktura',
+        description: 'Najważniejsze informacje są od razu widoczne, bez konieczności błądzenia po zakładkach.',
       },
       {
-        title: 'Latwa edycja',
-        description: 'Treści klienta są w przewidywalnych plikach TypeScript i wpisach MDX.',
+        title: 'Prosta edycja',
+        description: 'Twoje treści są bezpieczne i niezwykle łatwe do aktualizacji w przewidywalnym środowisku.',
       },
       {
-        title: 'Techniczny porzadek',
-        description: 'SEO, sitemap, RSS, schema i pliki AI discovery korzystają ze wspólnej konfiguracji.',
+        title: 'Techniczna perfekcja',
+        description: 'Strona od samego początku jest zoptymalizowana pod wyszukiwarki i błyskawiczne działanie.',
       },
     ],
   },
   about: {
-    heading: 'O firmie',
+    heading: 'O projekcie',
     body: [
-      'Pracownia Usługowa to przykładowa lokalna firma, która pokazuje jak może wyglądać gotowy starter dla klienta.',
-      'Sekcja opisuje sposób pracy, specjalizację i przewagi bez narzucania konkretnej branży.',
+      'Twoja nowa strona to nie tylko cyfrowa wizytówka. To potężne narzędzie, które skutecznie pracuje na wizerunek i sukces całego przedsięwzięcia.',
+      'Dzięki przemyślanej strukturze, każdy odwiedzający błyskawicznie zrozumie Twoją misję, zakres działań i korzyści płynące ze współpracy.',
     ],
-    highlights: ['Indywidualna wycena', 'Sprawny kontakt', 'Prosty proces współpracy'],
+    highlights: ['Indywidualne podejście', 'Sprawna komunikacja', 'Klarowny proces współpracy'],
   },
   services: {
     heading: 'Oferta',
-    description: 'Podmień te usługi na realną ofertę klienta.',
+    description: 'Odkryj, w czym specjalizuje się nasz zespół i w jaki sposób możemy wesprzeć Twój rozwój.',
     items: [
       {
         title: 'Konsultacja i diagnoza potrzeb',
-        description: 'Krótka rozmowa, zebranie kontekstu i wskazanie najlepszego zakresu prac.',
+        description: 'Krótka rozmowa, podczas której zbierzemy niezbędny kontekst i wyznaczymy optymalną ścieżkę działania.',
         href: '#kontakt',
       },
       {
-        title: 'Realizacja uslugi',
-        description: 'Przejrzysty proces, terminy i komunikacja dopasowana do lokalnego klienta.',
+        title: 'Realizacja i wdrożenie',
+        description: 'Przejrzysty i sprawny proces prowadzenia projektu, gwarantujący jakość na każdym z etapów.',
         href: '#kontakt',
       },
       {
-        title: 'Wsparcie po zakończeniu',
-        description: 'Pomoc w utrzymaniu efektu, odpowiedzi na pytania i dalsze rekomendacje.',
+        title: 'Wsparcie po zakończeniu prac',
+        description: 'Pełna pomoc w utrzymaniu osiągniętych efektów, odpowiedzi na pytania oraz rekomendacje na przyszłość.',
         href: '#kontakt',
       },
     ],
@@ -133,75 +133,80 @@ export const HOME: HomeData = {
     heading: 'Jak wygląda współpraca',
     items: [
       {
-        title: '1. Kontakt',
-        description: 'Klient opisuje potrzebę przez email lub telefon.',
+        title: '1. Nawiązanie kontaktu',
+        description: 'Napisz do nas, aby opowiedzieć o swoim pomyśle, wyzwaniach i głównych potrzebach.',
       },
       {
-        title: '2. Ustalenie zakresu',
-        description: 'Uzgadniamy termin, budżet i oczekiwany rezultat.',
+        title: '2. Ustalenie szczegółów',
+        description: 'Wspólnie doprecyzowujemy pełen zakres prac, harmonogram oraz wymagany budżet.',
       },
       {
         title: '3. Realizacja',
-        description: 'Wykonujemy usługę i informujemy o kolejnych krokach.',
+        description: 'Wykonujemy powierzone zadanie, na bieżąco informując Cię o kolejnych kamieniach milowych.',
       },
     ],
   },
   realizations: {
-    heading: 'Realizacje',
-    description: 'Przykłady można zamienić na prawdziwe case studies klienta.',
+    heading: 'Zrealizowane projekty',
+    description: 'Poznaj wybrane przykłady naszych działań, które przyniosły wymierne rezultaty.',
     items: [
       {
-        title: 'Usprawnienie procesu obslugi',
-        description: 'Przykładowa realizacja pokazująca uporządkowanie komunikacji z klientami.',
-        result: 'Krótszy czas odpowiedzi na zapytania.',
+        title: 'Optymalizacja procesów operacyjnych',
+        description: 'Uporządkowaliśmy skomplikowaną komunikację, wdrażając dedykowane narzędzia dla zespołu.',
+        result: 'Znacznie krótszy czas odpowiedzi na zapytania.',
       },
       {
-        title: 'Nowa oferta lokalnej uslugi',
-        description: 'Przykładowy opis wdrożenia prostszego sposobu prezentacji oferty.',
-        result: 'Więcej konkretnych zapytań z formularzy i emaila.',
+        title: 'Nowa strategia prezentacji usługi',
+        description: 'Zaprojektowaliśmy i wdrożyliśmy w pełni nowoczesny, przystępny sposób prezentacji oferty.',
+        result: 'Zauważalny wzrost liczby wartościowych zapytań.',
       },
     ],
   },
   testimonials: {
-    heading: 'Opinie klientow',
+    heading: 'Opinie',
     items: [
       {
-        quote: 'Wszystko było jasne od pierwszego kontaktu. Wiedzieliśmy, co dostaniemy i kiedy.',
+        quote: 'Wszystko było jasne od pierwszego kontaktu. Wiedzieliśmy dokładnie, co otrzymamy i w jakim terminie.',
         author: 'Anna Kowalska',
-        role: 'właścicielka lokalnej firmy',
+        role: 'przedsiębiorczyni',
       },
       {
-        quote: 'Prosty proces i konkretna komunikacja. Dokładnie tego potrzebowaliśmy.',
+        quote: 'Profesjonalne podejście i absolutnie konkretna komunikacja. Właśnie tego szukaliśmy przy naszym projekcie.',
         author: 'Marek Nowak',
-        role: 'freelancer',
+        role: 'twórca cyfrowy',
+      },
+      {
+        quote: 'Gorąco polecam. Wdrożenie odbyło się terminowo, bez najmniejszego chaosu i z pełnym wsparciem po starcie.',
+        author: 'Katarzyna Wiśniewska',
+        role: 'menedżerka projektów',
       },
     ],
   },
   faq: {
-    heading: 'Najczęstsze pytania',
+    heading: 'Częste pytania',
     items: [
       {
-        question: 'Czy wycena jest płatna?',
-        answer: 'Podstawowa rozmowa i wstępna wycena są bezpłatne.',
+        question: 'Od czego najlepiej zacząć współpracę?',
+        answer: 'Najlepiej od krótkiej wiadomości z opisem Twojego projektu. Skontaktujemy się z Tobą, aby omówić wszystkie szczegóły na niezobowiązującej rozmowie.',
       },
       {
-        question: 'Jak szybko odpowiadacie na zapytania?',
-        answer: 'Zwykle odpowiadamy w ciągu jednego dnia roboczego.',
+        question: 'Jak długo trwa standardowa realizacja?',
+        answer: 'Czas realizacji zawsze zależy od skomplikowania danego projektu, jednak typowe wdrożenia zamykamy zwykle w ciągu kilku tygodni.',
       },
       {
-        question: 'Czy można zacząć od małego zakresu?',
-        answer: 'Tak. Starter jest przygotowany tak, żeby dobrze działał także dla prostych ofert.',
+        question: 'Czy projekt jest skalowalny i elastyczny?',
+        answer: 'Absolutnie tak. Rozwiązania projektujemy z myślą o przyszłości, dzięki czemu zawsze można dostosować zakres do Twoich aktualnych potrzeb.',
       },
     ],
   },
   blogPreview: {
     heading: 'Blog',
-    emptyText: 'Wpisy pojawią się wkrótce.',
+    emptyText: 'Wkrótce pojawią się tutaj pierwsze wpisy.',
     ctaLabel: 'Zobacz wszystkie wpisy',
   },
   contact: {
     heading: 'Kontakt',
-    description: 'Napisz, czego potrzebujesz. Odpowiemy z propozycją kolejnego kroku.',
-    emailCtaLabel: 'Napisz email',
+    description: 'Napisz, czego dokładnie potrzebuje Twój projekt. Wrócimy z propozycją najlepszego rozwiązania.',
+    emailCtaLabel: 'Napisz e-mail',
   },
 };

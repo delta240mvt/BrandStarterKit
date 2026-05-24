@@ -12,7 +12,10 @@ const { services } = HOME;
   <h2 class="section-title">Oferta opisana tak, żeby klient szybko wybrał kolejny krok.</h2>
   <p class="section-lead">{services.description}</p>
 
-    <div class="cards-grid mt-8">
+    <div class="mt-8 mb-8">
+      <img src="/img/landing/optimized/services_photo.webp" alt="Konsultacje i oferta" style="width: 100%; border-radius: var(--r-md); object-fit: cover; max-height: 400px; border: 1px solid var(--c-line);" loading="lazy" decoding="async" />
+    </div>
+    <div class="cards-grid">
       {services.items.map((service) => (
         <article class="service-card">
           <img class="card-icon" src="/img/landing/optimized/icon-code-automation-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />

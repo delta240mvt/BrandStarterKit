@@ -277,6 +277,9 @@ li {
   line-height: 1.1;
   min-width: 0;
   overflow-wrap: anywhere;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .nav-links {
@@ -422,7 +425,7 @@ li {
   border: 1px solid var(--c-line);
   border-radius: var(--r-lg);
   background:
-    linear-gradient(145deg, rgba(245, 230, 184, .65), rgba(255, 255, 255, .2)),
+    linear-gradient(145deg, rgba(11, 122, 117, .15), rgba(255, 255, 255, .2)),
     var(--c-card-2);
   box-shadow: var(--shadow-md);
   padding: clamp(22px, 4vw, 36px);
@@ -446,7 +449,7 @@ li {
   width: 78px;
   height: 78px;
   border-radius: var(--r-md);
-  border: 1px solid rgba(212, 161, 90, .25);
+  border: 1px solid rgba(11, 122, 117, .25);
   object-fit: cover;
 }
 
@@ -519,7 +522,7 @@ li {
   width: 54px;
   height: 54px;
   border-radius: var(--r-sm);
-  border: 1px solid rgba(212, 161, 90, .25);
+  border: 1px solid rgba(11, 122, 117, .25);
   object-fit: cover;
 }
 
@@ -645,6 +648,7 @@ li {
 
 .testimonial-card {
   margin: 0;
+  padding: 16px;
 }
 
 .testimonial-card blockquote {
@@ -659,21 +663,71 @@ li {
 }
 
 .faq-list {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
 .faq-list details {
-  padding: 18px 20px;
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.faq-list details:hover {
+  border-color: var(--c-line-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-list details[open] {
+  border-color: var(--c-line-2);
+  box-shadow: var(--shadow-sm);
 }
 
 .faq-list summary {
   cursor: pointer;
-  font-size: 17px;
+  font-size: 16px;
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  list-style: none;
+  user-select: none;
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary::after {
+  content: '+';
+  font-size: 22px;
+  line-height: 1;
+  color: var(--c-cta);
+  font-weight: 300;
+  flex-shrink: 0;
+}
+
+.faq-list details[open] summary::after {
+  content: '−';
+}
+
+.faq-list summary:hover {
+  color: var(--c-cta);
 }
 
 .faq-list p {
-  margin: 12px 0 0;
+  margin: 0;
+  padding: 0 22px 18px;
+  font-size: 15px;
+  color: var(--c-ink-2);
+  line-height: 1.7;
+  border-top: 1px solid var(--c-line);
+  padding-top: 14px;
 }
 
 .blog-card {
@@ -688,7 +742,11 @@ li {
 }
 
 .blog-card--featured {
-  background: linear-gradient(to bottom, rgba(245, 230, 184, .45), var(--c-card));
+  background: linear-gradient(to bottom, rgba(11, 122, 117, .10), var(--c-card));
+}
+
+.blog-card--featured:hover {
+  transform: none;
 }
 
 .featured-label {
@@ -798,52 +856,57 @@ li {
 }
 
 .contact-panel {
-  padding-top: 64px;
-  padding-bottom: 78px;
+  padding-top: 48px;
+  padding-bottom: 48px;
   border-top: 1px solid var(--c-line);
 }
 
 .footer-cta {
-  display: grid;
-  gap: 28px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  gap: 16px;
 }
 
 .footer-cta__avatar {
-  width: 130px;
-  height: 130px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: 50% 35%;
   border: 1px solid var(--c-line);
 }
 
 .footer-cta__content {
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer-cta__title {
   font-family: var(--ff-serif);
-  font-size: clamp(34px, 6vw, 58px);
+  font-size: clamp(24px, 4vw, 32px);
   font-weight: 500;
-  line-height: 1.08;
-  margin: 0 0 20px;
+  line-height: 1.1;
+  margin: 0 0 12px;
   color: var(--c-ink);
 }
 
 .footer-cta__text {
-  max-width: 700px;
-  font-size: 20px;
-  line-height: 1.72;
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--c-ink-2);
-  margin: 0 0 28px;
+  margin: 0 0 24px;
 }
 
 .footer-cta__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px 28px;
-  margin-bottom: 28px;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-bottom: 24px;
 }
 
 .footer-cta__links a {
@@ -867,8 +930,8 @@ li {
 }
 
 .footer__inner {
-  padding-top: 22px;
-  padding-bottom: 22px;
+  padding-top: 14px;
+  padding-bottom: 14px;
   display: grid;
   gap: 18px;
 }
@@ -1137,20 +1200,9 @@ li {
   }
 
   .about-grid,
-  .contact-grid,
-  .footer-cta {
+  .contact-grid {
     grid-template-columns: 1.08fr .92fr;
     gap: 48px;
-  }
-
-  .footer-cta {
-    grid-template-columns: 170px minmax(0, 1fr);
-    align-items: center;
-  }
-
-  .footer-cta__avatar {
-    width: 146px;
-    height: 146px;
   }
 
   .footer__inner {
@@ -1214,7 +1266,7 @@ li {
   }
 
   .feature-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .cards-grid,

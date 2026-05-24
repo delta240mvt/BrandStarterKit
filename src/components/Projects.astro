@@ -5,14 +5,12 @@ const { realizations } = HOME;
 
 const realizationImages = [
   {
-    src: '/img/landing/optimized/portfolio-ai-workflow-620.webp',
-    srcset: '/img/landing/optimized/portfolio-ai-workflow-360.webp 360w, /img/landing/optimized/portfolio-ai-workflow-620.webp 620w, /img/landing/optimized/portfolio-ai-workflow-820.webp 820w',
-    alt: 'Przykładowy podgląd realizacji strony usługowej',
+    src: '/img/landing/optimized/projects_proof_photo.webp',
+    alt: 'Przykładowy podgląd działania zrealizowanego projektu',
   },
   {
-    src: '/img/landing/optimized/blog-start-620.webp',
-    srcset: '/img/landing/optimized/blog-start-360.webp 360w, /img/landing/optimized/blog-start-620.webp 620w, /img/landing/optimized/blog-start-820.webp 820w',
-    alt: 'Przykładowe materiały do prezentacji oferty',
+    src: '/img/landing/optimized/projects_photo_2.webp',
+    alt: 'Nowoczesna strategia prezentacji projektu',
   },
 ];
 ---
@@ -35,8 +33,6 @@ const realizationImages = [
             <img
               class="card-photo"
               src={image.src}
-              srcset={image.srcset}
-              sizes="(min-width: 761px) 50vw, calc(100vw - 56px)"
               alt={image.alt}
               width="620"
               height="388"

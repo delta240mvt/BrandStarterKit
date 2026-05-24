@@ -1,22 +1,22 @@
 :root {
   --c-bg: #ffffff;
-  --c-bg-deep: #f7f4ec;
+  --c-bg-deep: #f4f6f6;
   --c-card: #ffffff;
-  --c-card-2: #fcfaf3;
+  --c-card-2: #f8fafb;
   --c-white: #ffffff;
   --c-honey: #d4af36;
   --c-honey-2: #eabe5f;
   --c-honey-soft: #f5e6b8;
-  --c-teal: #6e8f87;
+  --c-teal: #175550;
   --c-rose: #b7755b;
-  --c-cta: #8a5a24;
-  --c-cta-hov: #6f4519;
-  --c-cta-soft: #faf2e0;
-  --c-ink: #1f1b16;
-  --c-ink-2: #4a4338;
-  --c-ink-3: #665f55;
-  --c-line: #ece5d3;
-  --c-line-2: #d8cfb6;
+  --c-cta: #096059;
+  --c-cta-hov: #074845;
+  --c-cta-soft: #dff0ee;
+  --c-ink: #182020;
+  --c-ink-2: #3a4747;
+  --c-ink-3: #5a6b6b;
+  --c-line: #e3e9e9;
+  --c-line-2: #c6d1d1;
 
   --ff-serif: Georgia, "Times New Roman", serif;
   --ff-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -31,7 +31,7 @@
   --gutter: 28px;
   --shadow-sm: 0 1px 2px rgba(31, 27, 22, 0.06);
   --shadow-md: 0 14px 34px rgba(31, 27, 22, 0.08);
-  --focus-ring: 0 0 0 3px rgba(212, 161, 90, 0.24);
+  --focus-ring: 0 0 0 3px rgba(9, 96, 89, 0.24);
 
   --bg-base: var(--c-bg);
   --bg-surface: var(--c-card-2);
@@ -44,7 +44,7 @@
   --teal: var(--c-teal);
   --violet: var(--c-rose);
   --gold: var(--c-honey);
-  --teal-glow: rgba(110, 143, 135, 0.15);
+  --teal-glow: rgba(23, 85, 80, 0.12);
   --violet-glow: rgba(183, 117, 91, 0.14);
   --gold-glow: rgba(212, 175, 54, 0.16);
   --font-heading: var(--ff-serif);

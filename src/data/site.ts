@@ -37,19 +37,19 @@ export interface SiteConfig {
 }
 
 export const SITE: SiteConfig = {
-  slug: 'polski-starter-uslugowy',
-  displayName: 'Pracownia Usługowa',
-  shortName: 'Pracownia',
+  slug: 'starter-projektowy',
+  displayName: 'Twój Projekt',
+  shortName: 'Projekt',
   locale: 'pl-PL',
   canonicalBaseUrl: 'https://example.com',
   primaryDomain: 'example.com',
-  defaultTitle: 'Pracownia Usługowa | Prosta strona dla lokalnej firmy',
+  defaultTitle: 'Twój Projekt | Profesjonalna strona dla Twojej inicjatywy',
   defaultDescription:
-    'Polski starter strony usługowej dla lokalnych firm i freelancerów: oferta, realizacje, FAQ, kontakt i blog.',
-  blogTitle: 'Blog | Pracownia Usługowa',
+    'Nowoczesny starter strony internetowej dla projektów, startupów i niezależnych twórców. Zaprezentuj swoją ofertę i zrealizowane działania.',
+  blogTitle: 'Blog | Twój Projekt',
   blogDescription:
-    'Porady, aktualności i praktyczne wskazówki dla klientów lokalnej firmy usługowej.',
-  articleSuffix: 'Pracownia Usługowa',
+    'Aktualności, poradniki i przemyślenia związane z rozwojem naszego projektu.',
+  articleSuffix: 'Twój Projekt',
   contact: {
     email: 'kontakt@example.com',
     phone: '+48 000 000 000',

@@ -10,13 +10,15 @@ const { faq } = HOME;
         <span class="section-heading">{faq.heading}</span>
         <span class="section-head__rule" aria-hidden="true"></span>
       </header>
-      <div class="faq-list">
-        {faq.items.map((item) => (
-          <details>
-            <summary>{item.question}</summary>
-            <p>{item.answer}</p>
-          </details>
-        ))}
+      <div style="max-width: 680px; margin: 28px auto 0;">
+        <div class="faq-list">
+          {faq.items.map((item) => (
+            <details>
+              <summary>{item.question}</summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
       </div>
   </section>
 )}

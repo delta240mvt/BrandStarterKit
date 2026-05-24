@@ -11,15 +11,57 @@ const { benefits } = HOME;
         <span class="section-heading">{benefits.heading}</span>
         <span class="section-head__rule" aria-hidden="true"></span>
       </header>
-      <div class="feature-grid">
-          {benefits.items.map((item) => (
-            <article class="benefit-card">
-              <img class="card-icon" src="/img/landing/optimized/icon-ai-workflow-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
+      <div class="benefits-layout">
+        <div class="benefits-cards">
+            {benefits.items.map((item) => (
+              <article class="benefit-card">
+                <img class="card-icon" src="/img/landing/optimized/icon-ai-workflow-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" />
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
+        </div>
+        <img class="benefits-photo" src="/img/landing/optimized/benefits_photo.webp" alt="Spotkanie w biurze" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
 )}
+
+<style>
+  .benefits-layout {
+    display: grid;
+    gap: 48px;
+    margin-top: 32px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 460px;
+    align-items: stretch;
+  }
+  .benefits-cards {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .benefits-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--r-md);
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid var(--c-line);
+    display: block;
+  }
+  @media (max-width: 768px) {
+    .benefits-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 32px;
+    }
+    .benefits-cards {
+      overflow: visible;
+    }
+    .benefits-photo {
+      height: 320px;
+    }
+  }
+</style>
