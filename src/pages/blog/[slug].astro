@@ -49,6 +49,7 @@ const { Content } = await article.entry.render();
             readingTime={related.readingTime}
             tags={related.tags}
             slug={related.slug}
+            image={related.heroImage ? { src: related.heroImage, alt: related.title } : undefined}
           />
         ))}
       </div>

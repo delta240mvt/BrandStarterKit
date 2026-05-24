@@ -59,6 +59,7 @@ const schema = buildCollectionSchema({
               tags={post.tags}
               slug={post.slug}
               featured={i === 0}
+              image={post.heroImage ? { src: post.heroImage, alt: post.title } : undefined}
             />
           ))}
         </div>

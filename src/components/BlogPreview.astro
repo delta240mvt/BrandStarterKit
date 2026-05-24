@@ -5,21 +5,6 @@ import { getPublishedPosts } from '@/lib/blog';
 
 const articles = (await getPublishedPosts()).slice(0, 3);
 const { blogPreview } = HOME;
-
-const blogImages = [
-  {
-    src: '/img/landing/optimized/blog-cover-1-820.webp',
-    alt: 'Autor przy pracy — wpis 1',
-  },
-  {
-    src: '/img/landing/optimized/blog-cover-2-820.webp',
-    alt: 'Autor na spotkaniu — wpis 2',
-  },
-  {
-    src: '/img/landing/optimized/blog-cover-3-820.webp',
-    alt: 'Autor przy kawie — wpis 3',
-  },
-];
 ---
 
 <section class="section section--warm blog-preview-section reveal" id="blog">
@@ -48,7 +33,7 @@ const blogImages = [
             tags={article.tags}
             slug={article.slug}
             featured={false}
-            image={blogImages[i % blogImages.length]}
+            image={article.heroImage ? { src: article.heroImage, alt: article.title } : undefined}
           />
         ))}
       </div>
