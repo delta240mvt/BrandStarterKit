@@ -1276,7 +1276,7 @@ li {
   }
 
   .blog-preview-layout {
-    grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+    grid-template-columns: 1fr;
   }
 
   .blog-preview-layout .blog-card--featured .blog-card-image {
