@@ -8,16 +8,16 @@ const { blogPreview } = HOME;
 
 const blogImages = [
   {
-    src: '/img/landing/optimized/blog-start-820.webp',
-    srcset: '/img/landing/optimized/blog-start-360.webp 360w, /img/landing/optimized/blog-start-620.webp 620w, /img/landing/optimized/blog-start-820.webp 820w',
-    sizes: '(min-width: 961px) 620px, calc(100vw - 56px)',
-    alt: 'Przykładowy cover wpisu blogowego',
+    src: '/img/landing/optimized/blog-cover-1-820.webp',
+    alt: 'Autor przy pracy — wpis 1',
   },
   {
-    src: '/img/landing/optimized/portfolio-ai-workflow-620.webp',
-    srcset: '/img/landing/optimized/portfolio-ai-workflow-360.webp 360w, /img/landing/optimized/portfolio-ai-workflow-620.webp 620w, /img/landing/optimized/portfolio-ai-workflow-820.webp 820w',
-    sizes: '(min-width: 961px) 320px, calc(100vw - 56px)',
-    alt: 'Przykładowy cover wpisu o realizacji usługi',
+    src: '/img/landing/optimized/blog-cover-2-820.webp',
+    alt: 'Autor na spotkaniu — wpis 2',
+  },
+  {
+    src: '/img/landing/optimized/blog-cover-3-820.webp',
+    alt: 'Autor przy kawie — wpis 3',
   },
 ];
 ---
@@ -47,7 +47,7 @@ const blogImages = [
             readingTime={article.readingTime}
             tags={article.tags}
             slug={article.slug}
-            featured={i === 0}
+            featured={false}
             image={blogImages[i % blogImages.length]}
           />
         ))}

@@ -1276,7 +1276,7 @@ li {
   }
 
   .blog-preview-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .blog-preview-layout .blog-card--featured .blog-card-image {
