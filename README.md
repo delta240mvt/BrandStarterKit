@@ -9,9 +9,9 @@
 ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝
 </pre>
 
-<h1>STARTER KIT</h1>
+<h1>STRONA WWW DLA TWOJEGO PROJEKTU</h1>
 
-**Polski starter Astro dla prostych stron usługowych lokalnych firm i freelancerów.**
+**Minimalistyczny starter Astro, dzięki któremu szybko postawisz profesjonalną stronę dla swojego nowego przedsięwzięcia.**
 
 [![Astro](https://img.shields.io/badge/Astro-5.x-ff5d01.svg?style=flat-square)](https://astro.build)
 [![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-f38020.svg?style=flat-square)](https://pages.cloudflare.com)
@@ -24,20 +24,20 @@
 
 ## O projekcie
 
-Brand Starter Kit to gotowy fundament pod proste strony internetowe dla klientów usługowych: lokalnych firm, specjalistów i freelancerów. Projekt jest przygotowany do lokalnej edycji z AI, szybkiego dostosowania treści oraz wdrożenia na Cloudflare Pages.
+Kiedy zaczynasz coś nowego, nie masz czasu na żmudne budowanie strony od zera. Ten projekt to gotowy fundament pod stronę internetową Twojego najnowszego pomysłu, startupu, aplikacji lub inicjatywy. Został zoptymalizowany pod kątem szybkości działania, edycji z użyciem AI i łatwego wdrożenia (np. na Cloudflare Pages).
 
-Starter nie zawiera panelu admina, CMS-a ani backendowego formularza kontaktowego. Założenie jest proste: treści i strukturę edytujesz lokalnie w kodzie, a kontakt działa przez `mailto:` lub dane kontaktowe klienta.
+Starter celowo pozbawiono skomplikowanego panelu admina czy zaawansowanego CMS-a. Wszystkie najważniejsze informacje o Twoim projekcie edytujesz lokalnie w plikach konfiguracyjnych, a kontakt opiera się na bezpośrednim adresie e-mail.
 
-## Co zawiera
+## Co znajdziesz w środku?
 
-- Strona główna one-page z sekcjami: hero, korzyści, o firmie, oferta, proces, realizacje, opinie, FAQ, blog i kontakt.
-- Stały blog oparty o pliki MDX.
-- Polska polityka prywatności pod `/polityka-prywatnosci`.
-- Strona błędu `/404`.
-- Pliki discovery i SEO: `/sitemap.xml`, `/rss.xml`, `/robots.txt`, `/llms.txt`, `/llms-full.txt`.
-- Dane strukturalne Schema.org dla strony, artykułów i podstrony prawnej.
-- Konfigurację Cloudflare Pages przez Wrangler.
-- Testy regresyjne pilnujące konfiguracji startera, SEO i braku starych brand-termów.
+- Stronę główną typu one-page z dedykowanymi sekcjami: hero, korzyści, o projekcie, funkcje, proces, realizacje/osiągnięcia, opinie, FAQ, kontakt oraz zajawki bloga.
+- Moduł blogowy oparty na plikach MDX – idealny na aktualizacje i case studies.
+- Gotową stronę polityki prywatności pod `/polityka-prywatnosci`.
+- Stronę błędu `/404`.
+- Pliki wspierające widoczność (SEO/AI): `/sitemap.xml`, `/rss.xml`, `/robots.txt`, `/llms.txt`, `/llms-full.txt`.
+- Zaprogramowane dane strukturalne Schema.org.
+- Gotową konfigurację pod wdrożenie na Cloudflare Pages.
+- Zestaw testów pilnujących poprawności SEO i konfiguracji.
 
 ## Szybki start
 
@@ -46,50 +46,52 @@ npm install
 npm run dev
 ```
 
-Domyślny serwer Astro startuje lokalnie. Produkcyjny build generuje katalog `dist/`.
+Domyślny serwer Astro startuje lokalnie pod adresem `http://localhost:4321`. Produkcyjny build (wersja końcowa) ląduje w katalogu `dist/`.
 
-## Najważniejsze pliki do edycji
+## Najważniejsze pliki konfiguracyjne
 
 | Plik | Do czego służy |
 |------|----------------|
-| `src/data/site.ts` | Nazwa firmy, domena, SEO, email, telefon, adres, analytics i kolory manifestu. |
-| `src/data/home.ts` | Treści strony głównej: hero, korzyści, o firmie, oferta, proces, realizacje, opinie, FAQ, kontakt i blog preview. |
-| `src/data/navigation.ts` | Menu główne i linki w stopce. |
-| `src/data/legal.ts` | Polska polityka prywatności i disclaimer szablonu. |
-| `src/content/blog/` | Wpisy blogowe w MDX. |
-| `wrangler.jsonc` | Nazwa projektu Cloudflare Pages i konfiguracja deployu. |
-| `astro.config.mjs` | Bazowy adres strony i adapter Cloudflare. |
+| `src/data/site.ts` | Główne dane Twojego projektu: nazwa, domena, SEO, kontakt, social media i kolory bazy. |
+| `src/data/home.ts` | Treści (copywriting) wyświetlane na stronie głównej (w każdej jej sekcji). |
+| `src/data/navigation.ts` | Menu główne oraz przydatne linki w stopce. |
+| `src/data/legal.ts` | Tekst polityki prywatności dostosowany pod nową stronę. |
+| `src/content/blog/` | Miejsce na wpisy blogowe, logi z powstawania projektu czy obszerne poradniki w formacie MDX. |
+| `wrangler.jsonc` | Nazwa Twojego projektu dla usług Cloudflare Pages. |
+| `astro.config.mjs` | Główny adres (URL) strony internetowej. |
 
-## Blog
+## Prowadzenie bloga projektu
 
-Nowy wpis dodaj jako plik `.mdx` w `src/content/blog/`.
+Nowy wpis lub aktualizację dodajesz jako plik `.mdx` do folderu `src/content/blog/`.
 
-Przykładowy frontmatter:
+Przykładowy nagłówek (frontmatter) wpisu:
 
 ```mdx
 ---
-title: Tytuł wpisu
-description: Krótki opis do SEO i kart wpisów.
+title: Startujemy z nowym narzędziem!
+description: Krótki opis aktualizacji, który przyciągnie użytkowników.
 pubDate: 2026-05-24
+heroImage: /img/landing/optimized/blog-cover-1-820.webp
 tags:
-  - strona firmowa
+  - start
+  - aktualizacje
 draft: false
 ---
 ```
 
-Wpisy z `draft: true` nie są publikowane.
+Ustawienie parametru `draft: true` ukryje wpis na środowisku produkcyjnym, pozwalając Ci w spokoju nad nim pracować.
 
-## Domena i Cloudflare Pages
+## Publikacja w sieci (Cloudflare Pages)
 
-1. Zmień `canonicalBaseUrl` i `primaryDomain` w `src/data/site.ts`.
-2. Zmień `site` w `astro.config.mjs`.
-3. Zmień `name` w `wrangler.jsonc` na nazwę projektu Cloudflare Pages.
-4. Uruchom testy i build przed wdrożeniem.
-5. Wdróż projekt komendą `npm run deploy`.
+1. Wpisz swoją docelową domenę w zmiennych `canonicalBaseUrl` i `primaryDomain` w pliku `src/data/site.ts`.
+2. Zaktualizuj atrybut `site` w pliku `astro.config.mjs`.
+3. Zmień nazwę projektu (`name`) w pliku `wrangler.jsonc`.
+4. Sprawdź, czy wszystko działa poprawnie przed wdrożeniem, używając testów.
+5. Wydaj komendę wdrożenia na swoje konto Cloudflare: `npm run deploy`.
 
-## Analytics
+## Zbieranie analityki
 
-Analytics są domyślnie wyłączone.
+Analityka (śledzenie wejść) jest domyślnie wyłączona w trosce o prywatność Twoich pierwszych użytkowników.
 
 Konfigurację znajdziesz w `src/data/site.ts`:
 
@@ -99,28 +101,28 @@ analytics: {
 }
 ```
 
-Po włączeniu ustaw `provider`, `scriptSrc`, `siteId` albo `dataAttributes`. Bez `enabled: true` skrypt analytics nie jest renderowany.
+Aby ją włączyć, zmień na `enabled: true` i podaj źródło skryptu `scriptSrc`, jego dostawcę oraz identyfikator. Bez tej zmiany żaden zewnętrzny kod śledzący nie obciąży Twojej witryny.
 
-## Polityka prywatności
+## Legalne formalności
 
-Publiczna strona polityki prywatności znajduje się pod `/polityka-prywatnosci`.
+Szablon domyślnej polityki prywatności znajdziesz pod adresem `/polityka-prywatnosci`.
 
-Przed użyciem u klienta dostosuj treść w `src/data/legal.ts` do faktycznego sposobu działania firmy, hostingu, analityki, narzędzi zewnętrznych i obsługi kontaktu. Domyślna treść jest punktem startowym, nie indywidualną poradą prawną.
+**Ważne:** Przed startem oficjalnej komunikacji, zmodyfikuj treści w `src/data/legal.ts` tak, aby oddawały faktyczny charakter Twojego projektu – gdzie trzymasz dane użytkowników i czy z nich korzystasz. Domyślny tekst to zarys dokumentu, a nie prawna wytyczna.
 
-## Komendy
+## Dostępne polecenia (skrypty)
 
 | Akcja | Komenda |
 |-------|---------|
-| Lokalny serwer developerski | `npm run dev` |
-| Testy regresyjne | `npm test` |
-| Testy i `astro check` | `npm run check` |
-| Produkcyjny build | `npm run build` |
-| Lokalny preview Cloudflare Pages | `npm run preview -- --host 127.0.0.1 --port 4321` |
-| Deploy na Cloudflare Pages | `npm run deploy` |
+| Praca nad kodem lokalnie | `npm run dev` |
+| Szybkie testy konfiguracji | `npm test` |
+| Testy i sprawdzanie błędów TS | `npm run check` |
+| Zbudowanie plików produkcyjnych | `npm run build` |
+| Podgląd zbudowanej wersji na PC | `npm run preview -- --host 127.0.0.1 --port 4321` |
+| Publikacja strony | `npm run deploy` |
 
-## Kontrola jakości
+## Przed wypuszczeniem w świat...
 
-Przed publikacją uruchom:
+Dla pewności, przed pierwszym opublikowaniem swojego projektu uruchom:
 
 ```powershell
 npm test
@@ -128,26 +130,25 @@ npm run check
 npm run build
 ```
 
-Testy pilnują między innymi konfiguracji strony, SEO, Schema.org, sitemap, RSS, robots, `llms.txt`, bloga i braku starych publicznych brand-termów w plikach startera.
+Narzędzia te sprawdzą poprawność plików robots.txt, mapy strony, brak ślepych zaułków na blogu czy potencjalnych błędów indeksowania.
 
-## Typowy proces pracy z klientem
+## Twoje pierwsze kroki w tym kodzie
 
-1. Skopiuj repo lub utwórz nowy projekt na bazie startera.
-2. Podmień dane w `src/data/site.ts`.
-3. Przepisz sekcje w `src/data/home.ts` pod branżę klienta.
-4. Dodaj lub usuń wpisy blogowe w `src/content/blog/`.
-5. Dostosuj politykę prywatności w `src/data/legal.ts`.
-6. Zmień domenę i projekt Cloudflare.
-7. Uruchom testy, build i deploy.
+1. Pobierz kod i utwórz własne repozytorium.
+2. Zmień podstawowe namiary w `src/data/site.ts`.
+3. Wypełnij odpowiednie sekcje w `src/data/home.ts` mówiąc światu, jaki problem rozwiązujesz.
+4. (Opcjonalnie) Napisz pierwszy wpis opowiadający o wizji na blogu (`src/content/blog/`).
+5. Dopracuj informacje prawne (`src/data/legal.ts`).
+6. Wdróż, podziel się linkiem i pracuj nad swoim projektem dalej!
 
 ## Licencja
 
-MIT - zobacz [`LICENSE`](LICENSE).
+MIT - w pełni wolne oprogramowanie gotowe by Ci służyć. Zobacz [`LICENSE`](LICENSE).
 
 ---
 
 <div align="center">
 
-**Brand Starter Kit** - prosty, polski starter do stron usługowych.
+**Twój Projekt** - buduj bez chaosu.
 
 </div>
