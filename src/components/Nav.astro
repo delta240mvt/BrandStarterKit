@@ -63,8 +63,55 @@ function resolveHref(href: string): string {
   if (toggle && mobile) {
     toggle.addEventListener('click', () => {
       const isOpen = mobile.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', String(isOpen));
       mobile.setAttribute('aria-hidden', String(!isOpen));
     });
   }
 </script>
+
+<style>
+  :global(.nav-toggle span) {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  
+  :global(.nav-toggle.open span:nth-child(1)) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  
+  :global(.nav-toggle.open span:nth-child(2)) {
+    opacity: 0;
+  }
+  
+  :global(.nav-toggle.open span:nth-child(3)) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  :global(.nav-mobile.open) {
+    animation: menuSlideDown 0.3s ease forwards;
+  }
+
+  @keyframes menuSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  :global(.nav-mobile-link) {
+    border-radius: var(--r-sm, 6px);
+    padding: 12px 16px !important;
+    transition: background-color 0.2s ease;
+    font-weight: 500;
+  }
+  
+  :global(.nav-mobile-link:hover) {
+    background-color: var(--c-card-2, #f9f9f9);
+    color: var(--c-cta, #000);
+  }
+</style>
