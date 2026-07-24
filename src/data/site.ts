@@ -20,6 +20,9 @@ export interface SiteConfig {
   blogTitle: string;
   blogDescription: string;
   articleSuffix: string;
+  authorName: string;
+  productUrl: string;
+  registrationUrl: string;
   contact: {
     email: string;
     phone?: string;
@@ -37,23 +40,25 @@ export interface SiteConfig {
 }
 
 export const SITE: SiteConfig = {
-  slug: 'starter-projektowy',
-  displayName: 'Twój Projekt',
-  shortName: 'Projekt',
+  // Single source of truth for public identity and machine-readable SEO/GEO copy.
+  slug: 'frinter',
+  displayName: 'Frinter',
+  shortName: 'Frinter',
   locale: 'pl-PL',
-  canonicalBaseUrl: 'https://example.com',
-  primaryDomain: 'example.com',
-  defaultTitle: 'Twój Projekt | Profesjonalna strona dla Twojej inicjatywy',
+  canonicalBaseUrl: 'https://frinter.app',
+  primaryDomain: 'frinter.app',
+  defaultTitle: 'Frinter | Skupienie, praca głęboka i energia',
   defaultDescription:
-    'Nowoczesny starter strony internetowej dla projektów, startupów i niezależnych twórców. Zaprezentuj swoją ofertę i zrealizowane działania.',
-  blogTitle: 'Blog | Twój Projekt',
+    'Frinter to polska aplikacja do skupienia, pracy głębokiej i obserwowania energii dla founderów, twórców i pracowników wiedzy.',
+  blogTitle: 'Blog Frinter — skupienie, praca głęboka i energia',
   blogDescription:
-    'Aktualności, poradniki i przemyślenia związane z rozwojem naszego projektu.',
-  articleSuffix: 'Twój Projekt',
+    'Polskie artykuły o skupieniu, pracy głębokiej, energii i budowaniu Frintera.',
+  articleSuffix: 'Frinter',
+  authorName: 'Przemysław Filipiak',
+  productUrl: 'https://web.frinter.app',
+  registrationUrl: 'https://web.frinter.app/register',
   contact: {
-    email: 'kontakt@example.com',
-    phone: '+48 000 000 000',
-    address: 'ul. Przykładowa 1, 00-000 Warszawa',
+    email: 'hello@frinter.app',
   },
   socialLinks: [],
   analytics: {

@@ -69,63 +69,63 @@ export interface HomeData {
 
 export const HOME: HomeData = {
   hero: {
-    eyebrow: 'Strona dla Twojego projektu',
-    title: 'Przedstaw swój projekt jasno i zdobywaj zaufanie odbiorców.',
+    eyebrow: 'Focus OS dla pracy wiedzy',
+    title: 'Zamieniaj intencję w skupioną pracę — bez kultu produktywności.',
     description:
-      'Minimalistyczna, nowoczesna strona internetowa dla Twojej inicjatywy. Przedstaw ofertę, pochwal się realizacjami i z łatwością buduj bazę klientów.',
+      'Frinter pomaga founderom, twórcom i pracownikom wiedzy rozpocząć świadomą sesję pracy, zapisać jej kontekst i wyciągnąć spokojny wniosek na przyszłość.',
     primaryCta: {
-      label: 'Zobacz ofertę',
-      href: '#oferta',
+      label: 'Załóż konto',
+      href: 'https://web.frinter.app/register',
     },
     secondaryCta: {
-      label: 'Skontaktuj się',
-      href: '#kontakt',
+      label: 'Poznaj podejście',
+      href: '#o-projekcie',
     },
-    trustCues: ['Szybkie wdrożenie', 'Optymalizacja SEO', 'Nowoczesny design'],
+    trustCues: ['Jedna intencja na sesję', 'Kontekst zamiast oceny', 'Prywatna refleksja'],
   },
   benefits: {
-    heading: 'Dlaczego ten układ działa',
+    heading: 'Praca, którą można spokojnie kontynuować',
     items: [
       {
-        title: 'Przejrzysta struktura',
-        description: 'Najważniejsze informacje są od razu widoczne, bez konieczności błądzenia po zakładkach.',
+        title: 'Intencja przed timerem',
+        description: 'Każda sesja zaczyna się od nazwania rezultatu, który chcesz stworzyć.',
       },
       {
-        title: 'Prosta edycja',
-        description: 'Twoje treści są bezpieczne i niezwykle łatwe do aktualizacji w przewidywalnym środowisku.',
+        title: 'Kontekst bez nadzoru',
+        description: 'Frinter pomaga obserwować warunki pracy, nie mierzyć człowieka.',
       },
       {
-        title: 'Techniczna perfekcja',
-        description: 'Strona od samego początku jest zoptymalizowana pod wyszukiwarki i błyskawiczne działanie.',
+        title: 'Refleksja po działaniu',
+        description: 'Krótki zapis po sesji ułatwia powrót do ważnego zadania.',
       },
     ],
   },
   about: {
-    heading: 'O projekcie',
+    heading: 'Frinter jest Focus OS, nie kolejnym task managerem',
     body: [
-      'Twoja nowa strona to nie tylko cyfrowa wizytówka. To potężne narzędzie, które skutecznie pracuje na wizerunek i sukces całego przedsięwzięcia.',
-      'Dzięki przemyślanej strukturze, każdy odwiedzający błyskawicznie zrozumie Twoją misję, zakres działań i korzyści płynące ze współpracy.',
+      'Frinter łączy intencję, chronioną sesję pracy i refleksję o energii, aby zmniejszać zgadywanie przy planowaniu kolejnego kroku.',
+      'Nie diagnozuje, nie ocenia dnia i nie służy do monitorowania pracowników. Dane są materiałem do własnej obserwacji.',
     ],
-    highlights: ['Indywidualne podejście', 'Sprawna komunikacja', 'Klarowny proces współpracy'],
+    highlights: ['Skupienie', 'Praca głęboka', 'Energia i rytm'],
   },
   services: {
-    heading: 'Oferta',
-    description: 'Odkryj, w czym specjalizuje się nasz zespół i w jaki sposób możemy wesprzeć Twój rozwój.',
+    heading: 'Jak wspiera pracę Frinter',
+    description: 'Trzy proste warstwy pomagają przejść od planu do rzeczywistego działania.',
     items: [
       {
-        title: 'Konsultacja i diagnoza potrzeb',
-        description: 'Krótka rozmowa, podczas której zbierzemy niezbędny kontekst i wyznaczymy optymalną ścieżkę działania.',
-        href: '#kontakt',
+        title: 'Frint: świadoma sesja',
+        description: 'Wybierz jeden rezultat, pracuj w wyznaczonym bloku i zostaw ślad dla następnej sesji.',
+        href: 'https://web.frinter.app/register',
       },
       {
-        title: 'Realizacja i wdrożenie',
-        description: 'Przejrzysty i sprawny proces prowadzenia projektu, gwarantujący jakość na każdym z etapów.',
-        href: '#kontakt',
+        title: 'Obserwacja energii',
+        description: 'Zapisuj kontekst własnej gotowości bez zamieniania go w wynik albo diagnozę.',
+        href: 'https://web.frinter.app/register',
       },
       {
-        title: 'Wsparcie po zakończeniu prac',
-        description: 'Pełna pomoc w utrzymaniu osiągniętych efektów, odpowiedzi na pytania oraz rekomendacje na przyszłość.',
-        href: '#kontakt',
+        title: 'Przegląd i decyzja',
+        description: 'Wróć do sesji, zauważ wzorzec i wybierz jeden mały eksperyment na kolejny tydzień.',
+        href: 'https://web.frinter.app/register',
       },
     ],
   },

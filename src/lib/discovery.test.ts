@@ -13,30 +13,30 @@ test('buildDiscoveryIndex returns canonical machine-readable endpoints', () => {
   const discovery = buildDiscoveryIndex();
 
   assert.deepEqual(discovery, {
-    sitemap: 'https://example.com/sitemap.xml',
-    rss: 'https://example.com/rss.xml',
-    llms: 'https://example.com/llms.txt',
-    llmsFull: 'https://example.com/llms-full.txt',
+    sitemap: 'https://frinter.app/sitemap.xml',
+    rss: 'https://frinter.app/rss.xml',
+    llms: 'https://frinter.app/llms.txt',
+    llmsFull: 'https://frinter.app/llms-full.txt',
   });
 });
 
 test('getStaticCrawlableUrls returns normalized public static routes', () => {
   assert.deepEqual(getStaticCrawlableUrls(), [
-    'https://example.com/',
-    'https://example.com/blog',
-    'https://example.com/polityka-prywatnosci',
-    'https://example.com/llms.txt',
-    'https://example.com/llms-full.txt',
+    'https://frinter.app/',
+    'https://frinter.app/blog',
+    'https://frinter.app/polityka-prywatnosci',
+    'https://frinter.app/llms.txt',
+    'https://frinter.app/llms-full.txt',
   ]);
 });
 
 test('getPaginatedBlogArchiveUrls only returns archive pages beyond the first blog page', () => {
   assert.deepEqual(getPaginatedBlogArchiveUrls(9, 10), []);
   assert.deepEqual(getPaginatedBlogArchiveUrls(10, 10), []);
-  assert.deepEqual(getPaginatedBlogArchiveUrls(11, 10), ['https://example.com/blog/2']);
+  assert.deepEqual(getPaginatedBlogArchiveUrls(11, 10), ['https://frinter.app/blog/2']);
   assert.deepEqual(getPaginatedBlogArchiveUrls(21, 10), [
-    'https://example.com/blog/2',
-    'https://example.com/blog/3',
+    'https://frinter.app/blog/2',
+    'https://frinter.app/blog/3',
   ]);
 });
 
@@ -46,7 +46,7 @@ test('buildRobotsTxt advertises discovery assets from buildDiscoveryIndex', () =
 
   assert.match(robots, new RegExp(discovery.sitemap.replaceAll('.', '\\.')));
   assert.match(robots, new RegExp(discovery.rss.replaceAll('.', '\\.')));
-  assert.match(robots, /https:\/\/example\.com\/llms\.txt/);
+  assert.match(robots, /https:\/\/frinter\.app\/llms\.txt/);
 });
 
 test('buildRobotsTxt keeps Sitemap directives limited to sitemap files', () => {

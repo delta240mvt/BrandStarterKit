@@ -68,7 +68,7 @@ function rootNodes(): SchemaNode[] {
 
   return [
     {
-      '@type': 'ProfessionalService',
+      '@type': SITE.entityType,
       '@id': ENTITY_ID,
       name: SITE.displayName,
       url: SITE.canonicalBaseUrl,

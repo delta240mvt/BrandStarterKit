@@ -14,21 +14,21 @@ test('createPageSeo normalizes canonical URLs and applies social defaults', () =
 
   assert.equal(seo.title, 'Blog');
   assert.equal(seo.description, 'Porady dla lokalnej firmy');
-  assert.equal(seo.canonical, 'https://example.com/blog');
+  assert.equal(seo.canonical, 'https://frinter.app/blog');
   assert.equal(seo.robots, DEFAULT_ROBOTS_DIRECTIVE);
   assert.deepEqual(seo.openGraph, {
     type: 'website',
     title: 'Blog',
     description: 'Porady dla lokalnej firmy',
-    url: 'https://example.com/blog',
+    url: 'https://frinter.app/blog',
     siteName: SITE.displayName,
-    image: 'https://example.com/og-image.png',
+    image: 'https://frinter.app/og-image.png',
   });
   assert.deepEqual(seo.twitter, {
     card: 'summary_large_image',
     title: 'Blog',
     description: 'Porady dla lokalnej firmy',
-    image: 'https://example.com/og-image.png',
+    image: 'https://frinter.app/og-image.png',
   });
 });
 
@@ -43,7 +43,7 @@ test('createPageSeo supports custom robots, article timestamps, and alternates',
     updatedAt: '2026-04-18T00:00:00.000Z',
     alternates: {
       'en-US': '/privacy-policy/',
-      'pl-PL': 'https://example.com/polityka-prywatnosci/',
+      'pl-PL': 'https://frinter.app/polityka-prywatnosci/',
     },
   });
 
@@ -52,8 +52,8 @@ test('createPageSeo supports custom robots, article timestamps, and alternates',
   assert.equal(seo.article?.publishedTime, '2026-04-17T00:00:00.000Z');
   assert.equal(seo.article?.modifiedTime, '2026-04-18T00:00:00.000Z');
   assert.deepEqual(seo.alternates, {
-    'en-US': 'https://example.com/privacy-policy',
-    'pl-PL': 'https://example.com/polityka-prywatnosci',
+    'en-US': 'https://frinter.app/privacy-policy',
+    'pl-PL': 'https://frinter.app/polityka-prywatnosci',
   });
 });
 

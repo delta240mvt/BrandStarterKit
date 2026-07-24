@@ -3,7 +3,7 @@ import type { AnalyticsConfig } from '@/data/site';
 
 export interface SitePresentation {
   slug: string;
-  entityType: 'ProfessionalService';
+  entityType: 'Organization';
   displayName: string;
   shortName: string;
   locale: 'pl-PL';
@@ -15,6 +15,8 @@ export interface SitePresentation {
   blogDescription: string;
   articleSuffix: string;
   authorName: string;
+  productUrl: string;
+  registrationUrl: string;
   contactEmail: string;
   socialLinks: string[];
   heroTagline: string;
@@ -33,7 +35,7 @@ export interface SitePresentation {
 
 export const SITE: SitePresentation = {
   slug: STARTER_SITE.slug,
-  entityType: 'ProfessionalService',
+  entityType: 'Organization',
   displayName: STARTER_SITE.displayName,
   shortName: STARTER_SITE.shortName,
   locale: STARTER_SITE.locale,
@@ -44,7 +46,9 @@ export const SITE: SitePresentation = {
   blogTitle: STARTER_SITE.blogTitle,
   blogDescription: STARTER_SITE.blogDescription,
   articleSuffix: STARTER_SITE.articleSuffix,
-  authorName: STARTER_SITE.displayName,
+  authorName: STARTER_SITE.authorName,
+  productUrl: STARTER_SITE.productUrl,
+  registrationUrl: STARTER_SITE.registrationUrl,
   contactEmail: STARTER_SITE.contact.email,
   socialLinks: STARTER_SITE.socialLinks.map((link) => link.url),
   heroTagline: STARTER_SITE.defaultDescription,
@@ -52,14 +56,14 @@ export const SITE: SitePresentation = {
   analytics: STARTER_SITE.analytics,
   theme: STARTER_SITE.theme,
   structuredData: {
-    serviceType: 'Usługi lokalne',
+    serviceType: 'Aplikacja do skupienia i pracy głębokiej',
     areaServed: 'Polska',
     knowsAbout: [
-      'Strony internetowe',
-      'Uslugi lokalne',
-      'Marketing lokalny',
-      'Obsluga klienta',
-      'Blog firmowy',
+      'Skupienie',
+      'Praca głęboka',
+      'Energia',
+      'Planowanie',
+      'Refleksja nad pracą',
     ],
   },
 };

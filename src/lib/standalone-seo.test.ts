@@ -11,19 +11,18 @@ const TEST_FILE = fileURLToPath(import.meta.url);
 const APP_ROOT = path.resolve(path.dirname(TEST_FILE), '..', '..');
 
 test('absoluteUrl normalizes trailing slashes for canonical page URLs', () => {
-  assert.equal(absoluteUrl('/'), 'https://example.com/');
-  assert.equal(absoluteUrl('/blog'), 'https://example.com/blog');
-  assert.equal(absoluteUrl('/blog/'), 'https://example.com/blog');
-  assert.equal(absoluteUrl('/polityka-prywatnosci/'), 'https://example.com/polityka-prywatnosci');
+  assert.equal(absoluteUrl('/'), 'https://frinter.app/');
+  assert.equal(absoluteUrl('/blog'), 'https://frinter.app/blog');
+  assert.equal(absoluteUrl('/blog/'), 'https://frinter.app/blog');
+  assert.equal(absoluteUrl('/polityka-prywatnosci/'), 'https://frinter.app/polityka-prywatnosci');
 });
 
 test('robots.txt points AI/SEO discovery to configured starter domain', () => {
   const robots = buildRobotsTxt();
 
-  assert.match(robots, /https:\/\/example\.com\/llms\.txt/);
-  assert.match(robots, /https:\/\/example\.com\/sitemap\.xml/);
-  assert.match(robots, /https:\/\/example\.com\/rss\.xml/);
-  assert.doesNotMatch(robots, /przemyslawfilipiak\.com/);
+  assert.match(robots, /https:\/\/frinter\.app\/llms\.txt/);
+  assert.match(robots, /https:\/\/frinter\.app\/sitemap\.xml/);
+  assert.match(robots, /https:\/\/frinter\.app\/rss\.xml/);
 });
 
 test('package scripts expose and run the standalone regression guard', () => {

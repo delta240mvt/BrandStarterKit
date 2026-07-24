@@ -7,7 +7,7 @@ import tailwindcss from 'tailwindcss';
 const appDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://frinter.app',
   output: 'static',
   integrations: [mdx()],
   vite: {

@@ -22,23 +22,23 @@ test('buildRootSiteGraph returns stable site and author identifiers', () => {
   assert.equal(schema['@context'], 'https://schema.org');
   assert.match(json, /#website/);
   assert.match(json, /#entity/);
-  assert.deepEqual(graphTypes(schema), ['ProfessionalService', 'WebSite']);
+  assert.deepEqual(graphTypes(schema), ['Organization', 'WebSite']);
 });
 
 test('buildHomeSchema links the homepage to the service business graph', () => {
   const schema = buildHomeSchema();
   const types = graphTypes(schema);
   const webPage = schema['@graph'].find((node) => node['@type'] === 'WebPage');
-  const entity = schema['@graph'].find((node) => node['@type'] === 'ProfessionalService');
+  const entity = schema['@graph'].find((node) => node['@type'] === 'Organization');
   const faq = schema['@graph'].find((node) => node['@type'] === 'FAQPage');
   const services = schema['@graph'].filter((node) => node['@type'] === 'Service');
 
-  assert.ok(types.includes('ProfessionalService'));
+  assert.ok(types.includes('Organization'));
   assert.ok(types.includes('WebSite'));
   assert.ok(types.includes('WebPage'));
   assert.ok(types.includes('FAQPage'));
-  assert.equal(webPage?.['@id'], 'https://example.com/#webpage');
-  assert.deepEqual(webPage?.isPartOf, { '@id': 'https://example.com/#website' });
+  assert.equal(webPage?.['@id'], 'https://frinter.app/#webpage');
+  assert.deepEqual(webPage?.isPartOf, { '@id': 'https://frinter.app/#website' });
   assert.equal(entity?.name, SITE.displayName);
   assert.equal(faq?.mainEntity instanceof Array ? faq.mainEntity.length : 0, HOME.faq.items.length);
   assert.equal(services.length, HOME.services.items.length);
@@ -47,14 +47,14 @@ test('buildHomeSchema links the homepage to the service business graph', () => {
 
 test('buildCollectionSchema differentiates blog index and paginated archives', () => {
   const schema = buildCollectionSchema({
-    canonical: 'https://example.com/blog/2',
+    canonical: 'https://frinter.app/blog/2',
     title: 'Blog | Pracownia Usługowa - Strona 2',
     description: 'Porady dla lokalnej firmy',
     page: 2,
   });
   const collection = schema['@graph'].find((node) => node['@type'] === 'CollectionPage');
 
-  assert.equal(collection?.['@id'], 'https://example.com/blog/2#collection');
+  assert.equal(collection?.['@id'], 'https://frinter.app/blog/2#collection');
   assert.equal(collection?.name, 'Blog | Pracownia Usługowa - Strona 2');
   assert.equal(collection?.pageStart, 2);
 });
@@ -63,18 +63,18 @@ test('buildArticleSchema links articles to the website and author entity', () =>
   const schema = buildArticleSchema({
     title: 'Hello',
     description: 'World',
-    canonical: 'https://example.com/blog/pierwszy-wpis-startera',
+    canonical: 'https://frinter.app/blog/pierwszy-wpis-startera',
     publishedAt: '2026-04-17T00:00:00.000Z',
     updatedAt: '2026-04-18T00:00:00.000Z',
     tags: ['strona firmowa'],
   });
   const article = schema['@graph'].find((node) => node['@type'] === 'BlogPosting');
 
-  assert.equal(article?.['@id'], 'https://example.com/blog/pierwszy-wpis-startera#article');
-  assert.deepEqual(article?.author, { '@id': 'https://example.com/#entity' });
-  assert.deepEqual(article?.publisher, { '@id': 'https://example.com/#entity' });
+  assert.equal(article?.['@id'], 'https://frinter.app/blog/pierwszy-wpis-startera#article');
+  assert.deepEqual(article?.author, { '@id': 'https://frinter.app/#entity' });
+  assert.deepEqual(article?.publisher, { '@id': 'https://frinter.app/#entity' });
   assert.deepEqual(article?.mainEntityOfPage, {
-    '@id': 'https://example.com/blog/pierwszy-wpis-startera#webpage',
+    '@id': 'https://frinter.app/blog/pierwszy-wpis-startera#webpage',
   });
 });
 
@@ -88,7 +88,7 @@ test('buildArticleSchema accepts relative image URLs', () => {
   });
   const article = schema['@graph'].find((node) => node['@type'] === 'BlogPosting');
 
-  assert.equal(article?.image, 'https://example.com/og-image.png');
+  assert.equal(article?.image, 'https://frinter.app/og-image.png');
 });
 
 test('buildLegalSchema exposes the Polish legal page', () => {
@@ -100,7 +100,7 @@ test('buildLegalSchema exposes the Polish legal page', () => {
   });
   const legal = schema['@graph'].find((node) => node['@type'] === 'WebPage');
 
-  assert.equal(legal?.['@id'], 'https://example.com/polityka-prywatnosci#webpage');
+  assert.equal(legal?.['@id'], 'https://frinter.app/polityka-prywatnosci#webpage');
   assert.equal(legal?.inLanguage, 'pl-PL');
   assert.equal('workTranslation' in (legal ?? {}), false);
 });

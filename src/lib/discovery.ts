@@ -40,12 +40,41 @@ export function getPaginatedBlogArchiveUrls(totalPosts: number, pageSize: number
 export function buildRobotsTxt(): string {
   const discovery = buildDiscoveryIndex();
 
-  return `User-agent: *
+  return `User-agent: OAI-SearchBot
 Allow: /
-Disallow: /admin
-Disallow: /api
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: *
+Allow: /
 
 # llms.txt: ${discovery.llms}
+# llms-full.txt: ${discovery.llmsFull}
 # RSS: ${discovery.rss}
 Sitemap: ${discovery.sitemap}
 `;
