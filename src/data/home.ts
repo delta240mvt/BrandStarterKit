@@ -69,63 +69,63 @@ export interface HomeData {
 
 export const HOME: HomeData = {
   hero: {
-    eyebrow: 'Focus OS dla pracy wiedzy',
-    title: 'Zamieniaj intencję w skupioną pracę — bez kultu produktywności.',
+    eyebrow: 'Strona dla Twojego nowego projektu',
+    title: 'Przedstaw swój projekt jasno i buduj zaufanie odbiorców.',
     description:
-      'Frinter pomaga founderom, twórcom i pracownikom wiedzy rozpocząć świadomą sesję pracy, zapisać jej kontekst i wyciągnąć spokojny wniosek na przyszłość.',
+      'Gotowy, statyczny szablon w Astro 7 pomaga szybko zaprezentować ofertę, działania i historię Twojej nowej marki.',
     primaryCta: {
-      label: 'Załóż konto',
-      href: 'https://web.frinter.app/register',
+      label: 'Zobacz ofertę',
+      href: '#oferta',
     },
     secondaryCta: {
-      label: 'Poznaj podejście',
-      href: '#o-projekcie',
+      label: 'Skontaktuj się',
+      href: '#kontakt',
     },
-    trustCues: ['Jedna intencja na sesję', 'Kontekst zamiast oceny', 'Prywatna refleksja'],
+    trustCues: ['Astro 7 SSG', 'SEO i GEO', 'Edycja z AI'],
   },
   benefits: {
-    heading: 'Praca, którą można spokojnie kontynuować',
+    heading: 'Fundament dla Twojej marki',
     items: [
       {
-        title: 'Intencja przed timerem',
-        description: 'Każda sesja zaczyna się od nazwania rezultatu, który chcesz stworzyć.',
+        title: 'Przejrzysta struktura',
+        description: 'Najważniejsze informacje są od razu widoczne, bez konieczności błądzenia po zakładkach.',
       },
       {
-        title: 'Kontekst bez nadzoru',
-        description: 'Frinter pomaga obserwować warunki pracy, nie mierzyć człowieka.',
+        title: 'Prosta edycja',
+        description: 'Treści są łatwe do aktualizacji w plikach danych i wpisach MDX.',
       },
       {
-        title: 'Refleksja po działaniu',
-        description: 'Krótki zapis po sesji ułatwia powrót do ważnego zadania.',
+        title: 'Techniczna jakość',
+        description: 'Strona od początku jest statyczna, szybka i przygotowana pod wyszukiwarki.',
       },
     ],
   },
   about: {
-    heading: 'Frinter jest Focus OS, nie kolejnym task managerem',
+    heading: 'Szablon dla Twojego nowego projektu',
     body: [
-      'Frinter łączy intencję, chronioną sesję pracy i refleksję o energii, aby zmniejszać zgadywanie przy planowaniu kolejnego kroku.',
-      'Nie diagnozuje, nie ocenia dnia i nie służy do monitorowania pracowników. Dane są materiałem do własnej obserwacji.',
+      'Twój Brand Starter Kit to gotowy punkt startu dla startupu, produktu, usługi lub marki osobistej.',
+      'Wszystkie kluczowe dane są w prostych plikach, więc kolejne zmiany może sprawnie wykonać człowiek albo agent AI.',
     ],
-    highlights: ['Skupienie', 'Praca głęboka', 'Energia i rytm'],
+    highlights: ['Astro 7 SSG', 'Prosta edycja', 'Widoczność SEO i GEO'],
   },
   services: {
-    heading: 'Jak wspiera pracę Frinter',
-    description: 'Trzy proste warstwy pomagają przejść od planu do rzeczywistego działania.',
+    heading: 'Co zawiera starter',
+    description: 'Najważniejsze elementy strony są gotowe do dostosowania do Twojego projektu.',
     items: [
       {
-        title: 'Frint: świadoma sesja',
-        description: 'Wybierz jeden rezultat, pracuj w wyznaczonym bloku i zostaw ślad dla następnej sesji.',
-        href: 'https://web.frinter.app/register',
+        title: 'Strona główna',
+        description: 'Sekcje hero, korzyści, oferta, FAQ, kontakt i social proof w jednym spójnym układzie.',
+        href: '#kontakt',
       },
       {
-        title: 'Obserwacja energii',
-        description: 'Zapisuj kontekst własnej gotowości bez zamieniania go w wynik albo diagnozę.',
-        href: 'https://web.frinter.app/register',
+        title: 'Blog MDX',
+        description: 'Publikuj poradniki, aktualności i case studies jako proste pliki Markdown lub MDX.',
+        href: '#kontakt',
       },
       {
-        title: 'Przegląd i decyzja',
-        description: 'Wróć do sesji, zauważ wzorzec i wybierz jeden mały eksperyment na kolejny tydzień.',
-        href: 'https://web.frinter.app/register',
+        title: 'SEO i GEO',
+        description: 'Sitemap, RSS, robots.txt, llms.txt, dane strukturalne i metadata są generowane statycznie.',
+        href: '#kontakt',
       },
     ],
   },

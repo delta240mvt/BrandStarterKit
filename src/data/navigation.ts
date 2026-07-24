@@ -21,6 +21,8 @@ export const NAVIGATION: NavigationConfig = {
     { label: 'Polityka prywatności', href: '/polityka-prywatnosci' },
     { label: 'RSS', href: '/rss.xml' },
     { label: 'llms.txt', href: '/llms.txt' },
-    { label: 'Sitemap', href: '/sitemap.xml' },
+    { label: 'llms-full.txt', href: '/llms-full.txt' },
+    { label: 'robots.txt', href: '/robots.txt' },
+    { label: 'Mapa strony', href: '/sitemap.xml' },
   ],
 };

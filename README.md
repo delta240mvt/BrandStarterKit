@@ -52,7 +52,7 @@ Domyślny serwer Astro startuje lokalnie pod adresem `http://localhost:4321`. Pr
 
 ### Tożsamość witryny dla ludzi i agentów AI
 
-Edytuj najpierw `src/data/site.ts`. To pojedyncze źródło prawdy dla nazwy Frinter, domeny kanonicznej, autora, kontaktu, opisu SEO oraz adresów produktu. Podczas kolejnych zmian AI powinno aktualizować ten plik przed treścią strony, a następnie uruchomić `npm run check` i `npm run build`.
+Edytuj najpierw `src/data/site.ts`. To pojedyncze źródło prawdy dla nazwy projektu, domeny kanonicznej, autora, kontaktu, opisu SEO oraz adresów produktu. Podczas kolejnych zmian AI powinno aktualizować ten plik przed treścią strony, a następnie uruchomić `npm run check` i `npm run build`.
 
 | Plik | Do czego służy |
 |------|----------------|

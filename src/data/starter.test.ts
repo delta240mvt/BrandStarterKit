@@ -32,8 +32,8 @@ test('privacy policy includes the required starter disclaimer', () => {
   assert.match(PRIVACY_POLICY.disclaimer, /przykładowy szablon polityki prywatności/i);
 });
 
-test('public identity is Frinter and points to the canonical domain', () => {
-  assert.equal(SITE.slug, 'frinter');
-  assert.equal(SITE.canonicalBaseUrl, 'https://frinter.app');
-  assert.equal(SITE.productUrl, 'https://web.frinter.app');
+test('public identity is the editable brand starter kit', () => {
+  assert.equal(SITE.slug, 'twoj-brand-starter-kit');
+  assert.equal(SITE.canonicalBaseUrl, 'https://brandstarterkit-twojprojekt.com');
+  assert.equal(SITE.productUrl, 'https://brandstarterkit-twojprojekt.com');
 });

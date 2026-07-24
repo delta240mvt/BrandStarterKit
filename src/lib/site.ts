@@ -56,14 +56,14 @@ export const SITE: SitePresentation = {
   analytics: STARTER_SITE.analytics,
   theme: STARTER_SITE.theme,
   structuredData: {
-    serviceType: 'Aplikacja do skupienia i pracy głębokiej',
+    serviceType: 'Szablon strony internetowej w Astro 7',
     areaServed: 'Polska',
     knowsAbout: [
-      'Skupienie',
-      'Praca głęboka',
-      'Energia',
-      'Planowanie',
-      'Refleksja nad pracą',
+      'Astro 7',
+      'Statyczne strony internetowe',
+      'SEO',
+      'GEO',
+      'Edycja z AI',
     ],
   },
 };

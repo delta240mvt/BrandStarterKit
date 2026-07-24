@@ -803,7 +803,7 @@ Create `src/pages/404.astro` using `Base` or `Landing` and Polish links back to 
 Set `package.json` name to a neutral starter name, for example:
 
 ```json
-"name": "@frinter/polish-service-website-starter"
+"name": "@brand-starter-kit/polish-service-website-starter"
 ```
 
 If avoiding old public brand in package metadata is stricter, use:
@@ -869,7 +869,7 @@ const SCAN_FILES = ['astro.config.mjs', 'wrangler.jsonc', 'package.json', 'packa
 const BANNED_TERMS = [
   /Focus Equals Freedom/i,
   /focusequalsfreedom/i,
-  /frinter/i,
+  /brand-starter-kit/i,
   /github\.com\/delta240mvt/i,
 ];
 ```
@@ -888,7 +888,7 @@ Expected: FAIL listing remaining old brand terms.
 
 - [ ] **Step 3: Remove remaining old public brand terms**
 
-Use `rg -n "Focus Equals Freedom|focusequalsfreedom|frinter|github.com/delta240mvt" src public astro.config.mjs wrangler.jsonc package.json package-lock.json README.md scripts/generate-favicons.mjs`
+Use `rg -n "Focus Equals Freedom|focusequalsfreedom|brand-starter-kit|github.com/delta240mvt" src public astro.config.mjs wrangler.jsonc package.json package-lock.json README.md scripts/generate-favicons.mjs`
 
 Fix all starter-facing matches.
 
@@ -936,7 +936,7 @@ Include:
 Run:
 
 ```powershell
-rg -n "Focus Equals Freedom|focusequalsfreedom|frinter|github.com/delta240mvt" README.md
+rg -n "Focus Equals Freedom|focusequalsfreedom|brand-starter-kit|github.com/delta240mvt" README.md
 ```
 
 Expected: no output.
@@ -1059,5 +1059,5 @@ Only commit if files changed.
 - [ ] `/polityka-prywatnosci` exists and includes the starter disclaimer.
 - [ ] `/privacy-policy` is not generated or linked by default.
 - [ ] Analytics is disabled by default and no hardcoded Umami script remains.
-- [ ] `rg -n "Focus Equals Freedom|focusequalsfreedom|frinter|github.com/delta240mvt" src public astro.config.mjs wrangler.jsonc package.json package-lock.json README.md scripts/generate-favicons.mjs` returns no starter-facing matches.
+- [ ] `rg -n "Focus Equals Freedom|focusequalsfreedom|brand-starter-kit|github.com/delta240mvt" src public astro.config.mjs wrangler.jsonc package.json package-lock.json README.md scripts/generate-favicons.mjs` returns no starter-facing matches.
 - [ ] `git status --short` is clean or only contains intentionally uncommitted runtime artifacts.

@@ -126,7 +126,7 @@ Expected component direction:
 - `Footer.astro` renders footer navigation and site identity.
 - Blog components remain reusable and content-driven.
 
-No public component should contain `Focus Equals Freedom`, `frinter`, personal-brand copy, personal GitHub URLs, or project-specific application schema.
+No public component should contain `Focus Equals Freedom`, `brand-starter-kit`, personal-brand copy, personal GitHub URLs, or project-specific application schema.
 
 Brand cleanup scope is limited to starter-facing files:
 
@@ -218,7 +218,7 @@ Automated tests should cover:
 - schema graph relationships for service-business pages and blog articles;
 - discovery index consistency across sitemap, RSS, robots, `llms.txt`, and `llms-full.txt`;
 - blog post normalization, draft filtering, tags, reading time, and pagination;
-- public source files do not expose old brand terms such as `Focus Equals Freedom`, `focusequalsfreedom`, `frinter`, or personal-brand URLs;
+- public source files do not expose old brand terms such as `Focus Equals Freedom`, `focusequalsfreedom`, `brand-starter-kit`, or personal-brand URLs;
 - analytics is not rendered when disabled;
 - required homepage data is present.
 

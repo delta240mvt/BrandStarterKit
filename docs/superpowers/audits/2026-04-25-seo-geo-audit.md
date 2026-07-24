@@ -77,7 +77,7 @@ The main baseline risk is not absence of SEO/GEO primitives. The risk is that me
 - Severity: Medium
   Area: Structured data justification
   Affected files: `src/pages/index.astro`
-  Finding: Homepage schema includes two `SoftwareApplication` nodes for `frinter.app` and `FrinterFlow`. This may be justified by visible homepage project content, but the schema is embedded directly in the page rather than generated from a project/content model.
+  Finding: Homepage schema includes two `SoftwareApplication` nodes for `brandstarterkit-twojprojekt.com` and `brand-starter-kitFlow`. This may be justified by visible homepage project content, but the schema is embedded directly in the page rather than generated from a project/content model.
   Impact: If visible project copy changes independently of schema, the homepage can overstate or drift from extractable page content. This is especially relevant for answer engines that reconcile schema with visible text.
   Recommendation: Generate project/product schema from the same source used for visible project cards, or keep software schema only where the visible page content directly supports it.
 

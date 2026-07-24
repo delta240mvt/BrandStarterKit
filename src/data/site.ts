@@ -41,24 +41,24 @@ export interface SiteConfig {
 
 export const SITE: SiteConfig = {
   // Single source of truth for public identity and machine-readable SEO/GEO copy.
-  slug: 'frinter',
-  displayName: 'Frinter',
-  shortName: 'Frinter',
+  slug: 'twoj-brand-starter-kit',
+  displayName: 'Twój Brand Starter Kit',
+  shortName: 'Brand Starter Kit',
   locale: 'pl-PL',
-  canonicalBaseUrl: 'https://frinter.app',
-  primaryDomain: 'frinter.app',
-  defaultTitle: 'Frinter | Skupienie, praca głęboka i energia',
+  canonicalBaseUrl: 'https://brandstarterkit-twojprojekt.com',
+  primaryDomain: 'brandstarterkit-twojprojekt.com',
+  defaultTitle: 'Twój Brand Starter Kit | Szablon strony Astro 7 dla nowego projektu',
   defaultDescription:
-    'Frinter to polska aplikacja do skupienia, pracy głębokiej i obserwowania energii dla founderów, twórców i pracowników wiedzy.',
-  blogTitle: 'Blog Frinter — skupienie, praca głęboka i energia',
+    'Twój Brand Starter Kit to statyczny szablon strony w Astro 7 dla nowego projektu, startupu lub marki osobistej.',
+  blogTitle: 'Blog | Twój Brand Starter Kit',
   blogDescription:
-    'Polskie artykuły o skupieniu, pracy głębokiej, energii i budowaniu Frintera.',
-  articleSuffix: 'Frinter',
-  authorName: 'Przemysław Filipiak',
-  productUrl: 'https://web.frinter.app',
-  registrationUrl: 'https://web.frinter.app/register',
+    'Aktualności, poradniki i materiały związane z rozwojem nowego projektu.',
+  articleSuffix: 'Twój Brand Starter Kit',
+  authorName: 'Twój zespół',
+  productUrl: 'https://brandstarterkit-twojprojekt.com',
+  registrationUrl: 'https://brandstarterkit-twojprojekt.com',
   contact: {
-    email: 'hello@frinter.app',
+    email: 'hello@brandstarterkit-twojprojekt.com',
   },
   socialLinks: [],
   analytics: {
