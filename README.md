@@ -11,9 +11,9 @@
 
 <h1>STARTER KIT</h1>
 
-**Minimalistyczny starter Astro, dzięki któremu szybko postawisz profesjonalną stronę dla swojego nowego przedsięwzięcia.**
+**Pełny starter Astro 7 SSG do uruchomienia strony nowego projektu, startupu lub marki osobistej.**
 
-[![Astro](https://img.shields.io/badge/Astro-5.x-ff5d01.svg?style=flat-square)](https://astro.build)
+[![Astro](https://img.shields.io/badge/Astro-7.x-ff5d01.svg?style=flat-square)](https://astro.build)
 [![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-f38020.svg?style=flat-square)](https://pages.cloudflare.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-ready-3178c6.svg?style=flat-square)](https://www.typescriptlang.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4a8d83.svg?style=flat-square)](LICENSE)
@@ -27,6 +27,20 @@
 Kiedy zaczynasz coś nowego, nie masz czasu na żmudne budowanie strony od zera. Ten projekt to gotowy fundament pod stronę internetową Twojego najnowszego pomysłu, startupu, aplikacji lub inicjatywy. Został zoptymalizowany pod kątem szybkości działania, edycji z użyciem AI i łatwego wdrożenia (np. na Cloudflare Pages).
 
 Starter celowo pozbawiono skomplikowanego panelu admina czy zaawansowanego CMS-a. Wszystkie najważniejsze informacje o Twoim projekcie edytujesz lokalnie w plikach konfiguracyjnych, a kontakt opiera się na bezpośrednim adresie e-mail.
+
+## Status techniczny: SEO, GEO i wydajność
+
+Projekt zawiera pełny, techniczny zestaw mechanizmów potrzebnych do SEO oraz GEO (widoczności i czytelności dla agentów AI):
+
+- statyczne generowanie SSG w Astro 7;
+- unikalne title, meta description, canonical, Open Graph i Twitter Cards;
+- dane strukturalne Schema.org dla witryny, strony głównej, listy wpisów i artykułów;
+- `/sitemap.xml`, `/rss.xml`, `/robots.txt`, `/llms.txt` oraz `/llms-full.txt`;
+- `llms.txt` w Markdown z H1 i linkami do zasobów;
+- responsywne obrazy WebP, `srcset`, `sizes`, jawne wymiary oraz priorytet pobierania dla obrazu LCP;
+- testy regresji dla adresów kanonicznych, plików discovery i danych SEO.
+
+Wynik 100/100 w PageSpeed Insights / WebDev należy potwierdzać po każdym deployu na docelowej domenie i dla wybranej strategii (mobile lub desktop). Zależy on również od infrastruktury, cache oraz danych laboratoryjnych Google — nie jest stałą gwarancją samego kodu.
 
 ## Co znajdziesz w środku?
 
@@ -62,7 +76,7 @@ Edytuj najpierw `src/data/site.ts`. To pojedyncze źródło prawdy dla nazwy pro
 | `src/data/legal.ts` | Tekst polityki prywatności dostosowany pod nową stronę. |
 | `src/content/blog/` | Miejsce na wpisy blogowe, logi z powstawania projektu czy obszerne poradniki w formacie MDX. |
 | `wrangler.jsonc` | Nazwa Twojego projektu dla usług Cloudflare Pages. |
-| `astro.config.mjs` | Główny adres (URL) strony internetowej. |
+| `astro.config.mjs` | Konfiguracja Astro 7, SSG i główny adres strony. |
 
 ## Prowadzenie bloga projektu
 
