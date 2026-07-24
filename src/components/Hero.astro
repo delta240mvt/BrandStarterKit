@@ -32,12 +32,15 @@ const { hero } = HOME;
       <div class="hero-panel">
         <img
           class="hero-panel__photo"
-          src="/img/landing/optimized/hero_photo.webp"
+          src="/img/landing/optimized/hero_photo-768.webp"
+          srcset="/img/landing/optimized/hero_photo-640.webp 640w, /img/landing/optimized/hero_photo-768.webp 768w"
+          sizes="(min-width: 961px) 430px, 100vw"
           alt="Nowoczesne, jasne biuro"
-          width="620"
-          height="388"
+          width="1024"
+          height="1024"
           loading="eager"
           decoding="async"
+          fetchpriority="high"
         />
         <img class="hero-panel__image" src="/img/landing/optimized/icon-product-system-128.webp" alt="" width="128" height="128" loading="eager" decoding="async" />
         <div>
