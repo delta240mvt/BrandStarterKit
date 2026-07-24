@@ -65,6 +65,7 @@ test('llms text advertises discovery assets from buildDiscoveryIndex', () => {
 
   assert.match(llms, new RegExp(`Sitemap: ${discovery.sitemap.replaceAll('.', '\\.')}`));
   assert.match(llms, new RegExp(`Full-Context: ${discovery.llmsFull.replaceAll('.', '\\.')}`));
-  assert.match(llms, new RegExp(`RSS: ${discovery.rss.replaceAll('.', '\\.')}`));
+  assert.match(llms, /^# .+/m);
+  assert.match(llms, new RegExp(`\\[RSS\\]\\(${discovery.rss.replaceAll('.', '\\.')}\\)`));
   assert.match(llmsFull, new RegExp(`Short LLM context: ${discovery.llms.replaceAll('.', '\\.')}`));
 });

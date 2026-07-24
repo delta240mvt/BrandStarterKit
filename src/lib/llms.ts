@@ -32,14 +32,14 @@ Last-Updated: ${new Date().toISOString().slice(0, 10)}
 - Edit the public identity in src/data/site.ts and homepage copy in src/data/home.ts.
 
 ## Resources
-- Blog: ${absoluteUrl('/blog')}
-- Privacy Policy: ${absoluteUrl('/polityka-prywatnosci')}
-- RSS: ${discovery.rss}
-- Sitemap: ${discovery.sitemap}
-- Robots: ${absoluteUrl('/robots.txt')}
+- [Blog](${absoluteUrl('/blog')})
+- [Privacy Policy](${absoluteUrl('/polityka-prywatnosci')})
+- [RSS](${discovery.rss})
+- [Sitemap](${discovery.sitemap})
+- [Robots](${absoluteUrl('/robots.txt')})
 
 ## Social
-${SITE.socialLinks.length > 0 ? SITE.socialLinks.map((link) => `- ${link}`).join('\n') : '- No public social profiles configured'}
+${SITE.socialLinks.length > 0 ? SITE.socialLinks.map((link) => `- [Profile](${link})`).join('\n') : '- No public social profiles configured'}
 `;
 }
 
