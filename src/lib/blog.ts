@@ -56,11 +56,11 @@ function comparePostsDesc(a: BlogPost, b: BlogPost): number {
 function toBlogPost(entry: BlogEntry): BlogPost {
   const tags = normalizeTags(entry.data.tags ?? []);
   const description = normalizeDescription(entry.data.description);
-  const url = `/blog/${entry.slug}`;
+  const url = `/blog/${entry.id}`;
 
   return {
     entry,
-    slug: entry.slug,
+    slug: entry.id,
     url,
     canonicalUrl: absoluteUrl(url),
     title: entry.data.title,
@@ -71,7 +71,7 @@ function toBlogPost(entry: BlogEntry): BlogPost {
     tags,
     draft: entry.data.draft ?? false,
     heroImage: entry.data.heroImage,
-    readingTime: estimateReadingTime(entry.body),
+    readingTime: estimateReadingTime(entry.body ?? ''),
   };
 }
 

@@ -3,6 +3,7 @@ export const prerender = true;
 
 import BlogPost from '@/components/layouts/BlogPost.astro';
 import BlogCard from '@/components/BlogCard.astro';
+import { render } from 'astro:content';
 import { getPublishedPostBySlug, getPublishedPosts, getRelatedPosts } from '@/lib/blog';
 
 export async function getStaticPaths() {
@@ -22,7 +23,7 @@ if (!article) {
 }
 
 const relatedArticles = await getRelatedPosts(article, 3);
-const { Content } = await article.entry.render();
+const { Content } = await render(article.entry);
 ---
 
 <BlogPost
