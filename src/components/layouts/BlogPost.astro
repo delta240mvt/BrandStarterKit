@@ -15,6 +15,7 @@ export interface Props {
   author?: string;
   slug?: string;
   canonicalUrl?: string;
+  heroImage?: string;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   author = undefined,
   slug,
   canonicalUrl = undefined,
+  heroImage,
 } = Astro.props;
 
 const site = getSitePresentation();
@@ -62,7 +64,11 @@ const schema = publishedAt
   </Fragment>
   <Nav />
   <main id="main" class="blog-main" aria-label="Treść wpisu">
-    <article class="article">
+    <article class="article brand-shell">
+      <nav class="article-navigation" aria-label="Nawigacja wpisu">
+        <a href="/blog" class="brand-text-link">← Wszystkie wpisy</a>
+        <span class="micro">Blog</span>
+      </nav>
       <header class="article-header">
         <div class="article-meta">
           {formattedDate && (
@@ -84,6 +90,7 @@ const schema = publishedAt
           </div>
         )}
       </header>
+      {heroImage && <figure class="article-cover"><img src={heroImage} alt={title} width="820" height="513" loading="eager" decoding="async" /></figure>}
       <div class="article-content prose max-w-none">
         <slot />
       </div>
@@ -98,6 +105,7 @@ const schema = publishedAt
         )}
         <a href="/blog" class="back-to-blog">← Wróć do bloga</a>
       </footer>
+      <slot name="related" />
     </article>
   </main>
   <Footer />

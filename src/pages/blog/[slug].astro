@@ -35,11 +35,12 @@ const { Content } = await render(article.entry);
   tags={article.tags}
   slug={article.slug}
   canonicalUrl={article.canonicalUrl}
+  heroImage={article.heroImage}
 >
   <Content />
 
   {relatedArticles.length > 0 && (
-    <aside class="related-articles">
+    <aside class="related-articles" slot="related">
       <h2 class="related-title">Powiązane wpisy</h2>
       <div class="related-grid">
         {relatedArticles.map(related => (
