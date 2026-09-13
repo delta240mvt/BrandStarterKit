@@ -1,0 +1,31 @@
+---
+export const prerender = true;
+---
+<!doctype html><html lang="pl"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex"/><title>Od pomysłu do publikacji — DELTA240MVT</title></head><body>
+<div id="composition" data-composition-id="process" data-width="1280" data-height="560" data-duration="12">
+  <div class="grid-bg"></div><span class="corner top">DELTA240MVT / STUDIO</span><span class="corner bottom">TWÓJ POMYSŁ. WSPÓLNA PRACA.</span>
+  <section class="scene scene-1"><div class="copy"><span class="eyebrow">01 / KIERUNEK</span><h1>Wszystko<br />zaczyna się<br />od pomysłu<span>.</span></h1><p>Jeden odbiorca. Jeden cel. Dobry plan.</p></div><div class="visual notes"><div class="note note-a">TWÓJ ODBIORCA <b>↗</b></div><div class="note note-b">TWOJA OFERTA <b>+</b></div><div class="note note-c">WSPÓLNY KIERUNEK <b>→</b></div></div></section>
+  <section class="scene scene-2"><div class="copy"><span class="eyebrow">02 / PROJEKT</span><h2>Nadajemy<br />pomysłowi<br /><em>kształt.</em></h2><p>Treść, design i technologia. Razem.</p></div><div class="visual wireframe"><div class="bar"><i></i><i></i><i></i></div><div class="wire-content"><span>TWÓJ POMYSŁ / ONLINE</span><strong>To właśnie<br />Twoja historia.</strong><div class="wire-button">POROZMAWIAJMY ↗</div><div class="wire-cards"><i></i><i></i><i></i></div></div></div></section>
+  <section class="scene scene-3"><div class="copy"><span class="eyebrow">03 / PUBLIKACJA</span><h2>Już nie<br />„kiedyś”.<br /><em>Teraz działa.</em></h2><p>Twoja strona. Gotowa na pierwszy ruch.</p></div><div class="visual live"><span class="live-arrow">↗</span><span class="live-label">OD POMYSŁU DO PUBLIKACJI</span><div class="live-line"></div></div></section>
+  <div class="timeline"><span class="progress"></span></div><span class="corner counter">POMYSŁ → PROJEKT → PUBLIKACJA</span>
+</div>
+<script>
+  import { gsap } from 'gsap';
+  const timeline = gsap.timeline({ paused: true });
+  timeline.from('.scene-1 .copy', { y: 24, opacity: 0, duration: .65, ease: 'power3.out' }, 0)
+    .from('.note', { y: 50, opacity: 0, rotation: 0, stagger: .15, duration: .8, ease: 'power3.out' }, .15)
+    .to('.scene-1', { y: -25, opacity: 0, duration: .4 }, 3.5)
+    .fromTo('.scene-2', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, 4)
+    .from('.wire-cards i', { scaleY: 0, transformOrigin: 'bottom', stagger: .15, duration: .7, ease: 'power3.out' }, 4.35)
+    .to('.scene-2', { y: -25, opacity: 0, duration: .4 }, 7.5)
+    .fromTo('.scene-3', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: .5 }, 8)
+    .from('.live-arrow', { x: -45, y: 45, scale: .7, duration: 1.1, ease: 'power3.out' }, 8.1)
+    .from('.live-line', { scaleX: 0, transformOrigin: 'left', duration: 1.2 }, 8.4)
+    .fromTo('.progress', { scaleX: 0 }, { scaleX: 1, duration: 12, ease: 'none' }, 0);
+  const frameWindow = window as typeof window & { __timelines?: Record<string, gsap.core.Timeline> };
+  frameWindow.__timelines = { process: timeline };
+</script>
+<style is:global>
+@font-face{font-family:Inter;src:url('/fonts/inter-latin-v1.woff2');font-weight:100 900;font-display:swap}@font-face{font-family:Mono;src:url('/fonts/ibm-plex-mono-400-latin-v1.woff2');font-display:swap}*{box-sizing:border-box}html,body{margin:0;padding:0;overflow:hidden;background:#00d6d8}#composition{width:1280px;height:560px;position:relative;overflow:hidden;color:#020304;font-family:Inter,Arial,sans-serif}.grid-bg{position:absolute;inset:0;background-image:linear-gradient(#02030409 1px,transparent 1px),linear-gradient(90deg,#02030409 1px,transparent 1px);background-size:40px 40px}.corner{position:absolute;left:52px;font:400 10px Mono,monospace;letter-spacing:1px;z-index:5}.top{top:30px}.bottom{bottom:29px}.counter{left:auto;right:52px;bottom:29px}.scene{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;padding:89px 75px 75px;gap:65px;align-items:center}.scene-2,.scene-3{opacity:0}.eyebrow{font:400 12px Mono,monospace;letter-spacing:1px}.copy h1,.copy h2{font-size:67px;letter-spacing:-4px;line-height:1.03;font-weight:850;margin:22px 0}.copy p{font-size:17px;margin:20px 0 0}.copy em{font-style:normal;color:#6350be}.copy h1 span{color:#6350be}.visual{position:relative}.notes{height:300px}.note{position:absolute;border:1px solid #020304;background:#f8f7f3;padding:30px;width:370px;height:115px;font:400 16px Mono,monospace;display:flex;align-items:center;justify-content:space-between}.note b{font:400 40px Inter}.note-a{top:0;left:0;transform:rotate(-8deg)}.note-b{top:85px;left:45px;transform:rotate(4deg);background:#cbb5ff}.note-c{top:175px;left:15px;transform:rotate(-3deg);background:#f2e500}.wireframe{border:1px solid #020304;background:#f8f7f3;transform:rotate(-3deg)}.bar{height:28px;border-bottom:1px solid #020304;display:flex;gap:5px;padding-left:13px;align-items:center}.bar i{width:5px;height:5px;border:1px solid;border-radius:50%}.wire-content{padding:25px}.wire-content>span{font:400 10px Mono}.wire-content strong{display:block;font-size:43px;line-height:1;letter-spacing:-2px;margin:18px 0}.wire-button{background:#f2e500;border:1px solid #020304;font:400 9px Mono;padding:13px;width:155px}.wire-cards{display:flex;gap:10px;margin-top:25px}.wire-cards i{display:block;height:45px;flex:1;background:#cbb5ff;border:1px solid #020304}.wire-cards i:nth-child(2){background:#00d6d8}.wire-cards i:nth-child(3){background:#f2e500}.live{text-align:center;background:#020304;color:#f8f7f3;width:365px;height:310px;padding:10px 30px 25px;transform:rotate(-4deg)}.live-arrow{display:block;font-size:230px;line-height:1.03;font-weight:300;color:#f2e500}.live-label{font:400 10px Mono}.live-line{height:2px;background:#00d6d8;margin-top:20px}.timeline{position:absolute;left:0;right:0;bottom:0;height:4px;background:#02030420}.progress{display:block;height:100%;background:#020304;transform-origin:left}
+</style>
+</body></html>

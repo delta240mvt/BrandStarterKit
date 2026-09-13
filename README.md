@@ -170,3 +170,18 @@ MIT - w pełni wolne oprogramowanie gotowe by Ci służyć. Zobacz [`LICENSE`](L
 **Twój Projekt** - buduj bez chaosu.
 
 </div>
+
+## Refresh DELTA240MVT (baza130926-refresh)
+
+Strona główna ma układ sprzedażowy, paletę DELTA240MVT oraz lokalne fonty Inter i IBM Plex Mono (licencje w `public/fonts`). Dane oferty i FAQ znajdują się w `src/data/home.ts`, identyfikacja w `src/data/site.ts`, a style w `src/styles/brand.css`.
+
+- GSAP ScrollTrigger i ScrollSmoother obsługują ruch oraz przewijanie. Redukcja ruchu wyłącza te efekty; telefon zachowuje natywne przewijanie.
+- HyperFrames jest ładowany po kliknięciu. Kompozycja i runtime są serwowane z własnej domeny, bez CDN. Źródło: `src/pages/motion/process.astro`.
+- Formularz kontaktowy przygotowuje link `mailto:`. Wiadomość wysyła użytkownik ze swojej poczty; strona nie przechowuje treści formularza.
+- Cena jest ustalana indywidualnie. Nie dodano fikcyjnych opinii, wyników ani gwarancji sprzedażowych.
+- Dokumenty referencyjne pozostają prywatne. Reguły `.gitignore` obejmują także ewentualne kopie w tym repozytorium.
+- Podstrona polityki prywatności pozostaje oznaczonym szablonem; przed produkcyjnym użyciem wymaga dostosowania.
+
+Weryfikacja: `npm run check`, `npm run build`, `npm run test:ui`. Test UI uruchamia własny serwer katalogu `dist` na porcie 4322 i wymaga zainstalowanego Google Chrome. Zrzuty i raport zapisuje do ignorowanego `.artifacts/`.
+
+Projekt pozostaje wielokrotnie używalnym Brand Starter Kitem dla stron klientów. Styl DELTA240MVT jest motywem startowym. Blog, archiwum wpisów i pełne linki w stopce (w tym RSS, sitemap, robots oraz pliki LLM) są częścią szablonu i należy je zachowywać przy kolejnych zmianach wizualnych.

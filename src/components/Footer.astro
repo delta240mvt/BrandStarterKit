@@ -1,29 +1,16 @@
 ---
 import { NAVIGATION } from '@/data/navigation';
-import { SITE } from '@/data/site';
-
+import type { NavigationItem } from '@/data/navigation';
 const year = new Date().getFullYear();
-const footerLinks = [
-  { label: 'Start', href: '/' },
-  ...NAVIGATION.main,
-  ...NAVIGATION.footer,
-];
+const footerLinks: NavigationItem[] = [{ label: 'Start', href: '/' }, ...NAVIGATION.main, ...NAVIGATION.footer];
+const resolveHref = (href: string) => href.startsWith('#') && Astro.url.pathname !== '/' ? `/${href}` : href;
 ---
-
-<footer class="footer">
-  <div class="footer__inner">
-    <p class="footer-copy">&copy; {year} {SITE.displayName}</p>
-    <nav class="footer-links" aria-label="Menu stopki">
-      {footerLinks.map((item) => (
-        <a
-          href={item.href}
-          class="footer-link"
-          target={'external' in item && item.external ? '_blank' : undefined}
-          rel={'external' in item && item.external ? 'noopener noreferrer' : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
+<footer class="brand-footer">
+  <div class="brand-shell">
+    <div class="footer-top"><a href="/" class="brand-logo">DELTA240MVT<span class="logo-dot">®</span></a><p>Pomysł to dopiero początek.</p><a href="#main" class="back-top">Wróć na górę <span aria-hidden="true">↑</span></a></div>
+    <nav class="brand-footer-links" aria-label="Menu stopki">
+      {footerLinks.map(item => <a href={resolveHref(item.href)} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined}>{item.label}</a>)}
     </nav>
+    <div class="footer-bottom"><span>© {year} Przemysław Filipiak</span><span>DESIGN. TECHNOLOGIA. CZŁOWIEK.</span><a href="/polityka-prywatnosci">Prywatność</a><a href="/blog">Notatki z budowania ↗</a></div>
   </div>
 </footer>

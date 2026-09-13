@@ -11,18 +11,18 @@ const TEST_FILE = fileURLToPath(import.meta.url);
 const APP_ROOT = path.resolve(path.dirname(TEST_FILE), '..', '..');
 
 test('absoluteUrl normalizes trailing slashes for canonical page URLs', () => {
-  assert.equal(absoluteUrl('/'), 'https://brandstarterkit-twojprojekt.com/');
-  assert.equal(absoluteUrl('/blog'), 'https://brandstarterkit-twojprojekt.com/blog');
-  assert.equal(absoluteUrl('/blog/'), 'https://brandstarterkit-twojprojekt.com/blog');
-  assert.equal(absoluteUrl('/polityka-prywatnosci/'), 'https://brandstarterkit-twojprojekt.com/polityka-prywatnosci');
+  assert.equal(absoluteUrl('/'), 'https://delta240mvt.com/');
+  assert.equal(absoluteUrl('/blog'), 'https://delta240mvt.com/blog');
+  assert.equal(absoluteUrl('/blog/'), 'https://delta240mvt.com/blog');
+  assert.equal(absoluteUrl('/polityka-prywatnosci/'), 'https://delta240mvt.com/polityka-prywatnosci');
 });
 
 test('robots.txt points AI/SEO discovery to configured starter domain', () => {
   const robots = buildRobotsTxt();
 
-  assert.match(robots, /https:\/\/brandstarterkit-twojprojekt\.com\/llms\.txt/);
-  assert.match(robots, /https:\/\/brandstarterkit-twojprojekt\.com\/sitemap\.xml/);
-  assert.match(robots, /https:\/\/brandstarterkit-twojprojekt\.com\/rss\.xml/);
+  assert.match(robots, /https:\/\/delta240mvt\.com\/llms\.txt/);
+  assert.match(robots, /https:\/\/delta240mvt\.com\/sitemap\.xml/);
+  assert.match(robots, /https:\/\/delta240mvt\.com\/rss\.xml/);
 });
 
 test('package scripts expose and run the standalone regression guard', () => {

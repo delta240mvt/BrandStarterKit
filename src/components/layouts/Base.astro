@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import '@/styles/animations.css';
+import '@/styles/brand.css';
 import { getSitePresentation } from '@/lib/site';
 import { createPageSeo, formatSocialImageAlt } from '@/lib/seo';
 import type { SeoAlternates, SeoPageType } from '@/lib/seo';
@@ -67,15 +68,14 @@ const analyticsAttributes = Object.fromEntries(
     {alternateEntries.map(([hreflang, href]) => <link rel="alternate" hreflang={hreflang} href={href} />)}
 
     <!-- Font Preloads -->
-    <link rel="preload" href="/fonts/CourierPrime-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/CourierPrime-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Poppins-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Roboto-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/inter-latin-v1.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/ibm-plex-mono-400-latin-v1.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Favicon — Google SERP wymaga PNG min 48x48px jako primary -->
     <link rel="icon" href="/favicon-192x192.png" type="image/png" sizes="192x192" />
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/favicon-192x192.png" sizes="192x192" />
     <link rel="manifest" href="/site.webmanifest" />
 

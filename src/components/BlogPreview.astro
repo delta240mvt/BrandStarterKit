@@ -7,24 +7,24 @@ const articles = (await getPublishedPosts()).slice(0, 3);
 const { blogPreview } = HOME;
 ---
 
-<section class="section section--warm blog-preview-section reveal" id="blog">
-  <header class="section-head-inline">
-    <span class="section-heading">{blogPreview.heading}</span>
-    <span class="section-head__rule" aria-hidden="true"></span>
+<section class="brand-section brand-blog-preview" id="blog" aria-labelledby="blog-preview-heading">
+  <div class="brand-shell">
+  <header class="section-kicker">
+    <span class="micro">{blogPreview.heading}</span>
   </header>
-  <div class="blog-preview-head">
-    <div>
-      <h2 class="section-title">Blog, w którym rozwijasz historię swojego projektu.</h2>
-      <p class="section-lead">
+  <div class="brand-blog-intro">
+    <div data-reveal>
+      <h2 id="blog-preview-heading">Blog, w którym rozwijasz historię swojego projektu.</h2>
+      <p>
         Publikuj aktualności, poradniki i case studies w MDX — każdy wpis otrzymuje własne metadata oraz dane strukturalne.
       </p>
     </div>
-    <a href="/blog" class="btn btn--outline">Wszystkie wpisy <span aria-hidden="true">-&gt;</span></a>
+    <a href="/blog" class="brand-button">Wszystkie wpisy <span aria-hidden="true">↗</span></a>
   </div>
 
     {articles.length > 0 ? (
-      <div class="blog-preview-layout">
-        {articles.map((article, i) => (
+      <div class="brand-blog-grid">
+        {articles.map((article) => (
           <BlogCard
             title={article.title}
             description={article.description}
@@ -40,4 +40,5 @@ const { blogPreview } = HOME;
     ) : (
       <p class="empty-state">{blogPreview.emptyText}</p>
     )}
+  </div>
 </section>

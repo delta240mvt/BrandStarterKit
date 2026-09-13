@@ -1,117 +1,27 @@
 ---
-import { NAVIGATION } from '@/data/navigation';
 import { SITE } from '@/data/site';
-
-const pathname = Astro.url.pathname;
-
-function resolveHref(href: string): string {
-  if (href.startsWith('#') && pathname !== '/') {
-    return `/${href}`;
-  }
-
-  return href;
-}
+const home = Astro.url.pathname === '/';
+const links = [{ label: 'Współpraca', href: '#oferta' }, { label: 'Proces', href: '#proces' }, { label: 'Projekty', href: '#realizacje' }, { label: 'O mnie', href: '#o-mnie' }];
 ---
-
-<nav class="nav" aria-label="Główne menu">
-  <div class="nav-container">
-    <a href="/" class="nav-logo" aria-label={`${SITE.displayName} - strona główna`}>
-      <img src="/img/landing/optimized/logo_pracownia-96.webp" alt="" width="36" height="36" loading="eager" decoding="sync" />
-      {SITE.displayName}
-    </a>
-    <ul class="nav-links" role="list">
-      {NAVIGATION.main.map((item) => (
-        <li>
-          <a
-            href={resolveHref(item.href)}
-            class={`nav-link${pathname.startsWith(item.href) ? ' nav-link--active' : ''}`}
-            target={item.external ? '_blank' : undefined}
-            rel={item.external ? 'noopener noreferrer' : undefined}
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
-    <div class="nav-actions">
-      <a href="/#kontakt" class="btn btn--primary btn--sm">Kontakt <span aria-hidden="true">-&gt;</span></a>
-    </div>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Otwórz menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <ul class="nav-mobile" id="nav-mobile" role="list" aria-hidden="true">
-    {NAVIGATION.main.map((item) => (
-      <li>
-        <a
-          href={resolveHref(item.href)}
-          class="nav-mobile-link"
-          target={item.external ? '_blank' : undefined}
-          rel={item.external ? 'noopener noreferrer' : undefined}
-        >
-          {item.label}
-        </a>
-      </li>
-    ))}
-  </ul>
-</nav>
-
+<header class="brand-header">
+  <nav class="brand-nav brand-shell" aria-label="Główne menu">
+    <a class="brand-logo" href="/" aria-label={`${SITE.displayName} — strona główna`}><svg width="24" height="25" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 4 62 57H2Zm0 19L17 49h30Z" fill="currentColor" fill-rule="evenodd" /></svg>DELTA240MVT<span class="logo-dot">®</span></a>
+    <div class="desktop-links">{links.map(link => <a href={`${home ? '' : '/'}${link.href}`}>{link.label}</a>)}</div>
+    <a class="nav-contact" href="/#kontakt">Porozmawiajmy <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" aria-label="Otwórz menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    <div id="mobile-menu" class="mobile-menu" hidden>{links.map(link => <a href={`${home ? '' : '/'}${link.href}`}>{link.label}<span aria-hidden="true">↗</span></a>)}<a href="/#kontakt">Porozmawiajmy ↗</a></div>
+  </nav>
+  <div class="reading-progress" aria-hidden="true"></div>
+</header>
 <script>
-  const toggle = document.getElementById('nav-toggle');
-  const mobile = document.getElementById('nav-mobile');
-
-  if (toggle && mobile) {
-    toggle.addEventListener('click', () => {
-      const isOpen = mobile.classList.toggle('open');
-      toggle.classList.toggle('open', isOpen);
-      toggle.setAttribute('aria-expanded', String(isOpen));
-      mobile.setAttribute('aria-hidden', String(!isOpen));
-    });
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#mobile-menu');
+  if (toggle && menu) {
+    const close = (focus = false) => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Otwórz menu'); if (focus) toggle.focus(); };
+    toggle.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; menu.hidden = !open; toggle.setAttribute('aria-expanded', String(open)); toggle.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu'); });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => close()));
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && !menu.hidden) close(true); });
+    document.addEventListener('click', event => { if (event.target instanceof Element && !event.target.closest('.brand-nav')) close(); });
+    window.matchMedia('(min-width: 821px)').addEventListener('change', () => close());
   }
 </script>
-
-<style>
-  :global(.nav-toggle span) {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform-origin: center;
-  }
-  
-  :global(.nav-toggle.open span:nth-child(1)) {
-    transform: translateY(6px) rotate(45deg);
-  }
-  
-  :global(.nav-toggle.open span:nth-child(2)) {
-    opacity: 0;
-  }
-  
-  :global(.nav-toggle.open span:nth-child(3)) {
-    transform: translateY(-6px) rotate(-45deg);
-  }
-
-  :global(.nav-mobile.open) {
-    animation: menuSlideDown 0.3s ease forwards;
-  }
-
-  @keyframes menuSlideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  :global(.nav-mobile-link) {
-    border-radius: var(--r-sm, 6px);
-    padding: 12px 16px !important;
-    transition: background-color 0.2s ease;
-    font-weight: 500;
-  }
-  
-  :global(.nav-mobile-link:hover) {
-    background-color: var(--c-card-2, #f9f9f9);
-    color: var(--c-cta, #000);
-  }
-</style>

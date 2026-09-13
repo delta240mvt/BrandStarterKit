@@ -5,3 +5,10 @@ dist/
 .DS_Store
 Thumbs.db
 npm-debug.log*
+
+# Private design and sales references (including any future local copies).
+DELTA240MVT-DESIGN-MASTER.md
+strony-sprzedażowe/
+strony-sprzedazowe/
+.local-reference/
+.artifacts/

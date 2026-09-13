@@ -1,0 +1,46 @@
+---
+---
+<div class="motion-shell" aria-label="Animowana prezentacja procesu współpracy">
+  <div class="motion-topbar"><span class="micro">POMYSŁ → PROJEKT → PUBLIKACJA</span><button class="motion-toggle" type="button" aria-label="Odtwórz animację procesu" aria-pressed="false"><span class="motion-toggle-icon" aria-hidden="true">▶</span><span class="motion-toggle-text">Zobacz w 12 sekund</span></button></div>
+  <div class="motion-stage"><img class="motion-poster" src="/motion-poster.svg" alt="Od pomysłu przez projekt do publikacji. Trzy etapy wspólnej pracy." width="1280" height="560" loading="eager"/><div class="motion-mount"></div></div>
+  <div class="motion-caption"><p>Twój pomysł. Dobry kierunek. Działająca strona.</p><span>01 → 03 / 12 SEKUND</span></div>
+  <p class="motion-error" role="status" hidden></p>
+</div>
+<script>
+  import type { HyperframesPlayer } from '@hyperframes/player';
+  const shell = document.querySelector<HTMLElement>('.motion-shell');
+  const toggle = shell?.querySelector<HTMLButtonElement>('.motion-toggle');
+  const mount = shell?.querySelector<HTMLElement>('.motion-mount');
+  if (shell && toggle && mount) {
+    let player: HyperframesPlayer | undefined;
+    let loading = false;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    const text = toggle.querySelector<HTMLElement>('.motion-toggle-text')!;
+    const icon = toggle.querySelector<HTMLElement>('.motion-toggle-icon')!;
+    const status = shell.querySelector<HTMLElement>('.motion-error')!;
+    const sync = () => { const playing = !!player && !player.paused; toggle.setAttribute('aria-pressed', String(playing)); toggle.setAttribute('aria-label', playing ? 'Wstrzymaj animację procesu' : 'Odtwórz animację procesu'); text.textContent = playing ? 'Wstrzymaj' : 'Odtwórz animację'; icon.textContent = playing ? 'Ⅱ' : '▶'; };
+    const fail = () => { clearTimeout(timeout); loading = false; player?.remove(); player = undefined; toggle.disabled = false; status.textContent = 'Animacja jest chwilowo niedostępna. Możesz spróbować ponownie — wszystkie etapy opisaliśmy poniżej.'; status.hidden = false; sync(); };
+    toggle.addEventListener('click', async () => {
+      if (loading) return;
+      if (player?.ready) { if (player.paused) { if (player.currentTime >= player.duration - .1) player.seek(0); player.play(); } else player.pause(); return; }
+      loading = true; toggle.disabled = true; text.textContent = 'Przygotowuję…'; status.hidden = true;
+      try {
+        const { HyperframesPlayer } = await import('@hyperframes/player');
+        player = new HyperframesPlayer();
+        player.className = 'motion-player';
+        player.setAttribute('width', '1280'); player.setAttribute('height', '560');
+        player.setAttribute('muted', ''); player.setAttribute('audio-locked', '');
+        player.setAttribute('runtime-src', '/motion/runtime.js');
+        player.setAttribute('src', '/motion/process/');
+        player.setAttribute('aria-label', 'Prezentacja: pomysł, projekt, publikacja');
+        player.addEventListener('ready', () => { clearTimeout(timeout); loading = false; toggle.disabled = false; player?.play(); });
+        player.addEventListener('play', sync); player.addEventListener('pause', sync); player.addEventListener('ended', sync); player.addEventListener('error', fail);
+        timeout = setTimeout(fail, 20000); mount.append(player);
+      } catch { fail(); }
+    });
+    const observer = new IntersectionObserver(entries => { if (!entries[0].isIntersecting) player?.pause(); }); observer.observe(shell);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) player?.pause(); });
+    window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => player?.pause());
+    window.addEventListener('pagehide', () => { observer.disconnect(); clearTimeout(timeout); player?.pause(); });
+  }
+</script>

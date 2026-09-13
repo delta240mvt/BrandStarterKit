@@ -1,47 +1,97 @@
 ---
 export const prerender = true;
-
-import Landing from '@/components/layouts/Landing.astro';
-import Hero from '@/components/Hero.astro';
-import Benefits from '@/components/Benefits.astro';
-import About from '@/components/About.astro';
-import Services from '@/components/Services.astro';
-import Process from '@/components/Process.astro';
-import Projects from '@/components/Projects.astro';
-import Testimonials from '@/components/Testimonials.astro';
-import Faq from '@/components/Faq.astro';
+import Base from '@/components/layouts/Base.astro';
+import Nav from '@/components/Nav.astro';
+import Footer from '@/components/Footer.astro';
+import MotionPreview from '@/components/MotionPreview.astro';
 import BlogPreview from '@/components/BlogPreview.astro';
-import Contact from '@/components/Contact.astro';
-import { getSitePresentation } from '@/lib/site';
+import { HOME } from '@/data/home';
+import { SITE } from '@/data/site';
 import { buildHomeSchema } from '@/lib/schema';
-
-const site = getSitePresentation();
 const schema = buildHomeSchema();
 ---
+<Base>
+  <Fragment slot="head"><script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} /></Fragment>
+  <Nav />
+  <div id="smooth-wrapper"><div id="smooth-content">
+    <main id="main" class="sales-page">
+      <section class="sales-hero brand-shell" aria-labelledby="hero-heading">
+        <div class="hero-copy">
+          <p class="micro hero-enter"><span class="square-dot"></span>{HOME.hero.eyebrow}</p>
+          <h1 id="hero-heading"><span class="hero-line">Twój pomysł.</span><span class="hero-line">W końcu</span><span class="hero-line violet-text">w działaniu<span class="end-dot">.</span></span></h1>
+          <p class="hero-description hero-enter">{HOME.hero.description}</p>
+          <div class="hero-ctas hero-enter"><a class="brand-button" href="#kontakt">{HOME.hero.primaryCta.label}<span aria-hidden="true">↗</span></a><a class="brand-text-link" href="#proces">Zobacz, jak pracuję <span aria-hidden="true">↓</span></a></div>
+          <div class="hero-footnote hero-enter"><span class="small-cross" aria-hidden="true">+</span><span>DLA TWÓRCÓW, MAREK I MAŁYCH ZESPOŁÓW</span></div>
+        </div>
+        <div class="hero-image-wrap">
+          <img class="hero-portrait" src="/img/brand/author.jpg" alt="Przemysław Filipiak nad norweskim wybrzeżem" width="960" height="960" fetchpriority="high" />
+          <div class="portrait-shade"></div>
+          <div class="photo-topline micro"><span>IDEA → DESIGN → LIVE</span><span aria-hidden="true">↗</span></div>
+          <div class="portrait-label" aria-label="AI Product Engineer"><span>AI</span><span>Product</span><span>Engineer</span></div>
+          <div class="photo-signature micro"><span>PRZEMEK / DELTA240MVT</span><span>01 — 26</span></div>
+          <span class="photo-corner" aria-hidden="true"></span>
+        </div>
+      </section>
+      <div class="trust-strip brand-shell">{HOME.hero.trustCues.map((cue, i) => <p><span class="micro">0{i + 1}</span>{cue}<span class="trust-plus" aria-hidden="true">+</span></p>)}</div>
 
-<Landing title={site.defaultTitle} description={site.defaultDescription}>
-  <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
-  </Fragment>
+      <section id="problem" class="problem-section dark-section brand-section">
+        <div class="brand-shell">
+          <div class="section-kicker"><span class="micro">01 / PUNKT WYJŚCIA</span><span class="micro">BRZMI ZNAJOMO?</span></div>
+          <div class="problem-grid"><h2 data-reveal>Dobry pomysł.<br />Dziesięć narzędzi.<br /><span class="turquoise-text">Wciąż bez strony.</span></h2><div class="problem-copy" data-reveal><p class="large-copy">Masz coś wartościowego do pokazania. Ale między pomysłem a publikacją ciągle pojawia się „jeszcze tylko…”.</p><div class="problem-row"><span>01</span><p>Jeszcze wybiorę szablon.<small>Tyle możliwości, a żadna nie pasuje do końca.</small></p></div><div class="problem-row"><span>02</span><p>Jeszcze poprawię tekst.<small>Wiesz, co robisz. Trudniej opowiedzieć to prosto.</small></p></div><div class="problem-row"><span>03</span><p>Jeszcze nauczę się tego narzędzia.<small>Kolejny tutorial zamiast kolejnego kroku.</small></p></div></div></div>
+          <div class="problem-bottom"><span class="micro">ZACZNIJMY OD TEGO, CO WAŻNE.</span><p>Nie musisz ogarniać wszystkiego samodzielnie. <span aria-hidden="true">↘</span></p></div>
+        </div>
+      </section>
 
-  <>
-    <Hero />
-    <Benefits />
-    <About />
-    <Services />
-    <Process />
-    <Projects />
-    <Testimonials />
-    <Faq />
-    <BlogPreview />
-    <Contact />
-  </>
-</Landing>
+      <section id="proces" class="brand-section process-section">
+        <div class="brand-shell">
+          <div class="section-kicker"><span class="micro">02 / OD POMYSŁU DO EFEKTU</span><span class="micro">CZŁOWIEK + TECHNOLOGIA</span></div>
+          <div class="section-intro"><h2 data-reveal>Nie kolejny szablon.<br />Twój następny krok.</h2><p data-reveal>Najpierw rozumiem, co chcesz zbudować. Potem dobieram narzędzia. AI przyspiesza pracę, a kierunek i jakość pozostają po stronie człowieka.</p></div>
+          <MotionPreview />
+          <div class="process-steps">{HOME.process.items.map((item, i) => <article data-reveal><span class="step-number micro">0{i + 1}<span aria-hidden="true">↗</span></span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>
+        </div>
+      </section>
 
+      <section id="oferta" class="brand-section offer-section">
+        <div class="brand-shell">
+          <div class="section-kicker"><span class="micro">03 / CO ZBUDUJEMY</span><span class="micro">PRZEMYŚLANE OD POCZĄTKU DO KOŃCA</span></div>
+          <div class="section-intro"><h2 data-reveal>Jedna strona.<br /><span class="violet-text">Cała Twoja historia.</span></h2><p data-reveal>{HOME.services.description} Od pierwszego zdania, przez doświadczenie na telefonie, aż do ostatniego kliknięcia.</p></div>
+          <div class="offer-grid">{HOME.services.items.map((item, i) => <article class={`offer-card offer-card-${i}`} data-reveal><div class="offer-card-top"><span class="micro">0{i + 1} / {['KIERUNEK', 'DOŚWIADCZENIE', 'DZIAŁANIE'][i]}</span><span aria-hidden="true">↗</span></div><div class="offer-symbol" aria-hidden="true">{i === 0 ? <svg viewBox="0 0 160 120"><rect x="30" y="15" width="76" height="90" fill="none" stroke="currentColor" stroke-width="2"/><path d="M46 39h44M46 51h44M46 63h28M84 77l29-29 13 13-29 29-18 5Z" fill="none" stroke="currentColor" stroke-width="2"/></svg> : i === 1 ? <svg viewBox="0 0 160 120"><rect x="24" y="16" width="85" height="68" fill="none" stroke="currentColor" stroke-width="2"/><rect x="83" y="44" width="49" height="64" fill="none" stroke="currentColor" stroke-width="2"/><path d="M24 34h85M40 49h24v22H40zM94 58h25M94 70h25M94 95h25" fill="none" stroke="currentColor" stroke-width="2"/></svg> : <svg viewBox="0 0 160 120"><path d="m32 60 33-33M32 60l33 33M128 60 95 27M128 60 95 93M87 17 73 103" fill="none" stroke="currentColor" stroke-width="2"/></svg>}</div><h3>{item.title}</h3><p>{item.description}</p><ul class="scope-list">{[['Architektura strony', 'Argumentacja oferty', 'Ścieżka do kontaktu'], ['Projekt desktop i mobile', 'System wizualny marki', 'Przemyślane animacje'], ['Budowa i testy', 'Publikacja strony', 'Przekazanie projektu']][i].map(text => <li><span aria-hidden="true">+</span>{text}</li>)}</ul></article>)}</div>
+          <div class="scope-note"><span class="micro">TWÓJ PROJEKT, TWOJE POTRZEBY.</span><p>Blog, sklep lub automatyzacja? Dobierzemy dodatkowe elementy do celu, zamiast dodawać je na zapas.</p></div>
+        </div>
+      </section>
+
+      <section id="wycena" class="brand-section pricing-section">
+        <div class="brand-shell pricing-grid"><div data-reveal><span class="micro">04 / JASNE ZASADY</span><h2>Najpierw zakres.<br />Potem <span class="violet-text">wycena.</span></h2><p class="large-copy">Płacisz za rozwiązanie dopasowane do Twojego projektu. Cenę, termin i sposób współpracy poznasz przed startem.</p><a href="#kontakt" class="brand-button">Opowiedz mi o swoim pomyśle <span aria-hidden="true">↗</span></a></div><div class="pricing-panel" data-reveal><span class="micro">TWOJA PROPOZYCJA WSPÓŁPRACY</span><h3>Konkrety.<br />Bez drobnego druku.</h3><ul>{['Zakres i efekt, który wspólnie ustalamy', 'Cena oraz harmonogram prac', 'Etapy konsultacji i wprowadzania poprawek', 'Zasady przekazania i wsparcia po starcie'].map((text, i) => <li><span class="micro">0{i + 1}</span>{text}</li>)}</ul><div class="assurance"><span aria-hidden="true">↳</span><p><strong>Decyzja należy do Ciebie.</strong> Samo zapytanie nie jest zamówieniem. Ruszamy po akceptacji zakresu i warunków.</p></div></div></div>
+      </section>
+
+      <section id="realizacje" class="brand-section work-section">
+        <div class="brand-shell"><div class="section-kicker"><span class="micro">05 / RZECZY, KTÓRE POWSTAJĄ</span><span class="micro">PRAKTYKA ZAMIAST SLAJDÓW</span></div><div class="section-intro"><h2 data-reveal>Mniej obietnic.<br />Więcej <span class="violet-text">działania.</span></h2><p data-reveal>{HOME.realizations.description}</p></div>
+          <div class="work-grid">{HOME.realizations.items.map((item, i) => <article class="work-card" data-reveal><div class={`work-visual work-${item.visual}`} aria-hidden="true">{i === 0 ? <><span class="work-visual-label">FOCUS / BUILD / REPEAT</span><div class="focus-orbit"><span>frinter<span class="turquoise-text">.</span></span><i></i><i></i></div><span class="work-visual-bottom">JEDNO ZADANIE. PEŁNA UWAGA.</span></> : i === 1 ? <><div class="mini-browser"><div class="browser-toolbar"><i></i><i></i><i></i></div><div class="mini-website"><span class="micro">TWÓJ POMYSŁ / ONLINE</span><strong>Cześć,<br />świecie<span>↗</span></strong><div class="mini-website-line"></div><div class="mini-website-button"></div></div></div></> : <><div class="agent-flow"><span>DANE</span><b>↓</b><span>PROPOZYCJA AI</span><b>↓</b><span class="agent-approved">TWOJA DECYZJA ↗</span></div></>}</div><span class="micro work-meta">{item.category}</span><h3>{item.title}</h3><p>{item.description}</p><div class="work-card-foot"><span>{item.result}</span><a href={item.href} aria-label={`Czytaj o projekcie ${item.title}`}><span aria-hidden="true">↗</span></a></div></article>)}</div><p class="visual-note">Grafiki przedstawiają idee projektów. Szczegóły i kontekst znajdziesz w opisach realizacji.</p>
+        </div>
+      </section>
+
+      <section id="o-mnie" class="author-section"><div class="brand-shell author-grid"><div class="author-image" data-reveal><img src="/img/brand/author.jpg" width="960" height="960" alt="Przemek Filipiak — twórca DELTA240MVT" loading="lazy"/><span class="micro">PO DRUGIEJ STRONIE JEST CZŁOWIEK.</span></div><div class="author-copy" data-reveal><span class="micro">06 / POZNAJMY SIĘ</span><h2>Cześć,<br />jestem Przemek<span class="author-wave" aria-hidden="true">👋</span></h2>{HOME.about.body.map(text => <p>{text}</p>)}<div class="author-signature"><strong>Przemysław Filipiak</strong><span class="micro">AI PRODUCT ENGINEER / DELTA240MVT</span></div><a class="brand-text-link" href="https://delta240mvt.com/o-mnie/">Poznaj moją historię <span aria-hidden="true">↗</span></a></div></div></section>
+
+      <section id="faq" class="brand-section faq-section"><div class="brand-shell faq-grid"><div><span class="micro">07 / DOBRE PYTANIA</span><h2 data-reveal>Zanim zrobimy<br />pierwszy krok.</h2><p>Masz inne pytanie?<br /><a class="brand-text-link" href={`mailto:${SITE.contact.email}`}>Napisz do mnie <span aria-hidden="true">↗</span></a></p></div><div class="faq-list">{HOME.faq.items.map((item, i) => <details><summary><span class="micro">0{i + 1}</span><span>{item.question}</span><span class="faq-icon" aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></div></section>
+
+      <BlogPreview />
+
+      <section id="kontakt" class="brand-section contact-section dark-section"><div class="brand-shell"><div class="section-kicker"><span class="micro">08 / TWÓJ RUCH</span><span class="micro">KAŻDY PROJEKT ZACZYNA SIĘ OD ROZMOWY</span></div><div class="contact-grid"><div data-reveal><h2>Zróbmy z tego<br /><span class="yellow-text">coś konkretnego.</span><span class="contact-arrow" aria-hidden="true">↗</span></h2><p class="large-copy">{HOME.contact.description}</p><a class="email-link" href={`mailto:${SITE.contact.email}`}>{SITE.contact.email} <span aria-hidden="true">↗</span></a></div><form class="project-form" data-email={SITE.contact.email}><fieldset><legend class="micro">CO CHCESZ ZBUDOWAĆ?</legend><div class="project-options"><label><input type="radio" name="project" value="Nowa strona" checked/><span>Nowa strona</span></label><label><input type="radio" name="project" value="Odświeżenie strony"/><span>Odświeżenie</span></label><label><input type="radio" name="project" value="Inny pomysł"/><span>Inny pomysł</span></label></div></fieldset><label for="project-description" class="micro">KILKA SŁÓW O TWOIM POMYŚLE</label><textarea id="project-description" name="description" rows="4" required minlength="10" maxlength="3000" placeholder="Co robisz? Dla kogo? Co chcesz zmienić?"></textarea><button class="brand-button yellow-button" type="submit">Przygotuj e-mail <span aria-hidden="true">↗</span></button><p class="form-note">Otworzysz swoją pocztę z gotową wiadomością. Nic nie wyśle się automatycznie.</p><p class="form-status" role="status" hidden></p><a class="email-draft-link brand-text-link" hidden>Otwórz wiadomość w poczcie ↗</a><noscript><p>Napisz bezpośrednio na <a href={`mailto:${SITE.contact.email}`}>{SITE.contact.email}</a>.</p></noscript></form></div></div></section>
+    </main>
+    <Footer />
+  </div></div>
+</Base>
 <script>
-  import { observeRevealElements } from '@/utils/animations';
-  document.addEventListener('DOMContentLoaded', observeRevealElements);
+  import '@/utils/premium-motion';
+  const form = document.querySelector<HTMLFormElement>('.project-form');
+  form?.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const body = `Cześć Przemek!\n\nInteresuje mnie: ${data.get('project')}.\n\n${data.get('description')}\n`;
+    const href = `mailto:${form.dataset.email}?subject=${encodeURIComponent(`Porozmawiajmy — ${data.get('project')}`)}&body=${encodeURIComponent(body)}`;
+    const draft = form.querySelector<HTMLAnchorElement>('.email-draft-link');
+    const status = form.querySelector<HTMLElement>('.form-status');
+    if (draft && status) { draft.href = href; draft.hidden = false; status.hidden = false; status.textContent = 'Wiadomość jest gotowa. Kliknij poniżej, aby otworzyć ją w swojej poczcie.'; draft.focus(); }
+  });
 </script>
-
-<style>
-</style>

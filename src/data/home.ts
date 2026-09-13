@@ -1,212 +1,52 @@
-export interface CtaLink {
-  label: string;
-  href: string;
-}
-
-export interface TextItem {
-  title: string;
-  description: string;
-}
-
-export interface HomeData {
+export const HOME = {
   hero: {
-    eyebrow: string;
-    title: string;
-    description: string;
-    primaryCta: CtaLink;
-    secondaryCta: CtaLink;
-    trustCues: string[];
-  };
-  benefits: {
-    heading: string;
-    items: TextItem[];
-  };
-  about: {
-    heading: string;
-    body: string[];
-    highlights: string[];
-  };
+    eyebrow: 'Twój pomysł. Wspólna praca.',
+    title: 'Twój pomysł. W końcu w działaniu.',
+    description: 'Zbuduj stronę, która jasno pokazuje Twoją ofertę. Połącz dobry design, przemyślaną treść i AI — z człowiekiem, który przeprowadzi Cię od pierwszej rozmowy do publikacji.',
+    primaryCta: { label: 'Porozmawiajmy o projekcie', href: '#kontakt' },
+    secondaryCta: { label: 'Zobacz, jak pracuję', href: '#proces' },
+    trustCues: ['Strategia przed designem', 'Praca bezpośrednio ze mną', 'Od pomysłu do publikacji'],
+  },
+  benefits: { heading: 'Mniej rozproszonych działań. Więcej sensu.', items: [
+    { title: 'Jasna oferta', description: 'Odbiorca wie, co robisz, dla kogo i jaki powinien wykonać następny krok.' },
+    { title: 'Spójny wizerunek', description: 'Treść, typografia i ruch opowiadają tę samą historię.' },
+    { title: 'Własny punkt startu', description: 'Dostajesz działającą stronę i wiesz, jak rozwijać ją dalej.' },
+  ] },
+  about: { heading: 'Cześć, jestem Przemek.', body: ['Łączę projektowanie, technologię i pracę z AI. Buduję własne produkty i pomagam innym przejść od „mam pomysł” do pierwszej działającej wersji.', 'Pracujemy na Twoim projekcie. Rozmawiasz ze mną, oglądasz kolejne wersje i rozumiesz, dlaczego podejmujemy konkretne decyzje.'], highlights: ['AI Product Engineer', 'Twórca Frinter', 'DELTA240MVT'] },
   services: {
-    heading: string;
-    description: string;
-    items: Array<TextItem & { href: string }>;
-  };
-  process: {
-    heading: string;
-    items: TextItem[];
-  };
+    heading: 'Jedna spójna strona. Od pierwszego zdania do ostatniego kliknięcia.',
+    description: 'Projektujemy drogę od zainteresowania do rozmowy. Każdy element ma swoje zadanie.',
+    items: [
+      { title: 'Strategia i treść', description: 'Porządkujemy odbiorców, obietnicę i argumenty. Układamy sekcje w historię, która pomaga podjąć decyzję.', href: '#kontakt' },
+      { title: 'Design i doświadczenie', description: 'Wyrazista typografia, spójny system wizualny, przemyślany widok mobilny i animacje podkreślające treść.', href: '#kontakt' },
+      { title: 'Wdrożenie i publikacja', description: 'Działająca strona, techniczne podstawy widoczności, sprawdzenie kluczowych ścieżek i instrukcja dalszej pracy.', href: '#kontakt' },
+    ],
+  },
+  process: { heading: 'Dobry efekt zaczyna się od dobrego procesu.', items: [
+    { title: 'Najpierw kierunek.', description: 'Rozmawiamy o Twojej ofercie i odbiorcy. Wybieramy jeden cel strony i ustalamy zakres.' },
+    { title: 'Potem konkret.', description: 'Zobaczysz strukturę, treści i kierunek wizualny. Wspólnie dopracujemy to, co naprawdę ważne.' },
+    { title: 'Wreszcie w sieci.', description: 'Buduję, sprawdzam i publikuję. Dostajesz projekt oraz jasną instrukcję kolejnych zmian.' },
+  ] },
   realizations: {
-    heading: string;
-    description: string;
-    items: Array<TextItem & { result: string }>;
-  };
-  testimonials: {
-    heading: string;
-    items: Array<{
-      quote: string;
-      author: string;
-      role: string;
-    }>;
-  };
-  faq: {
-    heading: string;
-    items: Array<{
-      question: string;
-      answer: string;
-    }>;
-  };
-  blogPreview: {
-    heading: string;
-    emptyText: string;
-    ctaLabel: string;
-  };
-  contact: {
-    heading: string;
-    description: string;
-    emailCtaLabel: string;
-  };
-}
-
-export const HOME: HomeData = {
-  hero: {
-    eyebrow: 'Strona dla Twojego nowego projektu',
-    title: 'Przedstaw swój projekt jasno i buduj zaufanie odbiorców.',
-    description:
-      'Gotowy, statyczny szablon w Astro 7 pomaga szybko zaprezentować ofertę, działania i historię Twojej nowej marki.',
-    primaryCta: {
-      label: 'Zobacz ofertę',
-      href: '#oferta',
-    },
-    secondaryCta: {
-      label: 'Skontaktuj się',
-      href: '#kontakt',
-    },
-    trustCues: ['Astro 7 SSG', 'SEO i GEO', 'Edycja z AI'],
-  },
-  benefits: {
-    heading: 'Fundament dla Twojej marki',
+    heading: 'Mniej obietnic. Więcej zbudowanych rzeczy.',
+    description: 'Projekty własne i praca z uczestnikami. Różne wyzwania, wspólny sposób myślenia: najpierw problem, potem rozwiązanie.',
     items: [
-      {
-        title: 'Przejrzysta struktura',
-        description: 'Najważniejsze informacje są od razu widoczne, bez konieczności błądzenia po zakładkach.',
-      },
-      {
-        title: 'Prosta edycja',
-        description: 'Treści są łatwe do aktualizacji w plikach danych i wpisach MDX.',
-      },
-      {
-        title: 'Techniczna jakość',
-        description: 'Strona od początku jest statyczna, szybka i przygotowana pod wyszukiwarki.',
-      },
+      { title: 'Frinter', description: 'Własny produkt wspierający świadomą pracę nad wybranym zadaniem. Od pomysłu przez projektowanie do kolejnych działających wersji.', result: 'Produkt w rozwoju', category: '01 / PRODUCT DESIGN + DEVELOPMENT', href: 'https://delta240mvt.com/projekty/frinter/', visual: 'frinter' },
+      { title: 'Pierwsza strona z AI', description: 'Wspólne tworzenie, podgląd i publikacja strony. Po sesji uczestnik ma także instrukcję samodzielnego wprowadzania zmian.', result: 'Warsztat na realnym projekcie', category: '02 / WARSZTAT + WEB DEVELOPMENT', href: 'https://delta240mvt.com/projekty/pierwsza-strona/', visual: 'website' },
+      { title: 'Agent magazynowy', description: 'Odczyt danych z Upgates, raportowanie i propozycje operacji zatwierdzane przez człowieka przed wykonaniem.', result: 'Kontrolowany pilotaż', category: '03 / AI + AUTOMATYZACJA', href: 'https://delta240mvt.com/projekty/agent-magazynowy/', visual: 'agent' },
     ],
   },
-  about: {
-    heading: 'Szablon dla Twojego nowego projektu',
-    body: [
-      'Twój Brand Starter Kit to gotowy punkt startu dla startupu, produktu, usługi lub marki osobistej.',
-      'Wszystkie kluczowe dane są w prostych plikach, więc kolejne zmiany może sprawnie wykonać człowiek albo agent AI.',
-    ],
-    highlights: ['Astro 7 SSG', 'Prosta edycja', 'Widoczność SEO i GEO'],
-  },
-  services: {
-    heading: 'Co zawiera starter',
-    description: 'Najważniejsze elementy strony są gotowe do dostosowania do Twojego projektu.',
-    items: [
-      {
-        title: 'Strona główna',
-        description: 'Sekcje hero, korzyści, oferta, FAQ, kontakt i social proof w jednym spójnym układzie.',
-        href: '#kontakt',
-      },
-      {
-        title: 'Blog MDX',
-        description: 'Publikuj poradniki, aktualności i case studies jako proste pliki Markdown lub MDX.',
-        href: '#kontakt',
-      },
-      {
-        title: 'SEO i GEO',
-        description: 'Sitemap, RSS, robots.txt, llms.txt, dane strukturalne i metadata są generowane statycznie.',
-        href: '#kontakt',
-      },
-    ],
-  },
-  process: {
-    heading: 'Jak wygląda współpraca',
-    items: [
-      {
-        title: '1. Nawiązanie kontaktu',
-        description: 'Napisz do nas, aby opowiedzieć o swoim pomyśle, wyzwaniach i głównych potrzebach.',
-      },
-      {
-        title: '2. Ustalenie szczegółów',
-        description: 'Wspólnie doprecyzowujemy pełen zakres prac, harmonogram oraz wymagany budżet.',
-      },
-      {
-        title: '3. Realizacja',
-        description: 'Wykonujemy powierzone zadanie, na bieżąco informując Cię o kolejnych kamieniach milowych.',
-      },
-    ],
-  },
-  realizations: {
-    heading: 'Zrealizowane projekty',
-    description: 'Poznaj wybrane przykłady naszych działań, które przyniosły wymierne rezultaty.',
-    items: [
-      {
-        title: 'Optymalizacja procesów operacyjnych',
-        description: 'Uporządkowaliśmy skomplikowaną komunikację, wdrażając dedykowane narzędzia dla zespołu.',
-        result: 'Znacznie krótszy czas odpowiedzi na zapytania.',
-      },
-      {
-        title: 'Nowa strategia prezentacji usługi',
-        description: 'Zaprojektowaliśmy i wdrożyliśmy w pełni nowoczesny, przystępny sposób prezentacji oferty.',
-        result: 'Zauważalny wzrost liczby wartościowych zapytań.',
-      },
-    ],
-  },
-  testimonials: {
-    heading: 'Opinie',
-    items: [
-      {
-        quote: 'Wszystko było jasne od pierwszego kontaktu. Wiedzieliśmy dokładnie, co otrzymamy i w jakim terminie.',
-        author: 'Anna Kowalska',
-        role: 'przedsiębiorczyni',
-      },
-      {
-        quote: 'Profesjonalne podejście i absolutnie konkretna komunikacja. Właśnie tego szukaliśmy przy naszym projekcie.',
-        author: 'Marek Nowak',
-        role: 'twórca cyfrowy',
-      },
-      {
-        quote: 'Gorąco polecam. Wdrożenie odbyło się terminowo, bez najmniejszego chaosu i z pełnym wsparciem po starcie.',
-        author: 'Katarzyna Wiśniewska',
-        role: 'menedżerka projektów',
-      },
-    ],
-  },
-  faq: {
-    heading: 'Częste pytania',
-    items: [
-      {
-        question: 'Od czego najlepiej zacząć współpracę?',
-        answer: 'Najlepiej od krótkiej wiadomości z opisem Twojego projektu. Skontaktujemy się z Tobą, aby omówić wszystkie szczegóły na niezobowiązującej rozmowie.',
-      },
-      {
-        question: 'Jak długo trwa standardowa realizacja?',
-        answer: 'Czas realizacji zawsze zależy od skomplikowania danego projektu, jednak typowe wdrożenia zamykamy zwykle w ciągu kilku tygodni.',
-      },
-      {
-        question: 'Czy projekt jest skalowalny i elastyczny?',
-        answer: 'Absolutnie tak. Rozwiązania projektujemy z myślą o przyszłości, dzięki czemu zawsze można dostosować zakres do Twoich aktualnych potrzeb.',
-      },
-    ],
-  },
-  blogPreview: {
-    heading: 'Blog',
-    emptyText: 'Wkrótce pojawią się tutaj pierwsze wpisy.',
-    ctaLabel: 'Zobacz wszystkie wpisy',
-  },
-  contact: {
-    heading: 'Kontakt',
-    description: 'Napisz, czego dokładnie potrzebuje Twój projekt. Wrócimy z propozycją najlepszego rozwiązania.',
-    emailCtaLabel: 'Napisz e-mail',
-  },
+  testimonials: { heading: 'Doświadczenie w praktyce', items: [] as { quote: string; author: string; role: string }[] },
+  faq: { heading: 'Zanim zrobimy pierwszy krok.', items: [
+    { question: 'Czy muszę mieć gotowy tekst i identyfikację?', answer: 'Nie. Możemy zacząć od Twojej oferty, odbiorców i kilku przykładów. Podczas ustalania zakresu określimy, jakie materiały już masz, a co przygotujemy w ramach współpracy.' },
+    { question: 'Ile kosztuje taka strona?', answer: 'Wycena zależy od liczby widoków, zakresu treści, animacji i integracji. Po rozmowie otrzymasz propozycję z konkretnym zakresem oraz ceną. Decyzję podejmujesz przed rozpoczęciem prac.' },
+    { question: 'Jak długo potrwa realizacja?', answer: 'Termin ustalamy po poznaniu zakresu i dostępności materiałów. Harmonogram obejmuje projekt, Twoją opinię, wdrożenie i sprawdzenie strony przed publikacją.' },
+    { question: 'Czy będę samodzielnie zmieniać treści?', answer: 'Sposób edycji dobieramy do Twoich potrzeb. Przy przekazaniu projektu pokazuję, jak wprowadzać zmiany i publikować kolejne wersje. Ustalamy to już na etapie zakresu.' },
+    { question: 'Czy strona będzie działać dobrze na telefonie?', answer: 'Widok mobilny jest częścią projektu. Sprawdzam czytelność, nawigację, przyciski i podstawowe ścieżki. Ruch jest ograniczony dla osób korzystających z ustawienia redukcji animacji.' },
+    { question: 'Co dzieje się po publikacji?', answer: 'Dostajesz stronę i instrukcję dalszej pracy. Zakres poprawek, wsparcia i ewentualnego rozwoju ustalamy w propozycji współpracy — zanim ruszymy.' },
+  ] },
+  blogPreview: { heading: 'Notatki z budowania', emptyText: 'Pomysły, narzędzia i doświadczenia z pracy.', ctaLabel: 'Czytaj notatki' },
+  contact: { heading: 'Zróbmy z tego coś konkretnego.', description: 'Opowiedz mi, co budujesz i czego dziś potrzebujesz. Zaczniemy od rozmowy, nie od długiej specyfikacji.', emailCtaLabel: 'Napisz o swoim projekcie' },
 };
+export type CtaLink = { label: string; href: string };
+export type TextItem = { title: string; description: string };

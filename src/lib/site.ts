@@ -56,7 +56,7 @@ export const SITE: SitePresentation = {
   analytics: STARTER_SITE.analytics,
   theme: STARTER_SITE.theme,
   structuredData: {
-    serviceType: 'Szablon strony internetowej w Astro 7',
+    serviceType: 'Projektowanie i wdrażanie stron internetowych',
     areaServed: 'Polska',
     knowsAbout: [
       'Astro 7',

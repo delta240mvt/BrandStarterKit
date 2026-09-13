@@ -41,31 +41,31 @@ export interface SiteConfig {
 
 export const SITE: SiteConfig = {
   // Single source of truth for public identity and machine-readable SEO/GEO copy.
-  slug: 'twoj-brand-starter-kit',
-  displayName: 'Twój Brand Starter Kit',
-  shortName: 'Brand Starter Kit',
+  slug: 'delta240mvt',
+  displayName: 'DELTA240MVT',
+  shortName: 'DELTA240MVT',
   locale: 'pl-PL',
-  canonicalBaseUrl: 'https://brandstarterkit-twojprojekt.com',
-  primaryDomain: 'brandstarterkit-twojprojekt.com',
-  defaultTitle: 'Twój Brand Starter Kit | Szablon strony Astro 7 dla nowego projektu',
+  canonicalBaseUrl: 'https://delta240mvt.com',
+  primaryDomain: 'delta240mvt.com',
+  defaultTitle: 'DELTA240MVT — Twój pomysł. W końcu w działaniu.',
   defaultDescription:
-    'Twój Brand Starter Kit to statyczny szablon strony w Astro 7 dla nowego projektu, startupu lub marki osobistej.',
-  blogTitle: 'Blog | Twój Brand Starter Kit',
+    'Strategia, design i wdrożenie strony dla Twojej marki. Przemysław Filipiak — od pomysłu do publikacji, z pomocą AI.',
+  blogTitle: 'Blog | DELTA240MVT',
   blogDescription:
     'Aktualności, poradniki i materiały związane z rozwojem nowego projektu.',
-  articleSuffix: 'Twój Brand Starter Kit',
-  authorName: 'Twój zespół',
-  productUrl: 'https://brandstarterkit-twojprojekt.com',
-  registrationUrl: 'https://brandstarterkit-twojprojekt.com',
+  articleSuffix: 'DELTA240MVT',
+  authorName: 'Przemysław Filipiak',
+  productUrl: 'https://delta240mvt.com',
+  registrationUrl: 'https://delta240mvt.com',
   contact: {
-    email: 'hello@brandstarterkit-twojprojekt.com',
+    email: 'delta240mvt@gmail.com',
   },
   socialLinks: [],
   analytics: {
     enabled: false,
   },
   theme: {
-    color: '#0f766e',
-    backgroundColor: '#ffffff',
+    color: '#00D6D8',
+    backgroundColor: '#F8F7F3',
   },
 };

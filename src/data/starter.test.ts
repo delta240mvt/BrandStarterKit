@@ -33,7 +33,7 @@ test('privacy policy includes the required starter disclaimer', () => {
 });
 
 test('public identity is the editable brand starter kit', () => {
-  assert.equal(SITE.slug, 'twoj-brand-starter-kit');
-  assert.equal(SITE.canonicalBaseUrl, 'https://brandstarterkit-twojprojekt.com');
-  assert.equal(SITE.productUrl, 'https://brandstarterkit-twojprojekt.com');
+  assert.equal(SITE.slug, 'delta240mvt');
+  assert.equal(SITE.canonicalBaseUrl, 'https://delta240mvt.com');
+  assert.equal(SITE.productUrl, 'https://delta240mvt.com');
 });
