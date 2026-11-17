@@ -159,6 +159,10 @@ Narzędzia te sprawdzą poprawność plików robots.txt, mapy strony, brak ślep
 5. Dopracuj informacje prawne (`src/data/legal.ts`).
 6. Wdróż, podziel się linkiem i pracuj nad swoim projektem dalej!
 
+## Autor
+
+Projekt zbudowałem ja, Przemysław Filipiak. Historię projektu, decyzje i wnioski opisuję na moim portalu: [Brand Starter Kit w portfolio delta240mvt](https://delta240mvt.com/portfolio/brand-starter-kit/). Na [delta240mvt.com](https://delta240mvt.com/) piszę dla twórców AI: testy narzędzi i modeli, poradniki do Claude Code, Codexa i modeli lokalnych oraz codzienne AI News.
+
 ## Licencja
 
 MIT - w pełni wolne oprogramowanie gotowe by Ci służyć. Zobacz [`LICENSE`](LICENSE).
